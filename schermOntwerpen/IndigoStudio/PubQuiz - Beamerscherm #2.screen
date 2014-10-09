@@ -1,0 +1,142 @@
+﻿<?Infragistics.Models format="xaml" version="23"?>
+<Page xmlns="http://prototypes.infragistics.com/"
+                                                          Id="f64f0fce-1e35-4eb1-994f-b27a32d0283d">
+    <Page.Content>
+        <Content Width="800" Height="600" Id="e89f2e63-9313-4021-9b29-3b8d3408dd02">
+            <Content.Layers>
+                <Layer Id="361af54b-c3c0-4549-9082-18b2c7aebb04" Panel.Layout="Stretch" />
+                <AnnotationsLayer Id="b7137f6e-3f5e-49d4-98da-f022e0149247" Panel.Layout="Stretch" />
+            </Content.Layers>
+        </Content>
+    </Page.Content>
+    <Page.Scenes>
+        <Scene Title="Start" Created="10/09/2014 14:35:53" Id="1d9ccdc4-4402-4d17-a18a-618731b2c5b3">
+            <Scene.KeyFrames>
+                <KeyFrame Id="92fc8d3b-e859-4af3-9027-fc955e470d3e">
+                    <KeyFrame.Operations>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Ellipse Thickness="10" Id="9ba3b2d3-dfa0-4b7f-bf6d-e5a5e344672a" Panel.Bounds="119,425,100{5,2147483647},100{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Title Text="45" Foreground="Black" Id="0bbb6b30-4717-49f2-be3b-d550f6472825" Panel.Bounds="149,451,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Ellipse Thickness="10" Id="d2fd1fa7-f494-467c-86f3-55ed1a95deda" Panel.Bounds="268,425,100{5,2147483647},100{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Title Text="56" Id="454d5af5-69e7-4d42-aaf1-0cd814f66eb8" Panel.Bounds="298,451,39*,47*" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Ellipse Thickness="10" Id="3d8c0bff-895e-44a6-942c-e5cc4c124d63" Panel.Bounds="424,425,100{5,2147483647},100{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Title Text="34" Id="7ebb5a81-ca6c-4a81-89e4-2bfe20c4ae97" Panel.Bounds="454,451,39*,47*" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Ellipse Thickness="10" Id="1e215cb0-d234-465c-aae3-65c8b39969aa" Panel.Bounds="582,425,100{5,2147483647},100{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Title Text="87" Id="d89d2002-fc88-4da4-87f8-100cba174083" Panel.Bounds="612,451,39*,47*" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Label Text="Team naam" FontSize="20" Id="7298de8b-ea68-457f-9897-231da4273c25" Panel.Bounds="113,538,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Label Text="Team naam" FontSize="20" Id="ccd41c81-85fb-436c-8b88-cbc96330cafb" Panel.Bounds="262,538,111*,28*" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Label Text="Team naam" FontSize="20" Id="dd642063-c6c3-44c7-a686-906980371b39" Panel.Bounds="418,538,111*,28*" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Label Text="Team naam" FontSize="20" Id="507a7e7a-686c-482a-88d5-a1790029d9d4" Panel.Bounds="576,538,111*,28*" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Title Text="In welk jaar won Nederland het WK kleiduifschieten voor het laatst?" FontSize="22" Id="b1de07a4-b10e-4d92-b6b9-f1815f04d296" Panel.Bounds="55,175,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Title Text="Ronde: 1" FontSize="22" Id="6105e3a7-cc27-445f-b835-a8da6adcc523" Panel.Bounds="113,44,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Title Text="Vraag: 3/12" FontSize="22" Id="5f46c8d8-3a52-4397-b480-43c07470cd3b" Panel.Bounds="596,44,91*,30*" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Title Text="Geschiedenis" FontSize="28" Id="8984f002-3340-444c-bc17-023b01ab0ab0" Panel.Bounds="313,109,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Rectangle Thickness="6,0,0,0" Color="#FF717171" Background="#FFFFB9B9" Id="a7d3fdcd-d64f-4b2f-8645-b89503a76c9f" Panel.Bounds="149,226,533{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Label Text="Antwoord van het team. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet." Id="48a95654-feb8-43cf-a038-527a16c1ddc5" Panel.Bounds="165,234,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Rectangle Thickness="6,0,0,0" Color="#FF717171" Background="#FFD1F0D5" Id="5f81edd4-be1f-4ada-a5be-bb086099fdeb" Panel.Bounds="149,270,533{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Label Text="Antwoord van het team. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet." Id="5ce95dc7-368e-48c3-a676-9c61e5214422" Panel.Bounds="165,278,496*,18*" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Rectangle Thickness="6,0,0,0" Color="#FF717171" Background="#FFFFB9B9" Id="c4dc2c54-0615-4919-85d2-2e07b7172ad8" Panel.Bounds="149,313,533{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Label Text="Antwoord van het team. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet." Id="8540d69e-f3c2-4f0a-8e29-9fb7b36a8193" Panel.Bounds="165,321,496*,18*" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Rectangle Thickness="6,0,0,0" Color="#FF717171" Background="#FFD1F0D5" Id="3e225983-fa3c-4014-8966-2ec2567cdb6a" Panel.Bounds="149,354,533{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="361af54b-c3c0-4549-9082-18b2c7aebb04">
+                            <Add.Item>
+                                <Label Text="Antwoord van het team. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet." Id="05780de7-62c9-4441-9791-1006eb793543" Panel.Bounds="165,362,496*,18*" />
+                            </Add.Item>
+                        </Add>
+                    </KeyFrame.Operations>
+                </KeyFrame>
+            </Scene.KeyFrames>
+        </Scene>
+    </Page.Scenes>
+</Page>

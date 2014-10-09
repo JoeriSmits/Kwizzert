@@ -1,0 +1,52 @@
+﻿<?Infragistics.Models format="xaml" version="23"?>
+<Page xmlns="http://prototypes.infragistics.com/"
+                                                          Id="57db9d03-b45c-4fa2-8d78-0174814c7c70">
+    <Page.Content>
+        <Content Width="350" Height="550" Id="9461c86f-3b8e-4907-8e1f-798d0f4b8176">
+            <Content.Layers>
+                <Layer Id="93ac6e5d-70c6-415f-bd27-9c78354e97e8" Panel.Layout="Stretch" />
+                <AnnotationsLayer Id="8bbb8c5b-fc56-429c-bfea-06d4067d2618" Panel.Layout="Stretch" />
+            </Content.Layers>
+        </Content>
+    </Page.Content>
+    <Page.Scenes>
+        <Scene Title="Start" Created="10/09/2014 14:57:36" Id="bf04eece-b1f5-42fb-9970-448207a46564">
+            <Scene.KeyFrames>
+                <KeyFrame Id="7c3e4922-8846-41db-9dee-519df3b6f812">
+                    <KeyFrame.Operations>
+                        <Add Property="Panel.Children" Target="93ac6e5d-70c6-415f-bd27-9c78354e97e8">
+                            <Add.Item>
+                                <Rectangle CornerRadius="5" Color="#FF717171" Id="97e5ceed-574a-41b1-952b-8030fe62448f" Panel.Bounds="45,141,260{5,2147483647},47{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="93ac6e5d-70c6-415f-bd27-9c78354e97e8">
+                            <Add.Item>
+                                <Title Text="Aanmelden" Id="40931a5d-4774-4343-ae9c-7275b525272b" Panel.Bounds="84,42,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="93ac6e5d-70c6-415f-bd27-9c78354e97e8">
+                            <Add.Item>
+                                <Label Text="Teamnaam" Foreground="#FFAAAAAA" FontSize="20" FontStyle="Normal|Italic" Id="b8d8f05f-ae5c-4897-be83-36f965dd63ac" Panel.Bounds="54,151,103{5,2147483647},27{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="93ac6e5d-70c6-415f-bd27-9c78354e97e8">
+                            <Add.Item>
+                                <Button Text="Team aanmelden" CornerRadius="5" Id="cff1f84b-d4cb-435e-a119-03746de23fce" Panel.Bounds="110,214,129{5,2147483647},37{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="93ac6e5d-70c6-415f-bd27-9c78354e97e8">
+                            <Add.Item>
+                                <Label Text="Uitleg:" FontSize="16" FontStyle="Normal|Bold" Id="53e819e3-82df-4f9a-81e1-b3b97aa3a673" Panel.Bounds="44,318,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="93ac6e5d-70c6-415f-bd27-9c78354e97e8">
+                            <Add.Item>
+                                <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum ultricies arcu, id commodo quam laoreet ut. Etiam auctor nisl eu arcu posuere, vel finibus erat rutrum. Nulla et justo vel augue pretium luctus sit amet commodo nulla. Nullam urna risus, semper id rutrum ultricies, molestie quis ante." Id="6f8b3584-e258-4458-9310-4efe8cab6ad8" Panel.Bounds="44,353,260{5,2147483647},155{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                    </KeyFrame.Operations>
+                </KeyFrame>
+            </Scene.KeyFrames>
+        </Scene>
+    </Page.Scenes>
+</Page>
