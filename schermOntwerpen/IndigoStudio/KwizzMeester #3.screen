@@ -1,0 +1,122 @@
+﻿<?Infragistics.Models format="xaml" version="23"?>
+<Page xmlns="http://prototypes.infragistics.com/"
+                                                          Id="af533a74-6969-4057-97a1-526c38a19a56">
+    <Page.Content>
+        <Content Width="750" Height="500" Id="6bf2bc7d-1d7d-450e-a4a8-114fe0f048b4">
+            <Content.Layers>
+                <Layer Id="a46f0a6b-0eaf-407e-92d6-24310308fd72" Panel.Layout="Stretch" />
+                <AnnotationsLayer Id="10d47db5-9277-4eef-a57d-d8398b478170" Panel.Layout="Stretch" />
+            </Content.Layers>
+        </Content>
+    </Page.Content>
+    <Page.Scenes>
+        <Scene Title="Start" Created="10/13/2014 09:03:17" Id="cf28fef0-1bc0-40ff-b550-22f6c9fd4ca1">
+            <Scene.KeyFrames>
+                <KeyFrame Id="60e8b239-a126-4e9b-bb3a-71d2525ec8f3">
+                    <KeyFrame.Operations>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Selecteer de categoriën" Id="6040cb1b-b073-45e4-bba6-4d5b5b3d06e4" Panel.Bounds="59,63,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Button Text="Start ronde" CornerRadius="5" FontSize="16" Id="a91c1f5c-453f-43b8-b62b-e2dc3cbd9fa5" Panel.Bounds="284,392,181{5,2147483647},41{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Categorie naam" FontSize="16" Id="05b89b66-762a-40ee-80f6-183cd6533d04" Panel.Bounds="74,190,161{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Before="6040cb1b-b073-45e4-bba6-4d5b5b3d06e4" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Rectangle CornerRadius="5" Id="c295ff50-f878-4342-9ec8-e70064f9cfec" Panel.Bounds="59,140,335{5,2147483647},198{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <TextBox Text="Zoeken" Foreground="#FFC6C6C6" FontStyle="Normal|Italic" Id="805d28b6-68e4-4cee-a6d2-0e966de83ed4" Panel.Bounds="74,150,296{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FF9BBB59" CatalogId="Add" Id="f77098ec-08a1-4369-9de4-10a815bf2392" Panel.Bounds="342,190,26{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Categorie naam" FontSize="16" Id="303fe7a6-ae5a-4b70-b47d-126bc6bc9dab" Panel.Bounds="74,226,161{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FF9BBB59" CatalogId="Add" Id="623f9116-59b9-41fb-b4f6-648504f63709" Panel.Bounds="342,226,26{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Categorie naam" FontSize="16" Id="56382933-e595-4758-86cf-eade95803466" Panel.Bounds="74,261,161{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FF9BBB59" CatalogId="Add" Id="13e1e47b-f14e-4895-a80d-b97454aba3dc" Panel.Bounds="342,261,26{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Categorie naam" FontSize="16" Id="769b3496-fee6-4441-b5d6-9e54b3548924" Panel.Bounds="74,297,161{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FF9BBB59" CatalogId="Add" Id="3c662c5a-8d2c-4b8b-8528-a37b4598cd5e" Panel.Bounds="342,297,26{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Rectangle CornerRadius="5" Id="20f3fc5c-68e2-48ae-b4d8-8e9f8ff47560" Panel.Bounds="441,140,250{5,2147483647},158{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Geselecteerde categorieën" FontSize="18" Id="5771a7dc-723f-490b-b60a-340f8f57c551" Panel.Bounds="448,149,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Categorie naam" FontSize="16" Id="c33a0395-de5e-4970-9b0c-fe5d8bd1ce4b" Panel.Bounds="448,190,189{5,2147483647},33{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Categorie naam" FontSize="16" Id="1eb19dd4-9cb0-4377-9d30-26c552472d96" Panel.Bounds="448,226,189,33" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Categorie naam" FontSize="16" Id="2d6a0b23-adbb-4508-8b02-03025fbb8e73" Panel.Bounds="448,261,189,33" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FFC40000" CatalogId="CircledX" Id="3f5317ad-f44c-4062-bdb2-e2dc43553803" Panel.Bounds="646,190,26{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FFC40000" CatalogId="CircledX" Id="5363bc02-da4c-47dd-9e8c-e9de48ccfc67" Panel.Bounds="646,226,26{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FFC40000" CatalogId="CircledX" Id="bc66cb60-ba68-4873-a407-296ab1833d34" Panel.Bounds="646,261,26{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                    </KeyFrame.Operations>
+                </KeyFrame>
+            </Scene.KeyFrames>
+        </Scene>
+    </Page.Scenes>
+</Page>

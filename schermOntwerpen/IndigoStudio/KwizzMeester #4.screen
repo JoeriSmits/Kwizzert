@@ -1,0 +1,97 @@
+﻿<?Infragistics.Models format="xaml" version="23"?>
+<Page xmlns="http://prototypes.infragistics.com/"
+                                                          Id="af533a74-6969-4057-97a1-526c38a19a56">
+    <Page.Content>
+        <Content Width="750" Height="500" Id="6bf2bc7d-1d7d-450e-a4a8-114fe0f048b4">
+            <Content.Layers>
+                <Layer Id="a46f0a6b-0eaf-407e-92d6-24310308fd72" Panel.Layout="Stretch" />
+                <AnnotationsLayer Id="10d47db5-9277-4eef-a57d-d8398b478170" Panel.Layout="Stretch" />
+            </Content.Layers>
+        </Content>
+    </Page.Content>
+    <Page.Scenes>
+        <Scene Title="Start" Created="10/13/2014 09:03:17" Id="cf28fef0-1bc0-40ff-b550-22f6c9fd4ca1">
+            <Scene.KeyFrames>
+                <KeyFrame Id="60e8b239-a126-4e9b-bb3a-71d2525ec8f3">
+                    <KeyFrame.Operations>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Selecteer de vraag" Id="6040cb1b-b073-45e4-bba6-4d5b5b3d06e4" Panel.Bounds="59,63,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Button Text="Start vraag" CornerRadius="5" FontSize="16" Id="a91c1f5c-453f-43b8-b62b-e2dc3cbd9fa5" Panel.Bounds="284,392,181{5,2147483647},41{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Rectangle CornerRadius="5" Id="7e8f6d67-f507-4328-8d96-27a56fa15c2a" Panel.Bounds="59,141,631{5,2147483647},218{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Vraag naam" FontSize="16" Id="7412cf01-8507-4fb2-ab4e-a3a0acc5aef5" Panel.Bounds="75,147,161{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FFAAAAAA" CatalogId="Right Fill Triangle" Id="db419d50-297b-4fec-8f63-3e40e3a2425b" Panel.Bounds="648,147,26{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Vraag naam" FontSize="16" Id="b10195b3-da1f-469a-ba18-0b55d1af1f1a" Panel.Bounds="75,183,161{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FFAAAAAA" CatalogId="Right Fill Triangle" Id="eaf9d6bb-6d24-4232-8ab6-bd7c407d8cb5" Panel.Bounds="648,183,26{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Vraag naam" FontSize="16" Id="0757c6ec-16a5-4223-8045-3d7ee6343656" Panel.Bounds="75,218,161{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FFAAAAAA" CatalogId="Right Fill Triangle" Id="12ec4a5a-f849-41f4-93be-276fdf1edb61" Panel.Bounds="648,218,26{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Vraag naam" FontSize="16" Id="7fcdf76c-282e-4ef4-8ce7-4b186cd51476" Panel.Bounds="75,254,161{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FFAAAAAA" CatalogId="Right Fill Triangle" Id="775fafc7-0329-42ae-add7-d665e1a07646" Panel.Bounds="648,254,26{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Vraag naam" FontSize="16" Id="3401981f-d532-40ba-87eb-e6aa57e6a5ba" Panel.Bounds="75,290,161{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FFAAAAAA" CatalogId="Right Fill Triangle" Id="aedb63dc-d61e-4980-ad50-5c3ec958b589" Panel.Bounds="648,290,26{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Vraag naam" FontSize="16" Id="df51b96e-1a19-4b9c-add4-5222b7fccf90" Panel.Bounds="75,326,161{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FFAAAAAA" CatalogId="Right Fill Triangle" Id="20b667f6-c467-4247-b66b-d20265472b19" Panel.Bounds="648,326,26{5,2147483647},26{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                    </KeyFrame.Operations>
+                </KeyFrame>
+            </Scene.KeyFrames>
+        </Scene>
+    </Page.Scenes>
+</Page>

@@ -1,0 +1,42 @@
+﻿<?Infragistics.Models format="xaml" version="23"?>
+<Page xmlns="http://prototypes.infragistics.com/"
+                                                          Id="af533a74-6969-4057-97a1-526c38a19a56">
+    <Page.Content>
+        <Content Width="750" Height="400" Id="6bf2bc7d-1d7d-450e-a4a8-114fe0f048b4">
+            <Content.Layers>
+                <Layer Id="a46f0a6b-0eaf-407e-92d6-24310308fd72" Panel.Layout="Stretch" />
+                <AnnotationsLayer Id="10d47db5-9277-4eef-a57d-d8398b478170" Panel.Layout="Stretch" />
+            </Content.Layers>
+        </Content>
+    </Page.Content>
+    <Page.Scenes>
+        <Scene Title="Start" Created="10/13/2014 09:03:17" Id="cf28fef0-1bc0-40ff-b550-22f6c9fd4ca1">
+            <Scene.KeyFrames>
+                <KeyFrame Id="60e8b239-a126-4e9b-bb3a-71d2525ec8f3">
+                    <KeyFrame.Operations>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Button Text="Kwiz-avond starten" Background="#FF3BAF4A" BorderColor="#FF349C42" CornerRadius="5" BorderThickness="0,0,4,4" Foreground="White" FontSize="20" Id="40db043f-8f6d-4895-91b9-7b4f0eaa8244" Panel.Bounds="252,190,245{5,2147483647},55{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="De Kwizzert" Id="6040cb1b-b073-45e4-bba6-4d5b5b3d06e4" Panel.Bounds="282,106,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Label Text="Er hebben zich nog geen teams aangemeld." Foreground="#FFC6C6C6" FontSize="16" FontStyle="Normal|Italic" Id="fe8ff278-b463-4000-816f-d9023903bdcb" Panel.Bounds="222,272,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Button Text="Kwiz-avond starten" Background="#FF3BAF4A" BorderColor="#FF48C157" CornerRadius="5" BorderThickness="4,4,0,0" Foreground="White" FontSize="20" Id="b56cf3bc-aa9a-4988-8496-7c8eb40a2376" Panel.Bounds="252,190,242{5,2147483647},52{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                    </KeyFrame.Operations>
+                </KeyFrame>
+            </Scene.KeyFrames>
+        </Scene>
+    </Page.Scenes>
+</Page>

@@ -1,0 +1,112 @@
+﻿<?Infragistics.Models format="xaml" version="23"?>
+<Page xmlns="http://prototypes.infragistics.com/"
+                                                          Id="af533a74-6969-4057-97a1-526c38a19a56">
+    <Page.Content>
+        <Content Width="750" Height="500" Id="6bf2bc7d-1d7d-450e-a4a8-114fe0f048b4">
+            <Content.Layers>
+                <Layer Id="a46f0a6b-0eaf-407e-92d6-24310308fd72" Panel.Layout="Stretch" />
+                <AnnotationsLayer Id="10d47db5-9277-4eef-a57d-d8398b478170" Panel.Layout="Stretch" />
+            </Content.Layers>
+        </Content>
+    </Page.Content>
+    <Page.Scenes>
+        <Scene Title="Start" Created="10/13/2014 09:03:17" Id="cf28fef0-1bc0-40ff-b550-22f6c9fd4ca1">
+            <Scene.KeyFrames>
+                <KeyFrame Id="60e8b239-a126-4e9b-bb3a-71d2525ec8f3">
+                    <KeyFrame.Operations>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Title Text="Vraag naam" Id="6040cb1b-b073-45e4-bba6-4d5b5b3d06e4" Panel.Bounds="280,56,5*{5,2147483647},5*{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Button Text="Volgende vraag" CornerRadius="5" FontSize="16" Id="a91c1f5c-453f-43b8-b62b-e2dc3cbd9fa5" Panel.Bounds="284,392,181{5,2147483647},41{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Rectangle Thickness="6,0,0,0" Color="#FF717171" Id="cb74145a-01fc-49c5-b7f5-fa804c6f7ef9" Panel.Bounds="162,151,533{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Label Text="Antwoord van het team. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet." Id="b5b85a20-3046-4bc7-a43e-6380f7bd54c8" Panel.Bounds="178,159,496*,18*" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Rectangle Thickness="6,0,0,0" Color="#FF717171" Id="4a343812-b9ad-4d4c-bb1c-4a751da2fc8b" Panel.Bounds="162,205,533{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Label Text="Antwoord van het team. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet." Id="0ec246bc-b3d2-4ac9-ad1c-3f394d00c6ec" Panel.Bounds="178,213,496*,18*" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Rectangle Thickness="6,0,0,0" Color="#FF717171" Id="19d455ae-729e-4538-9a06-8c9d20028817" Panel.Bounds="162,261,533{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Label Text="Antwoord van het team. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet." Id="6894694f-1f13-4bac-a48d-0ac3d5f91b9f" Panel.Bounds="178,269,496*,18*" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Rectangle Thickness="6,0,0,0" Color="#FF717171" Id="fe9b13a8-3ae7-46e1-9dfe-8b2e53f45257" Panel.Bounds="162,313,533{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Label Text="Antwoord van het team. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet." Id="06ef3202-0e3a-42c4-b71f-cac2d720a80b" Panel.Bounds="178,321,496*,18*" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FF3BAF4A" CatalogId="Check" Id="740b3194-cefd-4ffd-b7ee-22d19b39ea01" Panel.Bounds="55,151,35{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FFC40000" CatalogId="Remove" Id="507fea98-1902-4db7-a235-9b43668750ca" Panel.Bounds="109,151,35{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FF3BAF4A" CatalogId="Check" Id="b2f4231a-9807-4008-92db-44f868f01003" Panel.Bounds="55,205,35{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FFC40000" CatalogId="Remove" Id="ea7a20af-2c0a-45b7-a5d2-610a727d6ee2" Panel.Bounds="109,205,35{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FF3BAF4A" CatalogId="Check" Id="2107acd5-45da-4023-9f97-30cb33206785" Panel.Bounds="55,261,35{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FFC40000" CatalogId="Remove" Id="0020dc18-235d-4764-bda4-2b7476de7a31" Panel.Bounds="109,261,35{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FF3BAF4A" CatalogId="Check" Id="e1a6b4b4-6af7-40ed-abde-cfadd8e39e50" Panel.Bounds="55,313,35{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                        <Add Property="Panel.Children" Target="a46f0a6b-0eaf-407e-92d6-24310308fd72">
+                            <Add.Item>
+                                <Icon Color="#FFC40000" CatalogId="Remove" Id="f34b5be0-fe34-40a0-89b0-e2c4720eb9da" Panel.Bounds="109,313,35{5,2147483647},35{5,2147483647}" />
+                            </Add.Item>
+                        </Add>
+                    </KeyFrame.Operations>
+                </KeyFrame>
+            </Scene.KeyFrames>
+        </Scene>
+    </Page.Scenes>
+</Page>
