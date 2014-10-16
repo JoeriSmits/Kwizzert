@@ -10,8 +10,11 @@ var theApp = angular.module("kwizzertApp", ['ngRoute']).
                     templateUrl: "templates/speler.html",
 //                    controller: ""
                 }).
-                when("/meester", {
-                    templateUrl: "templates/meester.html"
+                when("/meester-start", {
+                    templateUrl: "templates/meester-start.html"
+                }).
+                when("/meester-auth" , {
+                    templateUrl: "templates/meester-auth.html"
                 }).
                 when("/beamer", {
                     templateUrl: "templates/beamer.html"
@@ -28,5 +31,9 @@ theApp.controller("kwizzertController", function($scope, $location){
             s = true;
         }
         return s;
+    };
+
+    $scope.go = function ( path ) {
+        $location.path( path );
     };
 });
