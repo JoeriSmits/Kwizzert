@@ -1,0 +1,15 @@
+{
+  "name": "Kwizzert",
+  "version": "1.0.0",
+  "description": "Kwizzert is a pubquiz developed for HAN ICA",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.9.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joeri Smits & Israpil Nalgiev",
+  "license": "ISC"
+}
