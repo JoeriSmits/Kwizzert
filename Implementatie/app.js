@@ -5,16 +5,26 @@
 var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
+var fs = require('fs');
 
 var app = express();
 
 // Using directory client-side as client directory.
 app.use(express.static(path.join(__dirname, 'client-side')));
 
-mongoose.connect('mongodb://localhost:27017/kwizzert');
 
-var Team = require(path.join(__dirname, './models/team.js'));
+// Load configuration
+var env = process.env.NODE_ENV || 'development',
+    config = require('./config/config.js')[env];
 
-// Running the app
-app.listen(3000);
-console.log("App running on localhost:3000");
+// Connect to the mongoDB
+mongoose.connect(config.db);
+
+// Getting all the models in the models directory
+var models_path = __dirname + '/app/models',
+    model_files = fs.readdirSync(models_path);
+model_files.forEach(function (file) {
+    require(models_path + '/' + file);
+});
+
+module.exports = app;
