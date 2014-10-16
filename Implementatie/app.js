@@ -12,7 +12,6 @@ var app = express();
 // Using directory client-side as client directory.
 app.use(express.static(path.join(__dirname, 'client-side')));
 
-
 // Load configuration
 var env = process.env.NODE_ENV || 'development',
     config = require('./config/config.js')[env];
@@ -26,5 +25,15 @@ var models_path = __dirname + '/app/models',
 model_files.forEach(function (file) {
     require(models_path + '/' + file);
 });
+
+var Vraag = mongoose.model('vraag');
+
+var vraag1 = new Vraag({
+    vraagTekst: "Dit is een test",
+    antwoord: "Hallo dit is het antwoord",
+    categorie: "test"
+});
+
+vraag1.save();
 
 module.exports = app;
