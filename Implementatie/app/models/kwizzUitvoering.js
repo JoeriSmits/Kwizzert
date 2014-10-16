@@ -1,3 +1,6 @@
+/**
+ * Created by Joeri55 on 16-10-2014.
+ */
 var mongoose = require('mongoose');
 
 var kwizzUitvoeringSchema = new mongoose.Schema({
@@ -7,4 +10,4 @@ var kwizzUitvoeringSchema = new mongoose.Schema({
     password: String
 });
 
-module.exports = mongoose.model('kwizzUitvoering', kwizzUitvoeringSchema);
+module.exports = mongoose.model('KwizzUitvoering', kwizzUitvoeringSchema);

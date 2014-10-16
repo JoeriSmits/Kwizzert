@@ -12,7 +12,6 @@ var app = express();
 // Using directory client-side as client directory.
 app.use(express.static(path.join(__dirname, 'client-side')));
 
-
 // Load configuration
 var env = process.env.NODE_ENV || 'development',
     config = require('./config/config.js')[env];
