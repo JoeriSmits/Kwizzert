@@ -26,4 +26,14 @@ model_files.forEach(function (file) {
     require(models_path + '/' + file);
 });
 
+var Vraag = mongoose.model('vraag');
+
+var vraag1 = new Vraag({
+    vraagTekst: "Dit is een test",
+    antwoord: "Hallo dit is het antwoord",
+    categorie: "test"
+});
+
+vraag1.save();
+
 module.exports = app;

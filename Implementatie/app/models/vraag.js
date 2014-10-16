@@ -9,4 +9,4 @@ var vraagSchema = new mongoose.Schema({
     categorie: String
 });
 
-module.exports = mongoose.model('Vraag', vraagSchema);
+module.exports = mongoose.model('vraag', vraagSchema, "vragen");

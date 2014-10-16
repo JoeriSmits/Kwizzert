@@ -8,4 +8,4 @@ var teamSchema = new mongoose.Schema({
     score: Number
 });
 
-module.exports = mongoose.model('Team', teamSchema);
+module.exports = mongoose.model('team', teamSchema);
