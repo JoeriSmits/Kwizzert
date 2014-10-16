@@ -4,7 +4,8 @@
   "description": "Kwizzert is a pubquiz developed for HAN ICA",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.9.7"
+    "express": "^4.9.7",
+    "path": "^0.4.9"
   },
   "devDependencies": {},
   "scripts": {
