@@ -16,6 +16,9 @@ var theApp = angular.module("kwizzertApp", ['ngRoute']).
                 when("/meester-auth" , {
                     templateUrl: "templates/meester-auth.html"
                 }).
+                when("/meester-catg" , {
+                    templateUrl: "templates/meester-catg.html"
+                }).
                 when("/beamer", {
                     templateUrl: "templates/beamer.html"
                 }).
