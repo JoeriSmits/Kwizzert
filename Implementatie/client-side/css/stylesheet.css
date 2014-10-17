@@ -1,7 +1,14 @@
+.panel-body h4 {
+     text-align: center;
+}
+
 .panel-body h3 {
     text-align: center;
 }
 
+.alert p {
+    text-align: center;
+}
 .icon-success {
     color: #5CB85C;
 }
@@ -23,4 +30,16 @@
 
 .plus-icon {
     color: #5cb85c;
+}
+
+.remove-icon {
+    color: #b82b33;
+}
+
+.play-icon {
+    color: #1b1b2e;
+}
+
+.antw-table > tbody > tr #antw-td{
+    border-left: 3px solid darkred;
 }

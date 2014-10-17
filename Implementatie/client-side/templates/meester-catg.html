@@ -1,51 +1,87 @@
 <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Selecteer de categorien</h3>
+            <h3 class="panel-title">Selecteer de categorieën</h3>
         </div>
         <div class="panel-body">
             <div class="col-md-6">
-            <!--<div class="col-lg-6">-->
                 <div class="input-group">
                     <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Zoek</button>
-                        </span>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Zoek</button>
+                    </span>
                 </div>
-            <!--</div>-->
-            <br/>
-            <br/>
-            <table class="table table-hover cat-table">
-                <tr>
-                    <td>Geschiedenis</td>
-                    <td>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Wiskunde</td>
-                    <td>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Landen</td>
-                    <td>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        </div>
-            <div class="text-center">
-                <button type="button" class="btn btn-primary">Start de ronde</button>
+
+                <br/>
+                <br/>
+                <table class="table table-hover cat-table">
+                    <tr>
+                        <td>Geschiedenis</td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wiskunde</td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Landen</td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Technology</td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h4>Geselecteerde categorieën</h4>
+                <table class="table table-hover cat-table">
+                    <tr>
+                        <td>Wiskunde</td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Landen</td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Technology</td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
+        <div class="text-center">
+            <button ng-click="go('/meester-vraag')" type="button" class="btn btn-primary">Start de ronde</button>
+        </div>
     </div>
+</div>
 </div>
