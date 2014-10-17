@@ -2,15 +2,17 @@
     text-align: center;
 }
 
-/*
-.panel-body > .row > .col-md-2 {
-    border: 1px solid #121212;
-}*/
-
 .icon-success {
     color: #5CB85C;
 }
 
 .icon-danger {
     color: #b82b33;
+}
+
+.placeholder-img {
+    border: 10px solid greenyellow;
+    border-radius: 500px;
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
 }
