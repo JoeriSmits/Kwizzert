@@ -24,6 +24,11 @@
     -moz-border-radius: 500px;
 }
 
+.kwizz-title, .speler-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .cat-table {
     width: 50%;
 }

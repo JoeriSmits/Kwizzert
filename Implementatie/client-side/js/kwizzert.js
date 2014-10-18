@@ -2,13 +2,15 @@
  * Created by Israpil on 16.10.2014.
  */
 
-var theApp = angular.module("kwizzertApp", ['ngRoute']).
+var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
     config(['$routeProvider',
         function($routeProvider){
             $routeProvider.
                 when("/speler", {
-                    templateUrl: "templates/speler.html",
-//                    controller: ""
+                    templateUrl: "templates/speler-start.html",
+                }).
+                when("/speler-vraag", {
+                    templateUrl: "templates/speler-vraag.html",
                 }).
                 when("/meester-start", {
                     templateUrl: "templates/meester-start.html"
