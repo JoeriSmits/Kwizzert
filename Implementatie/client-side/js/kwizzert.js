@@ -12,7 +12,7 @@ var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
                 when("/speler-vraag", {
                     templateUrl: "templates/speler-vraag.html",
                 }).
-                when("/meester-start", {
+                when("/meester", {
                     templateUrl: "templates/meester-start.html"
                 }).
                 when("/meester-auth" , {
@@ -29,6 +29,9 @@ var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
                 }).
                 when("/beamer", {
                     templateUrl: "templates/beamer.html"
+                }).
+                when("/beamer-antw", {
+                    templateUrl: "templates/beamer-antw.html"
                 }).
                 otherwise({
                     redirectTo: '/home'
