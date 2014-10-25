@@ -1,89 +1,98 @@
-<div class="col-sm-8 col-sm-offset-2">
+<div class="col-sm-10 col-sm-offset-1">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title meester-title">Selecteer de categorieën</h3>
         </div>
         <div class="panel-body">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="input-group">
                     <input type="text" class="form-control">
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button">Zoek</button>
                     </span>
                 </div>
-
-                <br/>
-                <br/>
-                <table class="table table-hover cat-table">
-                    <tr>
-                        <td>Geschiedenis</td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Wiskunde</td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Landen</td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Technology</td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
-                            </a>
-                        </td>
-                    </tr>
+                <br>
+                <table class="table table-hover">
+                    <thead>
+                        <th>Resultaten</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Geschiedenis</td>
+                            <td>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Wiskunde</td>
+                            <td>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Landen</td>
+                            <td>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Technology</td>
+                            <td>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
-            </div> <!-- col-sm-6 -->
+            </div> <!-- col-sm-12 -->
 
-            <div class="col-sm-6">
-                <h4>Geselecteerde categorieën</h4>
-                <table class="table table-hover cat-table">
-                    <tr>
-                        <td>Wiskunde</td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Landen</td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Technology</td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
-                            </a>
-                        </td>
-                    </tr>
+            <div class="col-sm-12">
+                <table class="table table-hover">
+                    <thead>
+                        <th>Geselecteerde categorieën</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Geschiedenis</td>
+                            <td>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Landen</td>
+                            <td>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Technology</td>
+                            <td>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
-            </div>
+            </div> <!-- col-sm-12 -->
 
-        </div>
+        </div> <!-- panel-body -->
 
         <div class="panel-footer">
-            <button ng-click="go('/meester-vraag')" type="button" class="btn btn-primary center-block">Start de ronde</button>
+            <button ng-click="go('/meester-vraag')" type="button" class="btn btn-primary center-block">Start Ronde</button>
         </div>
 
     </div>

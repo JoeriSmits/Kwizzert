@@ -6,11 +6,17 @@ var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
     config(['$routeProvider',
         function($routeProvider){
             $routeProvider.
+                when("/home", {
+                    templateUrl: "templates/home.html"
+                }).
                 when("/speler", {
-                    templateUrl: "templates/speler-start.html",
+                    templateUrl: "templates/speler-auth.html"
+                }).
+                when("/speler-start", {
+                    templateUrl: "templates/speler-start.html"
                 }).
                 when("/speler-vraag", {
-                    templateUrl: "templates/speler-vraag.html",
+                    templateUrl: "templates/speler-vraag.html"
                 }).
                 when("/meester", {
                     templateUrl: "templates/meester-start.html"
@@ -26,6 +32,12 @@ var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
                 }).
                 when("/meester-antw" , {
                     templateUrl: "templates/meester-antw.html"
+                }).
+                when("/meester-end" , {
+                    templateUrl: "templates/meester-end.html"
+                }).
+                when("/beamer-start", {
+                    templateUrl: "templates/beamer-start.html"
                 }).
                 when("/beamer", {
                     templateUrl: "templates/beamer.html"

@@ -16,7 +16,7 @@
     -moz-border-radius: 500px;
 }
 
-.kwizz-title, .speler-title, .beamer-title {
+.kwizz-title, .speler-title, .beamer-title, .beamerStartTitle, .meesterEndTitle{
     font-weight: bold;
     font-size: 20px;
 }
@@ -25,20 +25,19 @@
     font-weight: bold;
 }
 
-.cat-table {
-    width: 50%;
-}
-
 .plus-icon {
     color: #5cb85c;
+    font-size: 20px;
 }
 
 .remove-icon {
     color: #b82b33;
+    font-size: 20px;
 }
 
-.play-icon {
-    color: #1b1b2e;
+.forward-icon {
+    color: #2e5d3a;
+    font-size: 20px;
 }
 
 .antw-table > tbody > tr #antw-td{
