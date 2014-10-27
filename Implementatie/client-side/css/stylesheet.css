@@ -49,9 +49,16 @@
 }
 
 .teamDetails {
-    background: url("../images/placeholder.png") no-repeat center;
+    background: url("../images/placeholder.jpg") no-repeat;
+    width: 125px;
+    height: 125px;
+    border-radius: 125px;
+    border: 3px solid #285e8e;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 40px;
+    text-shadow: 2px 2px 2px #575757;
     text-align: center;
     color: white;
+    margin: 0 auto 0 auto;
+    line-height: 125px;
 }
