@@ -64,14 +64,21 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
             password: generateRandomCode()
         };
 
-        $http.post("/api/kwizzUitvoering", kwizzUitvoering)
+        $http.post("/api/kwizzUitvoeringen", kwizzUitvoering)
             .error(function (data, status) {
                 alert("AJAX ERROR");
                 console.log("ERROR: submit kwizzUitvoering", status, data);
             });
         $scope.myCode = kwizzUitvoering.password;
         $scope.screen = "auth";
-    }
+
+        //Get all the teams for the kwizzUitvoering
+        $http.get("/api/teams/" + kwizzUitvoering.password)
+            .success(function (data) {
+                $scope.teams = data;
+                console.log(data);
+            });
+    };
 });
 
 theApp.controller("kwizzBeamer", function ($scope) {
