@@ -7,11 +7,11 @@ var router = express.Router();
 
 var controller = require('../app/controllers/kwizzUitvoeringController');
 
-router.route('/kwizzUitvoering')
+router.route('/kwizzUitvoeringen')
     .get(controller.retrieveAll)
     .post(controller.createOne);
 
-router.route('/kwizzUitvoering/:id')
+router.route('/kwizzUitvoeringen/:id')
     .get(controller.retrieveOne);
 
 module.exports = router;
