@@ -11,7 +11,8 @@
     "express": "^4.9.7",
     "fs": "0.0.2",
     "mongoose": "^3.8.17",
-    "path": "^0.4.9"
+    "path": "^0.4.9",
+    "socket.io": "^1.2.0"
   },
   "devDependencies": {},
   "author": "Joeri Smits & Israpil Nalgiev",

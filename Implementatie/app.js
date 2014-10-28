@@ -9,6 +9,14 @@ var fs = require('fs');
 
 var app = express();
 
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+// SocketIO connect
+io.on('connection', function(socket){
+    console.log('a user connected');
+});
+
 // Using directory client-side as client directory.
 app.use(express.static(path.join(__dirname, 'client-side')));
 
