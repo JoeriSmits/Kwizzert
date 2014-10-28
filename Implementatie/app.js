@@ -8,10 +8,18 @@ var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
 var fs = require('fs');
-var app = express();
-
 var bodyParser = require("body-parser");
+var cookieParser = require('cookie-parser');
+var session   = require("express-session");
+
+var app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+
+app.use(cookieParser());
+app.use(session({
+    secret: "You are at the wrong place if you read this"
+}));
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);

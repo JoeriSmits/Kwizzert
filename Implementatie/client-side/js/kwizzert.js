@@ -66,15 +66,15 @@ theApp.controller("kwizzertController", function($scope, $location){
 });
 
 theApp.controller("startKwizzert", function ($scope, $location, $http) {
-    var generateRandomCode = function () {
-        var text = "";
+    function generateRandomCode () {
+        var code = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         for( var i=0; i < 10; i++ )
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
+            code += possible.charAt(Math.floor(Math.random() * possible.length));
 
-        return text;
-    };
+        return code;
+    }
 
     $scope.saveKwizzUitvoering = function () {
         var kwizzUitvoering = {
@@ -83,12 +83,10 @@ theApp.controller("startKwizzert", function ($scope, $location, $http) {
         };
 
         $http.post("/api/kwizzUitvoering", kwizzUitvoering)
-            .success(function() {
-                console.log("kwizzUitvoering succesfully saved.")
-            })
             .error(function(data,status) {
                 alert("AJAX ERROR");
                 console.log("ERROR: submit kwizzUitvoering",status,data);
             });
+        $location.path('/meester-auth');
     }
 });
