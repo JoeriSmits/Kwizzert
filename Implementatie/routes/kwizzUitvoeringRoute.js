@@ -5,7 +5,7 @@
 var express = require('express');
 var router = express.Router();
 
-var controller = require('../app/controllers/kwizzUitvoering');
+var controller = require('../app/controllers/kwizzUitvoeringController');
 
 router.route('/kwizzUitvoering')
  //   .get(controller.retrieveAll)

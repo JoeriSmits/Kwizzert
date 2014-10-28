@@ -77,12 +77,12 @@ theApp.controller("startKwizzert", function ($scope, $location, $http) {
     };
 
     $scope.saveKwizzUitvoering = function () {
-        $scope.kwizzUitvoering = {
+        var kwizzUitvoering = {
             teams: [],
             password: generateRandomCode()
         };
 
-        $http.post("/api/kwizzUitvoering", $scope.kwizzUitvoering)
+        $http.post("/api/kwizzUitvoering", kwizzUitvoering)
             .success(function() {
                 console.log("kwizzUitvoering succesfully saved.")
             })
