@@ -1,6 +1,8 @@
 /**
  * Created by Joeri55 on 16-10-2014.
  */
+/*jslint node: true*/
+"use strict";
 
 var express = require('express');
 var path = require('path');
@@ -13,7 +15,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 // SocketIO connect
-io.on('connection', function(socket){
+io.on('connection', function () {
     console.log('a user connected');
 });
 
@@ -42,6 +44,16 @@ route_files.forEach(function (file) {
     route = require(routes_path + '/' + file);
     app.use('/api', route);
 });
+
+// Testing
+//var KwizzUitvoering = mongoose.model('kwizzUitvoering');
+//
+//var kwizzUitvoering1 = new KwizzUitvoering({
+//    teams: [],
+//    password: "jkwewhjwb"
+//});
+//
+//kwizzUitvoering1.save();
 
 // Catch all for unmatched routes
 app.all('*', function (req, res) {
