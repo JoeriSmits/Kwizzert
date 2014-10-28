@@ -19,23 +19,8 @@ var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
                     templateUrl: "templates/speler-vraag.html"
                 }).
                 when("/meester", {
-                    templateUrl: "templates/meester-start.html",
-                    controller: "startKwizzert"
-                }).
-                when("/meester-auth" , {
-                    templateUrl: "templates/meester-auth.html"
-                }).
-                when("/meester-catg" , {
-                    templateUrl: "templates/meester-catg.html"
-                }).
-                when("/meester-vraag" , {
-                    templateUrl: "templates/meester-vraag.html"
-                }).
-                when("/meester-antw" , {
-                    templateUrl: "templates/meester-antw.html"
-                }).
-                when("/meester-end" , {
-                    templateUrl: "templates/meester-end.html"
+                    templateUrl: "templates/meester.html",
+                    controller: "kwizzMeester"
                 }).
                 when("/beamer-start", {
                     templateUrl: "templates/beamer-start.html"
@@ -65,7 +50,13 @@ theApp.controller("kwizzertController", function($scope, $location){
     };
 });
 
-theApp.controller("startKwizzert", function ($scope, $location, $http) {
+theApp.controller("kwizzMeester", function ($scope, $location, $http) {
+    $scope.screen = "start";
+
+    $scope.setScreen = function (target) {
+        $scope.screen = target;
+    }
+
     function generateRandomCode () {
         var code = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -87,6 +78,6 @@ theApp.controller("startKwizzert", function ($scope, $location, $http) {
                 alert("AJAX ERROR");
                 console.log("ERROR: submit kwizzUitvoering",status,data);
             });
-        $location.path('/meester-auth');
+        $scope.screen = "auth";
     }
 });

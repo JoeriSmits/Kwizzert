@@ -1,0 +1,376 @@
+<div id="start" ng-if="screen == 'start'">
+    <!-- Start the first screen -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title text-center">
+                <span class="kwizz-title">De Kwizzert</span>
+            </div>
+        </div>
+        <div class="panel-body">
+            <img class="img-responsive center-block" src="images/pubquiz_logo.png" alt="pubquiz logo">
+        </div>
+        <div class="panel-footer">
+            <button ng-click="saveKwizzUitvoering()" type="button" class="btn btn-success btn-lg btn-block">Kwizz avond
+                starten
+            </button>
+        </div>
+    </div>
+    <!-- End the first screen -->
+</div>
+
+<div id="authentication" ng-if="screen == 'auth'">
+    <!-- Start authentication screen -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title text-center meester-title">Teams accepteren/afwijzen</h3>
+        </div>
+        <div class="panel-body">
+            <h4>Hier is uw authenticatie code</h4>
+
+            <div class="alert alert-info" role="alert"><p>sdJK31sf</p></div>
+
+            <div class="col-sm-4">
+                <div class="well">
+                    <img class="placeholder-img img-responsive center-block" src="images/placeholder.jpg"
+                         alt="placeholder">
+
+                    <div class="text-center">
+                        <h4>Team naam</h4>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-ok icon-success"></span>
+                            </button>
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-remove icon-danger"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="well">
+                    <img class="placeholder-img img-responsive center-block" src="images/placeholder.jpg"
+                         alt="placeholder">
+
+                    <div class="text-center">
+                        <h4>Team naam</h4>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-ok icon-success"></span>
+                            </button>
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-remove icon-danger"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="well">
+                    <img class="placeholder-img img-responsive center-block" src="images/placeholder.jpg"
+                         alt="placeholder">
+
+                    <div class="text-center">
+                        <h4>Team naam</h4>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-ok icon-success"></span>
+                            </button>
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-remove icon-danger"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="well">
+                    <img class="placeholder-img img-responsive center-block" src="images/placeholder.jpg"
+                         alt="placeholder">
+
+                    <div class="text-center">
+                        <h4>Team naam</h4>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-ok icon-success"></span>
+                            </button>
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-remove icon-danger"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- panel-body -->
+
+        <div class="panel-footer">
+            <button ng-click="setScreen('catg')" type="button" class="btn btn-primary center-block">Kies de
+                categorieen
+                <span class="glyphicon glyphicon-forward"></span>
+            </button>
+        </div>
+
+    </div>
+    <!-- End authentication screen -->
+</div>
+
+<div id="categorie" ng-if="screen == 'catg'">
+    <!-- Start categorie screen -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title meester-title">Selecteer de categorieën</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Zoek</button>
+                    </span>
+                </div>
+                <div class="categorieen">
+                    <table class="table table-hover">
+                        <thead>
+                        <th colspan="2">Resultaten</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Geschiedenis</td>
+                            <td>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Wiskunde</td>
+                            <td>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Landen</td>
+                            <td>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Technology</td>
+                            <td>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- col-sm-12 -->
+
+            <div class="col-sm-12">
+                <table class="table table-hover">
+                    <thead>
+                    <th colspan="2">Geselecteerde categorieën</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Geschiedenis</td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Landen</td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Technology</td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- col-sm-12 -->
+
+        </div>
+        <!-- panel-body -->
+
+        <div class="panel-footer">
+            <button ng-click="setScreen('vraag')" type="button" class="btn btn-primary center-block">Start Ronde
+            </button>
+        </div>
+
+    </div>
+    <!-- End categorie screen -->
+</div>
+
+<div id="vraag" ng-if="screen =='vraag'">
+    <!-- Start vragen screen -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title meester-title">Selecteer vraag</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="col-sm-12">
+                <table class="table table-hover cat-table">
+                    <thead>
+                    <th>Categorie</th>
+                    <th>Vraag</th>
+                    <th></th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Geschiedenis</td>
+                        <td>Hoe wordt de periode waarin het goed ging met Nederland tussen 1600 – 1700 ook wel
+                            genoemd?
+                        </td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-forward forward-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Technology</td>
+                        <td>Hoeveel bit was de eerste Nintendo?</td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-forward forward-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Landen</td>
+                        <td>In welke provincie ligt Nijmegen?</td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-forward forward-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Technology</td>
+                        <td>Met welk telefoonmerk kun je als enige officieel “pingen”?</td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-forward forward-icon"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="panel-footer">
+            <button ng-click="setScreen('antw')" type="button" class="btn btn-primary center-block">Start vraag</button>
+        </div>
+    </div>
+    <!-- End vragen screen -->
+</div>
+
+<div id="antw" ng-if="screen == 'antw'">
+    <!-- Start antw screen -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title meester-title">Hoe wordt de periode waarin het goed ging met Nederland tussen 1600 –
+                1700
+                ook wel genoemd?</h3>
+        </div>
+        <div class="panel-body">
+
+            <!-- TODO Gebruik "Contextual classes" in Bootstrap CSS om table rows en individual cells te kleuren -->
+
+            <div class="col-sm-12">
+                <table class="table table-hover antw-table">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-ok icon-success"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove icon-danger"></span>
+                            </a>
+                        </td>
+                        <td class="success" id="antw-td">Gouden Eeuw</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-ok icon-success"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove icon-danger"></span>
+                            </a>
+                        </td>
+                        <td>gouden eeuw</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-ok icon-success"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove icon-danger"></span>
+                            </a>
+                        </td>
+                        <td>geen idee?</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-ok icon-success"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-remove icon-danger"></span>
+                            </a>
+                        </td>
+                        <td>Piet piraat</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="panel-footer">
+            <button ng-click="setScreen('vraag')" type="button" class="btn btn-danger center-block">Sluit Vraag
+            </button>
+        </div>
+    </div>
+    <!-- End antw screen -->
+</div>
