@@ -22,21 +22,16 @@ var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
                     templateUrl: "templates/meester.html",
                     controller: "kwizzMeester"
                 }).
-                when("/beamer-start", {
-                    templateUrl: "templates/beamer-start.html"
-                }).
                 when("/beamer", {
-                    templateUrl: "templates/beamer.html"
-                }).
-                when("/beamer-antw", {
-                    templateUrl: "templates/beamer-antw.html"
+                    templateUrl: "templates/beamer.html",
+                    controller: "kwizzBeamer"
                 }).
                 otherwise({
                     redirectTo: '/home'
                 });
         }]);
 
-theApp.controller("kwizzertController", function($scope, $location){
+theApp.controller("kwizzertController", function($scope){
     $scope.isActive = function (viewLocation) {
         var s = false;
         if($location.path().indexOf(viewLocation) != -1){
@@ -44,18 +39,14 @@ theApp.controller("kwizzertController", function($scope, $location){
         }
         return s;
     };
-
-    $scope.go = function ( path ) {
-        $location.path( path );
-    };
 });
 
-theApp.controller("kwizzMeester", function ($scope, $location, $http) {
+theApp.controller("kwizzMeester", function ($scope, $http) {
     $scope.screen = "start";
 
     $scope.setScreen = function (target) {
         $scope.screen = target;
-    }
+    };
 
     function generateRandomCode () {
         var code = "";
@@ -80,4 +71,12 @@ theApp.controller("kwizzMeester", function ($scope, $location, $http) {
             });
         $scope.screen = "auth";
     }
+});
+
+theApp.controller("kwizzBeamer", function ($scope) {
+    $scope.screen = "start";
+
+    $scope.setScreen = function (target) {
+        $scope.screen = target;
+    };
 });
