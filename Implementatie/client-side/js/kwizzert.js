@@ -19,7 +19,8 @@ var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
                     templateUrl: "templates/speler-vraag.html"
                 }).
                 when("/meester", {
-                    templateUrl: "templates/meester-start.html"
+                    templateUrl: "templates/meester-start.html",
+                    controller: "startKwizzert"
                 }).
                 when("/meester-auth" , {
                     templateUrl: "templates/meester-auth.html"
@@ -62,4 +63,24 @@ theApp.controller("kwizzertController", function($scope, $location){
     $scope.go = function ( path ) {
         $location.path( path );
     };
+});
+
+theApp.controller("startKwizzert", function ($scope, $location) {
+    $scope.generateRandomCode = function () {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for( var i=0; i < 10; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        $http.post("/api/v1/kwizzUitvoering", $scope.theMovie)
+            .success(function(storedMovie) {
+                $scope.movieList.push(storedMovie);
+            })
+            .error(function(data,status) {
+                alert("AJAX ERROR");
+                console.log("ERROR: submit movie",status,data);
+            });
+        console.log(text);
+    }
 });

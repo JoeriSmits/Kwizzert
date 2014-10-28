@@ -34,14 +34,23 @@ model_files.forEach(function (file) {
     require(models_path + '/' + file);
 });
 
-var Vraag = mongoose.model('vraag');
-
-var vraag1 = new Vraag({
-    vraagTekst: "Dit is een test",
-    antwoord: "Hallo dit is het antwoord",
-    categorie: "test"
+// Getting all the routes in the routes directory
+var routes_path = __dirname + '/routes',
+    route_files = fs.readdirSync(routes_path);
+route_files.forEach(function (file) {
+    var route;
+    route = require(routes_path + '/' + file);
+    app.use('/api', route);
 });
 
-vraag1.save();
+// Catch all for unmatched routes
+app.all('*', function (req, res) {
+    res.send({
+        result: {
+            code: 1,
+            message: "Nothing here. Try http://localhost:3000/api/{resource}"
+        }
+    });
+});
 
 module.exports = app;
