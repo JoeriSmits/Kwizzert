@@ -10,7 +10,8 @@ var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
                     templateUrl: "templates/home.html"
                 }).
                 when("/speler", {
-                    templateUrl: "templates/speler-auth.html"
+                    templateUrl: "templates/speler-auth.html",
+                    controller: "kwizzSpeler"
                 }).
                 when("/speler-start", {
                     templateUrl: "templates/speler-start.html"
@@ -31,7 +32,7 @@ var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
                 });
         }]);
 
-theApp.controller("kwizzertController", function($scope){
+theApp.controller("kwizzertController", function($scope, $location){
     $scope.isActive = function (viewLocation) {
         var s = false;
         if($location.path().indexOf(viewLocation) != -1){
@@ -79,4 +80,22 @@ theApp.controller("kwizzBeamer", function ($scope) {
     $scope.setScreen = function (target) {
         $scope.screen = target;
     };
+});
+
+theApp.controller("kwizzSpeler", function ($scope, $http) {
+    $scope.authPwd = function () {
+
+        console.log('Button click!');
+
+        $http.get("/api/kwizzUitvoering/")      //GET alle kwizz uitvoeringen
+            .success( function() {
+                console.log("SUCCESS");
+
+            })
+            .error( function(data, status) {
+                alert("AJAX ERROR");
+                console.log("ERROR: kwizzSpeler Error", status, data);
+            });
+
+    }
 });

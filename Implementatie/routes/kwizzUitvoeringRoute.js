@@ -8,10 +8,10 @@ var router = express.Router();
 var controller = require('../app/controllers/kwizzUitvoeringController');
 
 router.route('/kwizzUitvoering')
- //   .get(controller.retrieveAll)
+    .get(controller.retrieveAll)
     .post(controller.createOne);
 
 router.route('/kwizzUitvoering/:id')
-//    .get(controller.retrieveOne);
+    .get(controller.retrieveOne);
 
 module.exports = router;
