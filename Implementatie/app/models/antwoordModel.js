@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 
 var antwoordSchema = new mongoose.Schema({
     antwoordTekst: String,
-    team: { type: mongoose.Schema.Types.ObjectId, ref: 'team' }
+    team: { type: mongoose.Schema.Types.ObjectId, ref: 'Team' }
 });
 
-module.exports = mongoose.model('antwoord', antwoordSchema, 'antwoorden');
+module.exports = mongoose.model('Antwoord', antwoordSchema, 'antwoorden');

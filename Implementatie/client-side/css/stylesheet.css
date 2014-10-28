@@ -70,3 +70,8 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
+span.glyphicon-remove {
+    font-size: 1.5em;
+    line-height: 1.5em;
+}

@@ -3,7 +3,8 @@
  */
 
 var mongoose = require('mongoose'),
-    Team = mongoose.model('team')
+    kwizzUitvoering = mongoose.model('KwizzUitvoering'),
+    Team = mongoose.model('Team')
     ;
 
 
@@ -12,8 +13,8 @@ exports.createOne = function (req, res) {
 };
 
 exports.retrieveTeam = function (req, res) {
-    Team
-        .findOne({name: req.params.uitvoeringCode})
+    kwizzUitvoering
+        .findOne({password: req.params.uitvoeringCode})
         .populate('teams')
         .exec(function (err, doc) {
             if (err) {

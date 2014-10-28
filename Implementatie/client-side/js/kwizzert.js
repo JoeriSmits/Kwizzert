@@ -65,19 +65,19 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
         };
 
         $http.post("/api/kwizzUitvoeringen", kwizzUitvoering)
+            .success(function () {
+                //Get all the teams for the kwizzUitvoering
+                $http.get("/api/teams/" + kwizzUitvoering.password)
+                    .success(function (data) {
+                        $scope.teams = data.doc.teams;
+                    });
+            })
             .error(function (data, status) {
                 alert("AJAX ERROR");
                 console.log("ERROR: submit kwizzUitvoering", status, data);
             });
         $scope.myCode = kwizzUitvoering.password;
         $scope.screen = "auth";
-
-        //Get all the teams for the kwizzUitvoering
-        $http.get("/api/teams/" + kwizzUitvoering.password)
-            .success(function (data) {
-                $scope.teams = data;
-                console.log(data);
-            });
     };
 });
 

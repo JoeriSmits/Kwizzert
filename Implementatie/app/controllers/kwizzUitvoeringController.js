@@ -3,23 +3,35 @@
  */
 
 var mongoose = require('mongoose'),
-    kwizzUitvoering = mongoose.model('kwizzUitvoering')
+    kwizzUitvoering = mongoose.model('KwizzUitvoering'),
+    Team = mongoose.model('Team')
     ;
 
 exports.createOne = function (req, res) {
-    var doc = new kwizzUitvoering(req.body);
-    doc.save(function (err) {
-        if (err) {
-            return res.send({
-                doc: null,
-                err: err
-            });
-        }
+    var Kwizz = new kwizzUitvoering({
+        password: req.body.password
+    });
 
-        res.send({
-            doc: doc,
-            err: err,
-            meta: {}
+
+    Kwizz.save(function () {
+        //TODO Voorbeeld populatie voor testen, later weghalen
+        var team1 = new Team({
+            name: 'Madeliefjes'
+        });
+
+        team1.save(function () {
+            Kwizz.teams.push(team1);
+            Kwizz.save(function (err) {
+
+                // Finally, we return
+                return res.send({
+                    doc: {
+                        kwizzUitvoering: Kwizz,
+                        teams: team1
+                    },
+                    err: err
+                });
+            });
         });
     });
     // Setting a session with the kwizzUitvoering password as value.

@@ -7,7 +7,7 @@ var rondeSchema = new mongoose.Schema({
     categorieen: [String],
     vraagTekst: [String],
     status: Boolean,
-    ingezonden: { type: mongoose.Schema.Types.ObjectId, ref: 'antwoord' }
+    ingezonden: { type: mongoose.Schema.Types.ObjectId, ref: 'Antwoord' }
 });
 
-module.exports = mongoose.model('ronde', rondeSchema, 'ronden');
+module.exports = mongoose.model('Ronde', rondeSchema, 'ronden');
