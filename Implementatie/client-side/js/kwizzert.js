@@ -65,22 +65,30 @@ theApp.controller("kwizzertController", function($scope, $location){
     };
 });
 
-theApp.controller("startKwizzert", function ($scope, $location) {
-    $scope.generateRandomCode = function () {
+theApp.controller("startKwizzert", function ($scope, $location, $http) {
+    var generateRandomCode = function () {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         for( var i=0; i < 10; i++ )
             text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-        $http.post("/api/v1/kwizzUitvoering", $scope.theMovie)
-            .success(function(storedMovie) {
-                $scope.movieList.push(storedMovie);
+        return text;
+    };
+
+    $scope.saveKwizzUitvoering = function () {
+        $scope.kwizzUitvoering = {
+            teams: [],
+            password: generateRandomCode()
+        };
+
+        $http.post("/api/kwizzUitvoering", $scope.kwizzUitvoering)
+            .success(function() {
+                console.log("kwizzUitvoering succesfully saved.")
             })
             .error(function(data,status) {
                 alert("AJAX ERROR");
-                console.log("ERROR: submit movie",status,data);
+                console.log("ERROR: submit kwizzUitvoering",status,data);
             });
-        console.log(text);
     }
 });
