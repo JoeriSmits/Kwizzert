@@ -22,4 +22,8 @@ exports.createOne = function (req, res) {
             meta: {}
         });
     });
+    // Setting a session with the kwizzUitvoering password as value.
+    req.session.isLoggedIn = req.body.password;
+
+    console.log(res.session.isLoggedIn);
 };

@@ -4,7 +4,7 @@
 
 var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
     config(['$routeProvider',
-        function($routeProvider){
+        function ($routeProvider) {
             $routeProvider.
                 when("/home", {
                     templateUrl: "templates/home.html"
@@ -31,10 +31,10 @@ var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
                 });
         }]);
 
-theApp.controller("kwizzertController", function($scope){
+theApp.controller("kwizzertController", function ($scope, $location) {
     $scope.isActive = function (viewLocation) {
         var s = false;
-        if($location.path().indexOf(viewLocation) != -1){
+        if ($location.path().indexOf(viewLocation) != -1) {
             s = true;
         }
         return s;
@@ -48,11 +48,11 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
         $scope.screen = target;
     };
 
-    function generateRandomCode () {
+    function generateRandomCode() {
         var code = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-        for( var i=0; i < 10; i++ )
+        for (var i = 0; i < 10; i++)
             code += possible.charAt(Math.floor(Math.random() * possible.length));
 
         return code;
@@ -65,10 +65,11 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
         };
 
         $http.post("/api/kwizzUitvoering", kwizzUitvoering)
-            .error(function(data,status) {
+            .error(function (data, status) {
                 alert("AJAX ERROR");
-                console.log("ERROR: submit kwizzUitvoering",status,data);
+                console.log("ERROR: submit kwizzUitvoering", status, data);
             });
+        $scope.myCode = kwizzUitvoering.password;
         $scope.screen = "auth";
     }
 });
