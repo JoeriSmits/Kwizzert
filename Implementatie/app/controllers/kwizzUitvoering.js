@@ -8,7 +8,6 @@ var mongoose = require('mongoose'),
 
 exports.createOne = function (req, res) {
     var doc = new kwizzUitvoering(req.body);
-
     doc.save(function (err) {
         if (err) {
             return res.send({

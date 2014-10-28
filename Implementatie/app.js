@@ -8,8 +8,10 @@ var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
 var fs = require('fs');
-
 var app = express();
+
+var bodyParser = require("body-parser");
+app.use(bodyParser.json());
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
