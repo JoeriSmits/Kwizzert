@@ -55,16 +55,6 @@ route_files.forEach(function (file) {
     app.use('/api', route);
 });
 
-// Testing
-//var KwizzUitvoering = mongoose.model('kwizzUitvoering');
-//
-//var kwizzUitvoering1 = new KwizzUitvoering({
-//    teams: [],
-//    password: "jkwewhjwb"
-//});
-//
-//kwizzUitvoering1.save();
-
 // Catch all for unmatched routes
 app.all('*', function (req, res) {
     res.send({

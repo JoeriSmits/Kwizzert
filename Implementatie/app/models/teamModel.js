@@ -5,7 +5,8 @@ var mongoose = require('mongoose');
 
 var teamSchema = new mongoose.Schema({
     name: String,
-    score: Number
+    score: Number,
+    _creator: { type: Number, ref: 'KwizzUitvoering' }
 });
 
-module.exports = mongoose.model('team', teamSchema);
+module.exports = mongoose.model('Team', teamSchema);
