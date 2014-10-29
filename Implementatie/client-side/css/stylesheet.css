@@ -71,7 +71,24 @@
     overflow-x: hidden;
 }
 
+.categorieenRonde {
+    padding: 0 17px 0 0;
+}
+
 span.glyphicon-remove {
     font-size: 1.5em;
     line-height: 1.5em;
+}
+
+.loadingAuth {
+    width: 100%;
+    max-width: 500px;
+    margin: 30px auto 0 auto;
+    text-align: center;
+    opacity: 0.5;
+}
+
+.loadingAuth img {
+    width: 100%;
+    max-width: 100px;
 }

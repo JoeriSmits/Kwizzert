@@ -22,11 +22,24 @@
     <!-- Start authentication screen -->
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title text-center meester-title">Teams accepteren/afwijzen</h3>
+            <h3 class="panel-title meester-title">Teams accepteren/afwijzen</h3>
         </div>
         <div class="panel-body">
-            <div class="alert alert-info" role="alert"><strong>{{myCode}}</strong> is uw authenticatie code deze pubquiz
-                sessie. Deel deze code met uw spelers, zodat de spelers zich kunnen aanmelden.
+            <div class="alert alert-info" role="alert"><strong>{{myCode}}</strong> is uw authenticatie code voor deze
+                pubquiz
+                sessie. Deel deze code met uw spelers.
+            </div>
+            <div ng-show="showError" class="alert alert-danger alert-dismissible" role="alert">
+                <strong>Geen teams</strong> Er moeten minstens twee teams zijn
+                aangemeld en maximaal zes!
+            </div>
+            <!-- Loading text waiting for teams -->
+            <div class="loadingAuth" ng-show="!(teams).length">
+                <p>
+
+                <h3><em>Wachten op aanmeldingen van teams</em></h3>
+                <img src="../images/loading.gif" align="loading">
+                </p>
             </div>
 
             <div class="col-sm-4" ng-repeat="team in teams">
@@ -49,7 +62,7 @@
         <!-- panel-body -->
 
         <div class="panel-footer">
-            <button ng-click="setScreen('catg')" type="button" class="btn btn-primary center-block">Kies de
+            <button ng-click="checkTeams()" type="button" class="btn btn-primary center-block">Kies de
                 categorieen
                 <span class="glyphicon glyphicon-forward"></span>
             </button>
@@ -63,66 +76,53 @@
     <!-- Start categorie screen -->
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title meester-title">Selecteer de categorieën</h3>
+            <h3 class="panel-title meester-title">Selecteer de drie categorieën voor deze ronde</h3>
         </div>
         <div class="panel-body">
-            <div class="col-sm-12">
-                <input type="text" class="form-control" placeholder="Zoeken" ng-model="searchQuery">
-                <div class="categorieen">
-                    <table class="table table-hover">
-                        <thead>
-                        <th colspan="2">Beschikbare categorieën</th>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="categorie in categories | filter: searchQuery">
-                            <td>{{categorie}}</td>
-                            <td>
-                                <a href="#">
-                                    <span class="glyphicon glyphicon-plus-sign plus-icon"></span>
-                                </a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- col-sm-12 -->
+            <input type="text" class="form-control" placeholder="Zoeken" ng-model="searchQuery">
 
-            <div class="col-sm-12">
-                <table class="table table-hover">
+            <div class="categorieen">
+                <table class="table table-hover table-responsive">
                     <thead>
-                    <th colspan="2">Geselecteerde categorieën voor deze ronde</th>
+                    <th colspan="2">Beschikbare categorieën</th>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Geschiedenis</td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Landen</td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Technology</td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-remove-circle remove-icon"></span>
-                            </a>
+                    <tr ng-repeat="categorie in categories | filter: searchQuery">
+                        <td width="75%">{{categorie}}</td>
+                        <td width="25%">
+                            <span ng-click="addRondeCategorie(categorie)"
+                                  class="glyphicon glyphicon-plus-sign plus-icon"></span>
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <!-- col-sm-12 -->
-
+            <div class="categorieenRonde">
+                <table class="table table-hover table-responsive">
+                    <thead>
+                    <th colspan="2">Geselecteerde categorieën voor deze ronde</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-show="!(rondeCategorieen).length">
+                        <td>
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Geen categorieën</strong> Er zijn geen categorieën toegevoegd. Druk op het +
+                                icoon naast een categorie om deze categorieën toe te voegen
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="categorie in rondeCategorieen">
+                        <td width="75%">{{categorie}}</td>
+                        <td width="25%">
+                        <span ng-click="removeRondeCategorie(categorie)"
+                              class="glyphicon glyphicon-remove-circle remove-icon"></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!-- col-sm-12 -->
+            </div>
         </div>
         <!-- panel-body -->
 
