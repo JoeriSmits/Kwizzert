@@ -75,13 +75,29 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
         $scope.screen = "auth";
     };
 
+    // delete a team in the authentication screen
     $scope.deleteTeam = function (teamName) {
         $http.delete("/api/kwizzUitvoeringen/" + $scope.myCode + "/teams/" + teamName)
             .error(function (data, status) {
                 alert("AJAX ERROR");
                 console.log("ERROR: submit kwizzUitvoering", status, data);
             });
-    }
+    };
+
+    // Getting all the individual categories
+    $http.get("/api/vragen")
+        .success(function (data) {
+            var buffer, i;
+            var categorieArray = [];
+            buffer = data.doc[0].categorie;
+            for (i = 0; i < data.doc.length; i = i + 1) {
+                if (buffer !== data.doc[i].categorie) {
+                    categorieArray.push(data.doc[i].categorie);
+                }
+                buffer = data.doc[i].categorie;
+            }
+            $scope.categories = categorieArray;
+        });
 });
 
 theApp.controller("kwizzBeamer", function ($scope) {
@@ -104,11 +120,11 @@ theApp.controller("kwizzSpeler", function ($scope, $http) {
         console.log('Button click!');
 
         $http.get("/api/kwizzUitvoering/")      //GET alle kwizz uitvoeringen
-            .success( function() {
+            .success(function () {
                 console.log("SUCCESS");
 
             })
-            .error( function(data, status) {
+            .error(function (data, status) {
                 alert("AJAX ERROR");
                 console.log("ERROR: kwizzSpeler Error", status, data);
             });

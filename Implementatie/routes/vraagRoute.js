@@ -8,6 +8,7 @@ var router = express.Router();
 var controller = require('../app/controllers/vraagController');
 
 router.route('/vragen')
-    .post(controller.createOne);
+    .post(controller.createOne)
+.get(controller.retrieveAll);
 
 module.exports = router;

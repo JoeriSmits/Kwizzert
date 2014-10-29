@@ -23,3 +23,21 @@ exports.createOne = function (req, res) {
         });
     });
 };
+
+exports.retrieveAll = function (req, res) {
+    Vraag.find(function (err, doc) {
+        if (err) {
+            return res.send(
+                {
+                    doc: null,
+                    err: err
+                }
+            );
+        }
+
+        res.json({
+            doc: doc,
+            err: err
+        });
+    });
+};
