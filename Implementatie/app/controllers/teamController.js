@@ -27,3 +27,20 @@ exports.retrieveTeam = function (req, res) {
             });
         });
 };
+
+exports.deleteOne = function (req, res) {
+    Team.remove({
+        name: req.params.name
+    }, function (err) {
+        if (err) {
+            return res.send({
+                doc: null,
+                err: err
+            });
+        }
+
+        res.json({
+            err: err
+        });
+    });
+};

@@ -11,4 +11,7 @@ router.route('/teams/:uitvoeringCode')
     .post(controller.createOne)
     .get(controller.retrieveTeam);
 
+router.route('/kwizzUitvoeringen/:uitvoeringCode/teams/:name')
+    .delete(controller.deleteOne);
+
 module.exports = router;

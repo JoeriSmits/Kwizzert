@@ -80,6 +80,14 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
         $scope.myCode = kwizzUitvoering.password;
         $scope.screen = "auth";
     };
+
+    $scope.deleteTeam = function (teamName) {
+        $http.delete("/api/kwizzUitvoeringen/" + $scope.myCode + "/teams/" + teamName)
+            .error(function (data, status) {
+                alert("AJAX ERROR");
+                console.log("ERROR: submit kwizzUitvoering", status, data);
+            });
+    }
 });
 
 theApp.controller("kwizzBeamer", function ($scope) {
