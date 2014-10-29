@@ -9,7 +9,22 @@ var mongoose = require('mongoose'),
 
 
 exports.createOne = function (req, res) {
+    var team = new Team(req.body);
 
+    team.save(function (err) {
+        if (err) {
+            return res.send({
+                doc: null,
+                err: err
+            });
+        }
+
+        res.send({
+            meta: {},
+            err: err,
+            doc: team
+        });
+    });
 };
 
 exports.retrieveTeam = function (req, res) {

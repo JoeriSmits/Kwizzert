@@ -93,25 +93,67 @@ theApp.controller("kwizzBeamer", function ($scope) {
 });
 
 theApp.controller("kwizzSpeler", function ($scope, $http) {
-    $scope.screen = "auth";
+    $scope.screen = "start";
+    $scope.validationState = "error";
 
     $scope.setScreen = function (target) {
         $scope.screen = target;
     };
 
+    $scope.kwizzListPassword = '020fyGeuvP';
+
     $scope.authPwd = function () {
 
-        console.log('Button click!');
+        $http.get("/api/kwizzUitvoeringen/")      //GET alle kwizz uitvoeringen
+            .success( function(data) {
 
-        $http.get("/api/kwizzUitvoering/")      //GET alle kwizz uitvoeringen
-            .success( function() {
-                console.log("SUCCESS");
+                console.log("Pwd database: " + data.doc.password);
+                console.log("Input field: " + $scope.kwizzListPassword);
+
+                    if (data.doc.password === $scope.kwizzListPassword) {
+                        $scope.screen = "start";
+                        console.log("Code Valid");
+                    } else {
+                        alert("There is no such code. Please try again.");
+                    }
 
             })
             .error( function(data, status) {
                 alert("AJAX ERROR");
                 console.log("ERROR: kwizzSpeler Error", status, data);
             });
+        $scope.screen = "start";
+    };
 
+    $scope.teamRegister = function () {
+        var Team = {
+            name: '',
+            teamColor: ''
+        };
+
+        $scope.teamNameInput = '';
+
+        $http.get("/teams/:uitvoeringCode")
+            .success ( function () {
+
+            if (Team.name !== $scope.teamNameInput) {
+
+                $http.post("/teams/:uitvoeringCode", Team)
+                    .success ( function() {
+
+                    console.log("Success! Team registered");
+                })
+
+            } else {
+                alert("Team name is already in use. Please try again");
+            }
+
+        })
+        .error(function (data, status) {
+            alert("AJAX ERROR");
+            console.log("ERROR: submit kwizzUitvoering", status, data);
+        });
     }
+
+
 });
