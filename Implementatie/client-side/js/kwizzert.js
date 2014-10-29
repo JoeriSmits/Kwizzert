@@ -10,14 +10,8 @@ var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
                     templateUrl: "templates/home.html"
                 }).
                 when("/speler", {
-                    templateUrl: "templates/speler-auth.html",
+                    templateUrl: "templates/speler.html",
                     controller: "kwizzSpeler"
-                }).
-                when("/speler-start", {
-                    templateUrl: "templates/speler-start.html"
-                }).
-                when("/speler-vraag", {
-                    templateUrl: "templates/speler-vraag.html"
                 }).
                 when("/meester", {
                     templateUrl: "templates/meester.html",
@@ -99,6 +93,12 @@ theApp.controller("kwizzBeamer", function ($scope) {
 });
 
 theApp.controller("kwizzSpeler", function ($scope, $http) {
+    $scope.screen = "auth";
+
+    $scope.setScreen = function (target) {
+        $scope.screen = target;
+    };
+
     $scope.authPwd = function () {
 
         console.log('Button click!');

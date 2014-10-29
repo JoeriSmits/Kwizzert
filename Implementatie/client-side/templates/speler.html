@@ -1,0 +1,86 @@
+<div id="start" ng-if="screen == 'start'">
+    <!-- start Start screen -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title text-center"><span class="speler-title">Kwizzert Aanmelden</span></div>
+        </div>
+
+        <div class="panel-body">
+
+            <form role="form">
+                <div class="form-group has-error">
+                    <label class="control-label">Deze teamnaam is al bezet</label>
+                    <input type="text" class="form-control" placeholder="Team naam" id="addTeamName">
+                </div>
+                <hr/>
+                <div class="input-group">
+                    <label for="inputTeamPicture">Voeg een team foto toe</label>
+                    <input type="file" id="inputTeamPicture">
+                </div>
+                <hr/>
+                <div class="form-group">
+                    <input colorpicker ng-model="hexPicker.color" type="text" id="selectTeamColor" class="form-control"
+                           placeholder="Selecteer een team kleur">
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <button ng-click="setScreen('vraag')" type="button" class="btn btn-success btn-lg btn-block">Team aanmelden
+            </button>
+        </div>
+    </div>
+    <!-- end Start screen -->
+</div>
+
+<div id="auth" ng-if="screen == 'auth'">
+    <!-- start Auth screen -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title text-center"><span class="speler-title">Kwizzert authenticatie</span></div>
+        </div>
+
+        <div class="panel-body">
+
+            <div class="col-xs-12">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="authCode">Vraag naar de authenticatie code bij de Kwizz Meester.</label>
+                        <input ng-model="kwizzList.password" type="text" class="form-control"
+                               placeholder="Voer de code in" id="authCode">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button ng-click="authPwd()" type="button" class="btn btn-success btn-lg btn-block">Authenticeren</button>
+        </div>
+    </div>
+    <!-- end Auth screen -->
+</div>
+
+<div id="vraag" ng-if="screen == 'vraag'">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title text-center"><span class="speler-title">Vraag 1</span></div>
+            </div>
+
+            <div class="panel-body">
+                <div class="col-xs-12">
+                    <form role="form">
+                        <h2 class="text-center">Hoe wordt de periode waarin het goed ging met Nederland tussen 1600 –
+                            1700 ook wel genoemd?</h2>
+                        <hr/>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Antwoord" id="addAnswer">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <button type="button" class="btn btn-success btn-lg btn-block">Antwoorden</button>
+            </div>
+        </div>
+    </div>
+</div>
