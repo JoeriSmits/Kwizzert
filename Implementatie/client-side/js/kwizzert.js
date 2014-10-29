@@ -92,7 +92,7 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
     };
 
     $scope.checkTeams = function () {
-        if ($scope.teams.length >= 2 && $scope.teams.length <= 6) {
+        if ($scope.teams.length >= 1 && $scope.teams.length <= 6) {
             $scope.setScreen('catg');
         }
         else {
@@ -139,36 +139,33 @@ theApp.controller("kwizzBeamer", function ($scope) {
 });
 
 theApp.controller("kwizzSpeler", function ($scope, $http) {
-    $scope.screen = "start";
+    $scope.screen = "auth";
     $scope.validationState = "error";
 
     $scope.setScreen = function (target) {
         $scope.screen = target;
     };
 
-    $scope.kwizzListPassword = '020fyGeuvP';
-
-    $scope.authPwd = function () {
+    $scope.authPwd = function (kwizzListPassword) {
+        $scope.kwizzListPassword = kwizzListPassword;
 
         $http.get("/api/kwizzUitvoeringen/")      //GET alle kwizz uitvoeringen
             .success( function(data) {
-
-                console.log("Pwd database: " + data.doc.password);
-                console.log("Input field: " + $scope.kwizzListPassword);
-
-                    if (data.doc.password === $scope.kwizzListPassword) {
+                var i, codeExist;
+                for(i = 0; i < data.doc.length; i = i + 1) {
+                    if(data.doc[i].password === $scope.kwizzListPassword) {
                         $scope.screen = "start";
-                        console.log("Code Valid");
-                    } else {
-                        alert("There is no such code. Please try again.");
+                        codeExist = true;
                     }
-
+                }
+                if(!codeExist) {
+                    alert("code is fout");
+                }
             })
             .error(function (data, status) {
                 alert("AJAX ERROR");
                 console.log("ERROR: kwizzSpeler Error", status, data);
             });
-        $scope.screen = "start";
     };
 
     $scope.teamRegister = function () {

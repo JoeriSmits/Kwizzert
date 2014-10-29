@@ -11,7 +11,6 @@ exports.createOne = function (req, res) {
         password: req.body.password
     });
 
-
     Kwizz.save(function () {
         //TODO Voorbeeld populatie voor testen, later weghalen
         var team1 = new Team({
