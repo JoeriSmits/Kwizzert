@@ -43,6 +43,7 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
         $scope.screen = target;
     };
 
+    // Generating an code to link everyone to the right kwizzUitvoering
     function generateRandomCode() {
         var code = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -53,6 +54,7 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
         return code;
     }
 
+    // Saving a new kwizzUitvoering
     $scope.saveKwizzUitvoering = function () {
         var kwizzUitvoering = {
             teams: [],
@@ -91,8 +93,9 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
             });
     };
 
+    // Check if the team amount is between 2 and 6
     $scope.checkTeams = function () {
-        if ($scope.teams.length >= 1 && $scope.teams.length <= 6) {
+        if ($scope.teams.length >= 2 && $scope.teams.length <= 6) {
             $scope.setScreen('catg');
         }
         else {
@@ -117,6 +120,7 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
 
     $scope.rondeCategorieen = [];
 
+    // Adding new categories to the round with a max of 3
     $scope.addRondeCategorie = function (categorie) {
         if ($scope.rondeCategorieen.length < 3) {
             $scope.rondeCategorieen.push(categorie);
@@ -124,6 +128,7 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
         }
     };
 
+    // Deleting categories and add them to the general list.
     $scope.removeRondeCategorie = function (categorie) {
         $scope.categories.push(categorie);
         $scope.rondeCategorieen.splice($scope.rondeCategorieen.indexOf(categorie), 1);
@@ -146,19 +151,22 @@ theApp.controller("kwizzSpeler", function ($scope, $http) {
         $scope.screen = target;
     };
 
+    // Making a link with the right kwizzUitvoering
     $scope.authPwd = function (kwizzListPassword) {
         $scope.kwizzListPassword = kwizzListPassword;
 
-        $http.get("/api/kwizzUitvoeringen/")      //GET alle kwizz uitvoeringen
-            .success( function(data) {
+        $http.get("/api/kwizzUitvoeringen/")
+            .success(function (data) {
                 var i, codeExist;
-                for(i = 0; i < data.doc.length; i = i + 1) {
-                    if(data.doc[i].password === $scope.kwizzListPassword) {
+                // Check if the code exist in the database and if so, continue
+                for (i = 0; i < data.doc.length; i = i + 1) {
+                    if (data.doc[i].password === $scope.kwizzListPassword) {
                         $scope.screen = "start";
                         codeExist = true;
                     }
                 }
-                if(!codeExist) {
+                // If not show an error
+                if (!codeExist) {
                     alert("code is fout");
                 }
             })
@@ -168,34 +176,38 @@ theApp.controller("kwizzSpeler", function ($scope, $http) {
             });
     };
 
-    $scope.teamRegister = function () {
+    // Saving a team in the database with a reference to the right kwizzUitvoering
+    $scope.teamRegister = function (teamInfo) {
         var Team = {
-            name: '',
-            teamColor: ''
+            name: teamInfo.name,
+            teamColor: teamInfo.color
         };
 
-        $scope.teamNameInput = '';
-
-        $http.get("/teams/:uitvoeringCode")
-            .success ( function () {
-
-            if (Team.name !== $scope.teamNameInput) {
-
-                $http.post("/teams/:uitvoeringCode", Team)
-                    .success ( function() {
-
-                    console.log("Success! Team registered");
-                })
-
-            } else {
-                alert("Team name is already in use. Please try again");
-            }
-
-        })
-        .error(function (data, status) {
-            alert("AJAX ERROR");
-            console.log("ERROR: submit kwizzUitvoering", status, data);
-        });
+        $http.get("api/teams/" + $scope.kwizzListPassword)
+            .success(function (data) {
+                // Checking if the team name is already in use
+                var i, alreadyInUse;
+                for (i = 0; i < data.doc.teams.length; i = i + 1) {
+                    if (Team.name === data.doc.teams[i].name) {
+                        alreadyInUse = true;
+                    }
+                }
+                // If not then continue with team registration
+                if (!alreadyInUse) {
+                    $http.post("/teams/:uitvoeringCode", Team)
+                        .success(function () {
+                            console.log("Success! Team registered");
+                        })
+                }
+                // Otherwise show an error
+                else {
+                    alert("Team name is already in use. Please try again");
+                }
+            })
+            .error(function (data, status) {
+                alert("AJAX ERROR");
+                console.log("ERROR: submit kwizzUitvoering", status, data);
+            });
     }
 
 
