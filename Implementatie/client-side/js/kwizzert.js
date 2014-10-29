@@ -75,13 +75,59 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
         $scope.screen = "auth";
     };
 
+    // delete a team in the authentication screen
     $scope.deleteTeam = function (teamName) {
         $http.delete("/api/kwizzUitvoeringen/" + $scope.myCode + "/teams/" + teamName)
+            .success(function () {
+                //Get all the teams for the kwizzUitvoering
+                $http.get("/api/teams/" + $scope.myCode)
+                    .success(function (data) {
+                        $scope.teams = data.doc.teams;
+                    });
+            })
             .error(function (data, status) {
                 alert("AJAX ERROR");
                 console.log("ERROR: submit kwizzUitvoering", status, data);
             });
-    }
+    };
+
+    $scope.checkTeams = function () {
+        if ($scope.teams.length >= 2 && $scope.teams.length <= 6) {
+            $scope.setScreen('catg');
+        }
+        else {
+            $scope.showError = true;
+        }
+    };
+
+    // Getting all the individual categories
+    $http.get("/api/vragen")
+        .success(function (data) {
+            var buffer, i;
+            var categorieArray = [];
+            buffer = data.doc[0].categorie;
+            for (i = 0; i < data.doc.length; i = i + 1) {
+                if (buffer !== data.doc[i].categorie) {
+                    categorieArray.push(data.doc[i].categorie);
+                }
+                buffer = data.doc[i].categorie;
+            }
+            $scope.categories = categorieArray;
+        });
+
+    $scope.rondeCategorieen = [];
+
+    $scope.addRondeCategorie = function (categorie) {
+        if ($scope.rondeCategorieen.length < 3) {
+            $scope.rondeCategorieen.push(categorie);
+            $scope.categories.splice($scope.categories.indexOf(categorie), 1);
+        }
+    };
+
+    $scope.removeRondeCategorie = function (categorie) {
+        $scope.categories.push(categorie);
+        $scope.rondeCategorieen.splice($scope.rondeCategorieen.indexOf(categorie), 1);
+    };
 });
 
 theApp.controller("kwizzBeamer", function ($scope) {
@@ -118,7 +164,7 @@ theApp.controller("kwizzSpeler", function ($scope, $http) {
                     }
 
             })
-            .error( function(data, status) {
+            .error(function (data, status) {
                 alert("AJAX ERROR");
                 console.log("ERROR: kwizzSpeler Error", status, data);
             });
