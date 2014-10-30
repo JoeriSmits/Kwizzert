@@ -139,17 +139,40 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
     };
 });
 
-theApp.controller("kwizzBeamer", function ($scope) {
+theApp.controller("kwizzBeamer", function ($scope, $http) {
     $scope.screen = "start";
 
     $scope.setScreen = function (target) {
         $scope.screen = target;
     };
+
+    $scope.authBeamer = function (beamerPassword) {
+        $scope.beamerPassword = beamerPassword;
+
+        $http.get("/api/kwizzUitvoeringen/")
+            .success(function (data) {
+                var i, passwordExist;
+                // GET password from database
+                for (i = 0; i < data.doc.length; i = i + 1) {
+                    if (data.doc[i].password === $scope.beamerPassword) {
+                        $scope.screen = "main";
+                        passwordExist = true;
+                    }
+                }
+                if (!passwordExist) {
+                    alert("Code is fout.")
+                }
+            })
+            .error (function (data, status){
+                alert("AJAX ERROR");
+                console.log("ERROR: kwizzBeamer Error", status, data);
+        })
+    }
+
 });
 
 theApp.controller("kwizzSpeler", function ($scope, $http) {
     $scope.screen = "auth";
-    $scope.validationState = "error";
 
     $scope.setScreen = function (target) {
         $scope.screen = target;

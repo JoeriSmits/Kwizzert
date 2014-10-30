@@ -12,7 +12,7 @@
             <div class="col-lg-12">
                 <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Voer de code in">
+                        <input type="text" ng-model="beamerPassword" class="form-control" placeholder="Voer de code in">
                     </div>
                 </form>
             </div>
@@ -20,7 +20,7 @@
         </div>
 
         <div class="panel-footer">
-            <button ng-click="setScreen('main')" type="button" class="btn btn-primary center-block">Start Beamer</button>
+            <button ng-click="authBeamer(beamerPassword)" type="button" class="btn btn-primary center-block">Start Beamer</button>
         </div>
     </div>
     <!-- end Start screen -->
@@ -45,11 +45,9 @@
         <div class="panel-body">
 
             <div class="col-lg-12">
-                <h1 class="text-center">Geschiedenis</h1>
+                <h1 class="text-center">{{categorie}}</h1>
                 <hr/>
-                <h2 class="text-center">Hoe wordt de periode waarin het goed ging met Nederland tussen 1600 – 1700 ook
-                    wel
-                    genoemd?</h2>
+                <h2 class="text-center">{{vraagTekst}}</h2>
                 <hr/>
 
                 <!-- TODO #1 Add Angular Timer that compliments Bootstrap @SEE http://siddii.github.io/angular-timer/ -->
@@ -88,10 +86,7 @@
 
         </div>
         <div class="panel-footer">
-            <button ng-click="setScreen('antw')" type="button" class="btn btn-danger center-block">Tijdelijk button
-                naar
-                scherm 2 | Lees TODO #2
-            </button>
+            <button ng-click="setScreen('antw')" type="button" class="btn btn-danger center-block">Tijdelijk button naar scherm 2 | Lees TODO #2</button>
         </div>
     </div>
     <!-- end Main screen -->
