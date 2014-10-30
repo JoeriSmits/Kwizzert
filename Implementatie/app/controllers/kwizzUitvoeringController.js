@@ -14,7 +14,8 @@ exports.createOne = function (req, res) {
     Kwizz.save(function () {
         //TODO Voorbeeld populatie voor testen, later weghalen
         var team1 = new Team({
-            name: 'Madeliefjes'
+            name: 'Madeliefjes',
+            teamColor: '#000000'
         });
 
         team1.save(function () {

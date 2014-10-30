@@ -5,10 +5,8 @@
 /*jslint node: true, devel:true */
 "use strict";
 
-var app = require('../app'); //Require our app
+var http = require('../app'); //Require our app
 
-app.set('port', process.env.PORT || 3000);
-
-var server = app.listen(app.get('port'), function () {
+var server = http.listen(process.env.PORT || 3000, function () {
     console.log('Express server listening on port ' + server.address().port);
 });
