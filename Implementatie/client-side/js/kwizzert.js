@@ -168,21 +168,22 @@ theApp.controller("kwizzSpeler", function ($scope, $http) {
             });
     };
 
-    $scope.teamRegister = function () {
+    $scope.teamRegister = function (teamNameInput) {
+
         var Team = {
             name: '',
             teamColor: ''
         };
 
-        $scope.teamNameInput = '';
+        $scope.teamNameInput = teamNameInput;
 
-        $http.get("/teams/:uitvoeringCode")
-            .success ( function () {
+        $http.get("api/teams/")
+            .success(function () {
 
-            if (Team.name !== $scope.teamNameInput) {
+            if (data.doc.name !== $scope.teamNameInput) {
 
-                $http.post("/teams/:uitvoeringCode", Team)
-                    .success ( function() {
+                $http.post("api/teams/", Team)
+                    .success(function() {
 
                     console.log("Success! Team registered");
                 })
