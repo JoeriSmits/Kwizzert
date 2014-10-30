@@ -25,8 +25,11 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 // SocketIO connect
-io.on('connection', function () {
+io.on('connection', function(socket){
     console.log('a user connected');
+    socket.on('newTeam', function(team){
+        io.emit('newTeamRegistered', team);
+    });
 });
 
 // Using directory client-side as client directory.
@@ -65,4 +68,4 @@ app.all('*', function (req, res) {
     });
 });
 
-module.exports = app;
+module.exports = http;

@@ -26,6 +26,37 @@ var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
                 });
         }]);
 
+theApp.factory('socketIO', function ($rootScope) {
+    var socket = io();
+    socket.on("connect", function() {
+        console.log("connected", socket.io.engine.id);
+    });
+    return {
+        on: function (eventName, callback) {
+            socket.on(eventName, function () {
+                var args = arguments;
+                $rootScope.$apply(function () {
+                    callback.apply(socket, args);
+                });
+            });
+        },
+        emit: function (eventName, data, callback) {
+            socket.emit(eventName, data, function () {
+                var args = arguments;
+                $rootScope.$apply(function () {
+                    if (callback) {
+                        callback.apply(socket, args);
+                    }
+                });
+            })
+        },
+        id: function() {
+            return socket.io.engine.id
+        }
+    };
+});
+
+
 theApp.controller("kwizzertController", function ($scope, $location) {
     $scope.isActive = function (viewLocation) {
         var s = false;
@@ -36,7 +67,7 @@ theApp.controller("kwizzertController", function ($scope, $location) {
     };
 });
 
-theApp.controller("kwizzMeester", function ($scope, $http) {
+theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
     $scope.screen = "start";
 
     $scope.setScreen = function (target) {
@@ -67,6 +98,9 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
                 $http.get("/api/teams/" + kwizzUitvoering.password)
                     .success(function (data) {
                         $scope.teams = data.doc.teams;
+                        socketIO.on('newTeamRegistered', function(team) {
+                            $scope.teams.push(team);
+                        })
                     });
             })
             .error(function (data, status) {
@@ -171,7 +205,7 @@ theApp.controller("kwizzBeamer", function ($scope, $http) {
 
 });
 
-theApp.controller("kwizzSpeler", function ($scope, $http) {
+theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {
     $scope.screen = "auth";
 
     $scope.setScreen = function (target) {
@@ -223,6 +257,7 @@ theApp.controller("kwizzSpeler", function ($scope, $http) {
                 if (!alreadyInUse) {
                     $http.post("api/teams/" + $scope.kwizzListPassword, Team)
                         .success(function () {
+                            socketIO.emit('newTeam', Team);
                             $scope.setScreen('waiting');
                         })
                 }
