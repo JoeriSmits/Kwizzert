@@ -28,7 +28,7 @@ var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
 
 theApp.factory('socketIO', function ($rootScope) {
     var socket = io();
-    socket.on("connect", function() {
+    socket.on("connect", function () {
         console.log("connected", socket.io.engine.id);
     });
     return {
@@ -50,7 +50,7 @@ theApp.factory('socketIO', function ($rootScope) {
                 });
             })
         },
-        id: function() {
+        id: function () {
             return socket.io.engine.id
         }
     };
@@ -98,7 +98,7 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
                 $http.get("/api/teams/" + kwizzUitvoering.password)
                     .success(function (data) {
                         $scope.teams = data.doc.teams;
-                        socketIO.on('newTeamRegistered', function(team) {
+                        socketIO.on('newTeamRegistered', function (team) {
                             $scope.teams.push(team);
                         })
                     });
@@ -171,6 +171,19 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
         $scope.categories.push(categorie);
         $scope.rondeCategorieen.splice($scope.rondeCategorieen.indexOf(categorie), 1);
     };
+
+    $scope.startRonde = function () {
+        var ronde = {
+            categorieen: $scope.rondeCategorieen,
+            status: false
+        };
+
+        $http.post("/api/ronden/" + $scope.myCode, ronde)
+            .success(function () {
+                $scope.setScreen('vraag');
+                socketIO.emit("startRonde", true);
+            })
+    }
 });
 
 theApp.controller("kwizzBeamer", function ($scope, $http) {
@@ -197,9 +210,9 @@ theApp.controller("kwizzBeamer", function ($scope, $http) {
                     alert("Code is fout.")
                 }
             })
-            .error (function (data, status){
-                alert("AJAX ERROR");
-                console.log("ERROR: kwizzBeamer Error", status, data);
+            .error(function (data, status) {
+            alert("AJAX ERROR");
+            console.log("ERROR: kwizzBeamer Error", status, data);
         })
     }
 

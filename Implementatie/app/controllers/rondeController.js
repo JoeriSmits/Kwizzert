@@ -3,28 +3,33 @@
  */
 
 var mongoose = require('mongoose'),
+    kwizzUitvoering = mongoose.model('KwizzUitvoering');
     Ronde = mongoose.model('Ronde');
 
 exports.createOne = function (req, res) {
-    var ronde = new Ronde(req.body);
+    // Find the document kwizzUitvoering with the right password
+    kwizzUitvoering.findOne({password: req.params.uitvoeringCode}, function (err, doc) {
+        var ronde1 = new Ronde(req.body);
+        ronde1.save(function (err) {
+            if (err) {
+                return err;
+            }
 
-    ronde.save(function () {
-        //FIXME Voorbeeld ronde voor testen
-        var ronde1 = new Ronde({
-            categorie: 'Dieren',
-            vraagTekst: 'Wat voor hond is Rex in de tv-serie commissaris Rex?',
-            antwoord: "Een herdershond",
-            status: true
-        });
+            // Now we gonna update the kwizzUitvoering with the team id
+            doc.rondes.push(ronde1._id);
+            doc.save(function (err) {
+                if (err) {
+                    return res.send({
+                        doc: null,
+                        err: err
+                    });
+                }
 
-        ronde1.save(function () {
-            ronde.vragen.push(ronde1);
-            ronde.save(function (err) {
-
+                // Finally, we return
                 return res.send({
                     doc: {
-                        Ronde: ronde,
-                        vragen: ronde1
+                        kwizzUitvoering: doc,
+                        team: ronde1
                     },
                     err: err
                 });

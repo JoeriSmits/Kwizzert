@@ -7,6 +7,9 @@ var kwizzUitvoeringSchema = new mongoose.Schema({
     teams: [
         { type: mongoose.Schema.Types.ObjectId, ref: 'Team' }
     ],
+    rondes: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'Ronde' }
+    ],
     password: String
 });
 

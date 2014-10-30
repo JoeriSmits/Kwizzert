@@ -30,6 +30,9 @@ io.on('connection', function(socket){
     socket.on('newTeam', function(team){
         io.emit('newTeamRegistered', team);
     });
+    socket.on('startRonde', function(status) {
+        io.emit('startRonde', status);
+    })
 });
 
 // Using directory client-side as client directory.
