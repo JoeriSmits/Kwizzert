@@ -9,20 +9,33 @@ var mongoose = require('mongoose'),
 
 
 exports.createOne = function (req, res) {
-    var team = new Team(req.body);
+    // Find the document kwizzUitvoering with the right password
+    kwizzUitvoering.findOne({password: req.params.uitvoeringCode}, function (err, doc) {
+        var team1 = new Team(req.body);
+        team1.save(function (err) {
+            if (err) {
+                return err;
+            }
 
-    team.save(function (err) {
-        if (err) {
-            return res.send({
-                doc: null,
-                err: err
+            // Now we gonna update the kwizzUitvoering with the team id
+            doc.teams.push(team1._id);
+            doc.save(function (err) {
+                if (err) {
+                    return res.send({
+                        doc: null,
+                        err: err
+                    });
+                }
+
+                // Finally, we return
+                return res.send({
+                    doc: {
+                        kwizzUitvoering: doc,
+                        team: team1
+                    },
+                    err: err
+                });
             });
-        }
-
-        res.send({
-            meta: {},
-            err: err,
-            doc: team
         });
     });
 };

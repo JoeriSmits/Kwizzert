@@ -11,7 +11,7 @@
                 <div ng-class="{'has-error': error, 'has-success': success}">
                     <div class="form-group">
                         <label class="control-label sr-only">Deze teamnaam is al bezet</label>
-                        <input type="text" ng-model="teamNameInput" class="form-control" placeholder="Team naam" id="addTeamName" required>
+                        <input type="text" ng-model="teamInfo.name" class="form-control" placeholder="Team naam" id="addTeamName" required>
                         <input type="hidden" ng-model="validationState">
                     </div>
                 </div>
@@ -22,13 +22,13 @@
                 </div>
                 <hr/>
                 <div class="form-group">
-                    <input colorpicker ng-model="hexPicker.color" type="text" id="selectTeamColor" class="form-control"
+                    <input colorpicker ng-model="teamInfo.color" type="text" id="selectTeamColor" class="form-control"
                            placeholder="Selecteer een team kleur">
                 </div>
             </form>
         </div>
         <div class="panel-footer">
-            <button ng-click="teamRegister(teamNameInput)" type="button" class="btn btn-success btn-lg btn-block">Team aanmelden
+            <button ng-click="teamRegister(teamInfo)" type="button" class="btn btn-success btn-lg btn-block">Team aanmelden
             </button>
         </div>
     </div>
@@ -59,6 +59,17 @@
         </div>
     </div>
     <!-- end Auth screen -->
+</div>
+
+<div id="waiting" ng-if="screen == 'waiting'">
+    <!-- start Waiting screen -->
+    <div class="loadingAuth">
+        <p>
+        <h3><em>Wachten tot de Kwizz meester de ronde start</em></h3>
+        <img src="../images/loading.gif" align="loading">
+        </p>
+    </div>
+    <!-- end Waiting screen -->
 </div>
 
 <div id="vraag" ng-if="screen == 'vraag'">
