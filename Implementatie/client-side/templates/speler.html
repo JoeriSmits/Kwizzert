@@ -61,6 +61,17 @@
     <!-- end Auth screen -->
 </div>
 
+<div id="waiting" ng-if="screen == 'waiting'">
+    <!-- start Waiting screen -->
+    <div class="loadingAuth">
+        <p>
+        <h3><em>Wachten tot de Kwizz meester de ronde start</em></h3>
+        <img src="../images/loading.gif" align="loading">
+        </p>
+    </div>
+    <!-- end Waiting screen -->
+</div>
+
 <div id="vraag" ng-if="screen == 'vraag'">
     <div class="col-xs-12">
         <div class="panel panel-default">

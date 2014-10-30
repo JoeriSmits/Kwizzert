@@ -94,13 +94,17 @@ theApp.controller("kwizzMeester", function ($scope, $http) {
     };
 
     // Check if the team amount is between 2 and 6
-    $scope.checkTeams = function () {
-        if ($scope.teams.length >= 2 && $scope.teams.length <= 6) {
-            $scope.setScreen('catg');
-        }
-        else {
-            $scope.showError = true;
-        }
+    $scope.checkTeams = function (password) {
+        $http.get("/api/teams/" + password)
+            .success(function (data) {
+                $scope.teams = data.doc.teams;
+                if ($scope.teams.length >= 2 && $scope.teams.length <= 6) {
+                    $scope.setScreen('catg');
+                }
+                else {
+                    $scope.showError = true;
+                }
+            });
     };
 
     // Getting all the individual categories
@@ -194,9 +198,9 @@ theApp.controller("kwizzSpeler", function ($scope, $http) {
                 }
                 // If not then continue with team registration
                 if (!alreadyInUse) {
-                    $http.post("/teams/:uitvoeringCode", Team)
+                    $http.post("api/teams/" + $scope.kwizzListPassword, Team)
                         .success(function () {
-                            console.log("Success! Team registered");
+                            $scope.setScreen('waiting');
                         })
                 }
                 // Otherwise show an error
