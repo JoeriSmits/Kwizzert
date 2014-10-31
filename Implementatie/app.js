@@ -32,6 +32,9 @@ io.on('connection', function(socket){
     });
     socket.on('startRonde', function(uitvoeringCode) {
         io.emit('startRonde', uitvoeringCode);
+    });
+    socket.on('nieuweVraag', function(object) {
+        io.emit('nieuweVraag', object);
     })
 });
 

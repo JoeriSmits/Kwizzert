@@ -14,6 +14,7 @@ router.route('/ronden/:uitvoeringCode')
     .post(controller.createOne);
 
 router.route('/ronden/:id')
-    .get(controller.retrieveOne);
+    .get(controller.retrieveOne)
+    .put(controller.updateOne);
 
 module.exports = router;

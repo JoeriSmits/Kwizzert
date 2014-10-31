@@ -11,4 +11,8 @@ router.route('/vragen')
     .post(controller.createOne)
 .get(controller.retrieveAll);
 
+router.route('/vragen/:categorie')
+    .get(controller.retrieve);
+
+
 module.exports = router;

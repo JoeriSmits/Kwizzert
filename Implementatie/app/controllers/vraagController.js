@@ -41,3 +41,22 @@ exports.retrieveAll = function (req, res) {
         });
     });
 };
+
+// Retrieve questions filtered on categorie
+exports.retrieve = function (req, res) {
+    Vraag.find({categorie: req.params.categorie}, function (err, doc) {
+        if (err) {
+            return res.send(
+                {
+                    doc: null,
+                    err: err
+                }
+            );
+        }
+
+        res.json({
+            doc: doc,
+            err: err
+        });
+    })
+};

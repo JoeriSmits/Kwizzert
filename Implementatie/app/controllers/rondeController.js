@@ -4,7 +4,7 @@
 
 var mongoose = require('mongoose'),
     kwizzUitvoering = mongoose.model('KwizzUitvoering');
-    Ronde = mongoose.model('Ronde');
+Ronde = mongoose.model('Ronde');
 
 exports.createOne = function (req, res) {
     // Find the document kwizzUitvoering with the right password
@@ -39,7 +39,7 @@ exports.createOne = function (req, res) {
 };
 
 exports.retrieveOne = function (req, res) {
-    ronde.findOne({ _id: req.params.id }, function (err, person) {
+    ronde.findOne({_id: req.params.id}, function (err, person) {
         if (err) {
             return res.send({
                 doc: null,
@@ -70,4 +70,31 @@ exports.retrieveAll = function (req, res) {
             err: err
         });
     });
+};
+
+exports.updateOne = function (req, res) {
+    Ronde.findOne({linkHash: req.params.id}, function (err, doc) {
+        if (err) {
+            return res.send({
+                doc: null,
+                err: err
+            });
+        }
+        doc.vraagTekst.push(req.body.vraagTekst);
+
+        // save the doc
+        doc.save(function (err) {
+            if (err) {
+                return res.send({
+                    doc: null,
+                    err: err
+                });
+            }
+
+            res.json({
+                doc: doc,
+                err: err
+            });
+        });
+    })
 };
