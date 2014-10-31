@@ -99,7 +99,9 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
                     .success(function (data) {
                         $scope.teams = data.doc.teams;
                         socketIO.on('newTeamRegistered', function (team) {
-                            $scope.teams.push(team);
+                            if (team.uitvoering === $scope.myCode) {
+                                $scope.teams.push(team);
+                            }
                         })
                     });
             })
@@ -181,7 +183,7 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
         $http.post("/api/ronden/" + $scope.myCode, ronde)
             .success(function () {
                 $scope.setScreen('vraag');
-                socketIO.emit("startRonde", true);
+                socketIO.emit("startRonde", $scope.myCode);
             })
     }
 });
@@ -211,9 +213,9 @@ theApp.controller("kwizzBeamer", function ($scope, $http) {
                 }
             })
             .error(function (data, status) {
-            alert("AJAX ERROR");
-            console.log("ERROR: kwizzBeamer Error", status, data);
-        })
+                alert("AJAX ERROR");
+                console.log("ERROR: kwizzBeamer Error", status, data);
+            })
     }
 
 });
@@ -256,6 +258,11 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {
             name: teamInfo.name,
             teamColor: teamInfo.color
         };
+        var TeamSocket = {
+            name: teamInfo.name,
+            teamColor: teamInfo.color,
+            uitvoering: $scope.kwizzListPassword
+        };
 
         $http.get("api/teams/" + $scope.kwizzListPassword)
             .success(function (data) {
@@ -270,8 +277,15 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {
                 if (!alreadyInUse) {
                     $http.post("api/teams/" + $scope.kwizzListPassword, Team)
                         .success(function () {
-                            socketIO.emit('newTeam', Team);
+                            socketIO.emit('newTeam', TeamSocket);
                             $scope.setScreen('waiting');
+
+                            // Check if the screen is waiting and if event pull it out of waiting modus.
+                            socketIO.on('startRonde', function (uitvoeringCode) {
+                                if (uitvoeringCode === $scope.kwizzListPassword) {
+                                    $scope.screen = 'vraag';
+                                }
+                            })
                         })
                 }
                 // Otherwise show an error
@@ -283,7 +297,5 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {
                 alert("AJAX ERROR");
                 console.log("ERROR: submit kwizzUitvoering", status, data);
             });
-    }
-
-
+    };
 });
