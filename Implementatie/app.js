@@ -30,8 +30,11 @@ io.on('connection', function(socket){
     socket.on('newTeam', function(team){
         io.emit('newTeamRegistered', team);
     });
-    socket.on('startRonde', function(status) {
-        io.emit('startRonde', status);
+    socket.on('startRonde', function(uitvoeringCode) {
+        io.emit('startRonde', uitvoeringCode);
+    });
+    socket.on('nieuweVraag', function(object) {
+        io.emit('nieuweVraag', object);
     })
 });
 

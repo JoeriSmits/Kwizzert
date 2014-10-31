@@ -10,7 +10,8 @@
             <form role="form">
                 <div class="form-group">
                     <label class="control-label sr-only">Deze teamnaam is al bezet</label>
-                    <input type="text" ng-model="teamInfo.name" class="form-control" placeholder="Team naam" id="addTeamName" required>
+                    <input type="text" ng-model="teamInfo.name" class="form-control" placeholder="Team naam"
+                           id="addTeamName" required>
                 </div>
                 <hr/>
                 <div class="input-group">
@@ -25,7 +26,8 @@
             </form>
         </div>
         <div class="panel-footer">
-            <button ng-click="teamRegister(teamInfo)" type="button" class="btn btn-success btn-lg btn-block">Team aanmelden
+            <button ng-click="teamRegister(teamInfo)" type="button" class="btn btn-success btn-lg btn-block">Team
+                aanmelden
             </button>
         </div>
     </div>
@@ -52,7 +54,9 @@
             </div>
         </div>
         <div class="panel-footer">
-            <button ng-click="authPwd(kwizzListPassword)" type="button" class="btn btn-success btn-lg btn-block">Authenticeren</button>
+            <button ng-click="authPwd(kwizzListPassword)" type="button" class="btn btn-success btn-lg btn-block">
+                Authenticeren
+            </button>
         </div>
     </div>
     <!-- end Auth screen -->
@@ -62,6 +66,7 @@
     <!-- start Waiting screen -->
     <div class="loadingAuth">
         <p>
+
         <h3><em>Wachten tot de Kwizz meester de ronde start</em></h3>
         <img src="../images/loading.gif" align="loading">
         </p>
@@ -70,28 +75,26 @@
 </div>
 
 <div id="vraag" ng-if="screen == 'vraag'">
-    <div class="col-xs-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="panel-title text-center"><span class="speler-title">Vraag 1</span></div>
-            </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title text-center"><span class="speler-title">Vraag 1</span></div>
+        </div>
 
-            <div class="panel-body">
-                <div class="col-xs-12">
-                    <form role="form">
-                        <h2 class="text-center">Hoe wordt de periode waarin het goed ging met Nederland tussen 1600 –
-                            1700 ook wel genoemd?</h2>
-                        <hr/>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Antwoord" id="addAnswer">
-                        </div>
-                    </form>
+        <div class="panel-body">
+            <form role="form">
+                <div ng-show="!(question).length" class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>Geen vraag geselecteerd</strong> De kwizz-Meester is bezig om een vraag te selecteren.
                 </div>
-            </div>
+                <h2 class="text-center">{{question}}</h2>
+                <hr/>
+                <div class="form-group">
+                    <input ng-model="answer" type="text" class="form-control" placeholder="Antwoord" id="addAnswer">
+                </div>
+            </form>
+        </div>
 
-            <div class="panel-footer">
-                <button type="button" class="btn btn-success btn-lg btn-block">Antwoorden</button>
-            </div>
+        <div class="panel-footer">
+            <button ng-click="submitAnswer(answer)" type="button" class="btn btn-success btn-lg btn-block">Antwoorden</button>
         </div>
     </div>
 </div>

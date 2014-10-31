@@ -71,3 +71,30 @@ exports.retrieveAll = function (req, res) {
         });
     });
 };
+
+exports.updateOne = function (req, res) {
+    Ronde.findOne({linkHash: req.params.id}, function (err, doc) {
+        if (err) {
+            return res.send({
+                doc: null,
+                err: err
+            });
+        }
+        doc.vraagTekst.push(req.body.vraagTekst);
+
+        // save the doc
+        doc.save(function (err) {
+            if (err) {
+                return res.send({
+                    doc: null,
+                    err: err
+                });
+            }
+
+            res.json({
+                doc: doc,
+                err: err
+            });
+        });
+    })
+};
