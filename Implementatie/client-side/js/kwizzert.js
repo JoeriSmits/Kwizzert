@@ -367,8 +367,12 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {
     });
 
     $scope.submitAnswer = function (answer) {
+        var answerObj = {
+            antwoordTekst: answer
+        };
+
         if($scope.question !== undefined) {
-            console.log("Hey");
+            $http.post('/api/antwoorden/' + $scope.question.vraag.doc.linkHash, answerObj)
         }
     }
 });
