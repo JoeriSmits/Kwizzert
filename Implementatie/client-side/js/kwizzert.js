@@ -194,27 +194,56 @@ theApp.controller("kwizzBeamer", function ($scope, $http) {
     };
 
     $scope.authBeamer = function (beamerPassword) {
+
         $scope.beamerPassword = beamerPassword;
 
         $http.get("/api/kwizzUitvoeringen/")
             .success(function (data) {
                 var i, passwordExist;
-                // GET password from database
+                // GET password from database and check if password exists in database
                 for (i = 0; i < data.doc.length; i = i + 1) {
                     if (data.doc[i].password === $scope.beamerPassword) {
-                        $scope.screen = "main";
+                        $scope.screen = "antw";
                         passwordExist = true;
+
+                        // Shows the actual amount of rounds in database
+                        $scope.rondeNummer = data.doc[i].rondes.length;
+
+                        // Show category and question on beamer after loading main page
+                        // Because there's no trigger button on beamer main page, added beamer-main data as callback
+                        // TODO: Add SocketIO
+                        $http.get("api/ronden/")
+                            .success(function (data) {
+                                var i;
+                                for (i = 0; i < data.doc.length; i = i + 1) {
+                                    // Shows the first question and category from "ronden" database.
+                                    $scope.rondeCatg = data.doc[i].categorieen[0];
+                                    $scope.rondeVraag = data.doc[i].vraagTekst[0];
+
+                                    // Shows the actual amount of questions in database
+                                    $scope.nummerVraag = data.doc[i].vraagTekst.length;
+                                }
+
+                                // Show all the teams after loading the main page
+                                $http.get("/api/kwizzUitvoeringen/" + $scope.beamerPassword)
+                                    .success(function () {
+                                        $http.get("/api/teams/" + $scope.beamerPassword)
+                                            .success(function (data) {
+                                                $scope.teams = data.doc.teams;
+                                            });
+                                    })
+                            });
                     }
                 }
                 if (!passwordExist) {
-                    alert("Code is fout.")
+                    alert("Code klopt niet.")
                 }
             })
             .error(function (data, status) {
             alert("AJAX ERROR");
             console.log("ERROR: kwizzBeamer Error", status, data);
         })
-    }
+    };
 
 });
 

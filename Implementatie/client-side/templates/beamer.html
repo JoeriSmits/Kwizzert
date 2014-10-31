@@ -33,10 +33,10 @@
             <div class="panel-title">
                 <div class="row">
                     <div class="col-lg-6 pull-left text-left">
-                        <span class="beamer-title">Ronde: 1</span>
+                        <span class="beamer-title">Ronde: {{rondeNummer}}</span>
                     </div>
                     <div class="col-lg-6 pull-right text-right">
-                        <span class="beamer-title">Vraag: 3/12</span>
+                        <span class="beamer-title">Vraag: {{nummerVraag}}/12</span>
                     </div>
                 </div>
             </div>
@@ -45,48 +45,21 @@
         <div class="panel-body">
 
             <div class="col-lg-12">
-                <h1 class="text-center">{{categorie}}</h1>
+                <h1 class="text-center">{{rondeCatg}}</h1>
                 <hr/>
-                <h2 class="text-center">{{vraagTekst}}</h2>
-                <hr/>
-
-                <!-- TODO #1 Add Angular Timer that compliments Bootstrap @SEE http://siddii.github.io/angular-timer/ -->
-                <!-- TODO #2 If the timer has ended, use ng-show or ng-hide to show the answers here! -->
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45"
-                         aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                        <span class="sr-only">45% Complete</span>
-                    </div>
-                </div>
+                <h2 class="text-center">{{rondeVraag}}</h2>
                 <hr/>
 
-                <!-- TODO #3 Make sure that col-lg-4 changes to whatever amount of teams join. Notice col-lg-12! -->
-                <div class="col-lg-4">
+                <div class="col-lg-4" ng-repeat="team in teams">
                     <div class="well">
-                        <h1 class="teamDetails">45</h1>
-                        <h4 class="text-center">Team naam</h4>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="well">
-                        <h1 class="teamDetails">45</h1>
-                        <h4 class="text-center">Team naam</h4>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="well">
-                        <h1 class="teamDetails">45</h1>
-                        <h4 class="text-center">Team naam</h4>
+                        <div style="border: 3px solid {{team.teamColor}};" class="teamDetails">
+                            {{team.score}}
+                        </div>
+                        <h4 class="text-center">{{team.name}}</h4>
                     </div>
                 </div>
 
             </div>
-
-        </div>
-        <div class="panel-footer">
-            <button ng-click="setScreen('antw')" type="button" class="btn btn-danger center-block">Tijdelijk button naar scherm 2 | Lees TODO #2</button>
         </div>
     </div>
     <!-- end Main screen -->
@@ -98,19 +71,18 @@
         <table class="table table-hover beamer-antw-table">
             <tbody>
             <tr>
-                <td id="beamer-td">Gouden Eeuw</td>
-            </tr>
-            <tr>
-                <td>gouden eeuw</td>
-            </tr>
-            <tr>
-                <td>geen idee?</td>
-            </tr>
-            <tr>
-                <td>Piet piraat</td>
+                <td style="border-left: 3px solid {{teamColor}};">{{teamAntwoord}}</td>
             </tr>
             </tbody>
         </table>
     </div>
     <!-- end End screen -->
+</div>
+
+<div ng-if="screen == 'code'">
+    <!-- start Code screen -->
+    <div class="well">
+        <h2 class="text-center">Authenticatie code voor pubquiz: <span class="beamerCode">{{beamerPassword}}</span></h2>
+    </div>
+    <!-- end Code screen -->
 </div>

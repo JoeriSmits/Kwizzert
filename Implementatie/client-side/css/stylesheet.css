@@ -20,6 +20,11 @@
     font-size: 20px;
 }
 
+.beamerCode {
+    font-weight: bold;
+    color: #1b52cb;
+}
+
 .meester-title {
     font-weight: bold;
 }
@@ -43,10 +48,6 @@
     border-left: 3px solid darkred;
 }
 
-.beamer-antw-table > tbody > tr #beamer-td {
-    border-left: 3px solid darkred;
-}
-
 .teamDetails {
     background: url("../images/placeholder.jpg") no-repeat;
     width: 100%;
@@ -54,7 +55,6 @@
     max-width: 125px;
     max-height: 125px;
     border-radius: 125px;
-    border: 3px solid #285e8e;
     font-weight: bold;
     font-size: 40px;
     text-shadow: 2px 2px 2px #626262;

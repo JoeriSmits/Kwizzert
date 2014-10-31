@@ -39,7 +39,7 @@ exports.createOne = function (req, res) {
 };
 
 exports.retrieveOne = function (req, res) {
-    ronde.findOne({ _id: req.params.id }, function (err, person) {
+    Ronde.findOne({ _id: req.params.id }, function (err, doc) {
         if (err) {
             return res.send({
                 doc: null,
@@ -47,7 +47,7 @@ exports.retrieveOne = function (req, res) {
             });
         }
         res.json({
-            doc: person,
+            doc: doc,
             err: err
         });
     });
@@ -55,7 +55,7 @@ exports.retrieveOne = function (req, res) {
 
 
 exports.retrieveAll = function (req, res) {
-    ronde.find(function (err, doc) {
+    Ronde.find(function (err, doc) {
         if (err) {
             return res.send(
                 {
