@@ -290,6 +290,13 @@ theApp.controller("kwizzBeamer", function ($scope, $http) {
                                             });
                                     })
                             });
+
+                        // Show the answers of the teams after the Kwizz Meester has closed the question
+
+                        $http.get("/api/antwoorden/")
+                            .success(function (data) {
+                                $scope.team = data.doc.team;
+                            })
                     }
                 }
                 if (!passwordExist) {
@@ -375,7 +382,7 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {
                     }
                     // Otherwise show an error
                     else {
-                        alert("Team name is already in use. Please try again");
+                        alert("Team naam is al in gebruik. Probeer opnieuw.");
                     }
                 })
                 .error(function (data, status) {

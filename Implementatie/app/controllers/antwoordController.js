@@ -3,8 +3,7 @@
  */
 var mongoose = require('mongoose'),
     Ronde = mongoose.model('Ronde'),
-    Antwoord = mongoose.model('antwoord');
-
+    Antwoord = mongoose.model('Antwoord');
 
 exports.createOne = function (req, res) {
 // Find the document ronde with the right linkHash
@@ -34,6 +33,40 @@ exports.createOne = function (req, res) {
                     err: err
                 });
             });
+        });
+    });
+};
+
+exports.retrieveOne = function (req, res) {
+    // Find the answer of a team within the round
+    Antwoord.findOne({ _id: req.params.id }, function (err, doc) {
+        if (err) {
+            return res.send({
+                doc: null,
+                err: err
+            });
+        }
+        res.json({
+            doc: doc,
+            err: err
+        });
+    });
+};
+
+exports.retrieveAll = function (req, res) {
+    Antwoord.find(function (err, doc) {
+        if (err) {
+            return res.send(
+                {
+                    doc: null,
+                    err: err
+                }
+            );
+        }
+
+        res.json({
+            doc: doc,
+            err: err
         });
     });
 };

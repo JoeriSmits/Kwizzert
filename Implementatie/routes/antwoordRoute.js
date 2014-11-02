@@ -7,7 +7,13 @@ var router = express.Router();
 
 var controller = require('../app/controllers/antwoordController');
 
+router.route('/antwoorden/')
+    .get(controller.retrieveAll);
+
 router.route('/antwoorden/:rondeId')
     .post(controller.createOne);
+
+router.route('/antwoorden/:id')
+    .get(controller.retrieveOne);
 
 module.exports = router;

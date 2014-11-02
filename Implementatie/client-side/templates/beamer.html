@@ -50,6 +50,25 @@
                 <h2 class="text-center">{{rondeVraag}}</h2>
                 <hr/>
 
+                <!-- If the round has finished show the answers of the teams-->
+                <!--TODO: Use ng-show for this part.-->
+
+                <div id="antwoord" ng-if="screen == 'antw'">
+                    <!-- start End screen -->
+                    <div class="col-lg-12">
+                        <table class="table table-hover beamer-antw-table">
+                            <tbody>
+                            <tr ng-repeat="teamInfo in team">
+                                <td style="border-left: 5px solid {{teamInfo.teamColor}};">{{teamInfo.antwoordTekst}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- end End screen -->
+                </div>
+
+                <hr/>
+
                 <div class="col-lg-4" ng-repeat="team in teams">
                     <div class="well">
                         <div style="border: 3px solid {{team.teamColor}};" class="teamDetails">
@@ -65,24 +84,38 @@
     <!-- end Main screen -->
 </div>
 
-<div id="antwoord" ng-if="screen == 'antw'">
-    <!-- start End screen -->
-    <div class="col-lg-12">
-        <table class="table table-hover beamer-antw-table">
-            <tbody>
-            <tr>
-                <td style="border-left: 3px solid {{teamColor}};">{{teamAntwoord}}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <!-- end End screen -->
-</div>
-
 <div ng-if="screen == 'code'">
     <!-- start Code screen -->
     <div class="well">
         <h2 class="text-center">Authenticatie code voor pubquiz: <span class="beamerCode">{{beamerPassword}}</span></h2>
     </div>
     <!-- end Code screen -->
+</div>
+
+<div ng-if="screen == 'end'">
+    <!-- start End screen -->
+    <h1 class="text-center">Eindscore</h1>
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th colspan="2">Team naam</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Team Awesome</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Team Test 3</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Madeliefjes</td>
+        </tr>
+        </tbody>
+    </table>
+    <!-- end End screen -->
 </div>
