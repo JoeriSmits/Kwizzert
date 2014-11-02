@@ -24,7 +24,7 @@ app.use(session({
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-// SocketIO connect
+// SocketIO 'Real-time'
 io.on('connection', function(socket){
     console.log('a user connected');
     socket.on('newTeam', function(team){
@@ -35,6 +35,9 @@ io.on('connection', function(socket){
     });
     socket.on('nieuweVraag', function(object) {
         io.emit('nieuweVraag', object);
+    });
+    socket.on('questionSend', function (object) {
+        io.emit('questionSend', object);
     })
 });
 

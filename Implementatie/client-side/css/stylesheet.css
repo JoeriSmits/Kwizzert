@@ -79,7 +79,7 @@ span.glyphicon-remove {
     line-height: 1.5em;
 }
 
-.loadingAuth {
+.loading {
     width: 100%;
     max-width: 500px;
     margin: 30px auto 0 auto;
@@ -87,7 +87,7 @@ span.glyphicon-remove {
     opacity: 0.5;
 }
 
-.loadingAuth img {
+.loading img {
     width: 100%;
     max-width: 100px;
 }
