@@ -34,7 +34,7 @@
                 aangemeld en maximaal zes!
             </div>
             <!-- Loading text waiting for teams -->
-            <div class="loadingAuth" ng-show="!(teams).length">
+            <div class="loading" ng-show="!(teams).length">
                 <p>
 
                 <h3><em>Wachten op aanmeldingen van teams</em></h3>
@@ -177,14 +177,26 @@
             <!-- TODO Gebruik "Contextual classes" in Bootstrap CSS om table rows en individual cells te kleuren -->
 
             <p>Ingezonden antwoorden door de teams:</p>
-            <table class="table table-hover antw-table">
+
+            <div ng-show="!(answers).length" class="loading">
+                <p>
+                <h3><em>Wachten op antwoorden van teams</em></h3>
+                <img src="../images/loading.gif" align="loading">
+                </p>
+            </div>
+            <table ng-show="(answers).length" class="table table-hover antw-table">
                 <tbody>
                 <tr>
+                    <th>Geef punten</th>
+                    <th>Team</th>
+                    <th>Antwoord</th>
+                </tr>
+                <tr ng-repeat="answer in answers">
                     <td>
-                        <button type="button" class="btn btn-success">Goed</button>
-                        <button type="button" class="btn btn-danger">Fout</button>
+                        <button type="button" class="btn btn-success">Goed antwoord (Geef dit team punten)</button>
                     </td>
-                    <td>Gouden Eeuw</td>
+                    <td>{{answer.teamNaam}}</td>
+                    <td>{{answer.antwoordTekst}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -192,7 +204,7 @@
         </div>
 
         <div class="panel-footer">
-            <button ng-click="setScreen('vraag')" type="button" class="btn btn-danger center-block">Sluit Vraag
+            <button ng-click="closeQuestion()" type="button" class="btn btn-default center-block">Volgende vraag
             </button>
         </div>
     </div>

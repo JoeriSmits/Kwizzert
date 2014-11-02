@@ -64,7 +64,7 @@
 
 <div id="waiting" ng-if="screen == 'waiting'">
     <!-- start Waiting screen -->
-    <div class="loadingAuth">
+    <div class="loading">
         <p>
 
         <h3><em>Wachten tot de Kwizz meester de ronde start</em></h3>
@@ -77,7 +77,7 @@
 <div id="vraag" ng-if="screen == 'vraag'">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="panel-title text-center"><span class="speler-title">Vraag 1</span></div>
+            <div ng-show="(question.vraagTekst).length" class="panel-title text-center"><span class="speler-title">Vraag {{question.vraagTekst.length}}/12</span></div>
         </div>
 
         <div class="panel-body">
@@ -87,14 +87,25 @@
                 </div>
                 <h2 class="text-center">{{question.vraagTekst[question.vraagTekst.length - 1]}}</h2>
                 <hr/>
-                <div class="form-group">
+                <div ng-show="(question.vraagTekst).length" class="form-group">
                     <input ng-model="answer" type="text" class="form-control" placeholder="Antwoord" id="addAnswer">
                 </div>
             </form>
         </div>
 
         <div class="panel-footer">
-            <button ng-click="submitAnswer(answer)" type="button" class="btn btn-success btn-lg btn-block">Antwoorden</button>
+            <button ng-show="(question.vraagTekst).length" ng-click="submitAnswer(answer)" type="button" class="btn btn-success btn-lg btn-block">Antwoorden</button>
         </div>
     </div>
+</div>
+
+<div id="questionSend" ng-if="screen == 'questionSend'">
+    <!-- start QuestionSend screen -->
+    <div class="loading">
+        <p>
+        <h3><em>Wachten tot de Kwizz meester de volgende vraag kiest...</em></h3>
+        <img src="../images/loading.gif" align="loading">
+        </p>
+    </div>
+    <!-- end QuestionSend screen -->
 </div>

@@ -236,6 +236,16 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
                             uitvoeringCode: $scope.myCode
                         };
                         socketIO.emit("nieuweVraag", $scope.myObj);
+                        $http.get('/api/antwoorden/' + $scope.linkHash)
+                            .success(function (data) {
+                                $scope.answers = data.doc.ingezonden;
+                                socketIO.on('questionSend', function (object) {
+                                    if(object.uitvoering === $scope.myCode) {
+                                        $scope.answers.push(object.answer);
+                                        console.log("***", object);
+                                    }
+                                })
+                            });
                     });
                 $scope.choosedQuestion = $scope.rondeVragen[i];
                 $scope.rondeVragen.splice(i, 1);
@@ -243,6 +253,10 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
         }
         $scope.setScreen('antw');
     };
+
+    $scope.closeQuestion = function () {
+        $scope.setScreen('vraag');
+    }
 
 });
 
@@ -382,7 +396,7 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {
                                 // Check if the screen is waiting and if event pull it out of waiting modus.
                                 socketIO.on('startRonde', function (uitvoeringCode) {
                                     if (uitvoeringCode === $scope.kwizzListPassword) {
-                                        $scope.screen = 'vraag';
+                                        $scope.setScreen('vraag');
                                     }
                                 })
                             })
@@ -406,15 +420,24 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {
     socketIO.on("nieuweVraag", function (object) {
         if (object.uitvoeringCode === $scope.kwizzListPassword) {
             $scope.question = object.vraag.doc;
+            $scope.setScreen('vraag');
         }
     });
 
+    // Post an answer in the database
     $scope.submitAnswer = function (answer) {
         var answerObj = {
             teamNaam: $scope.Team.name,
             antwoordTekst: answer
         };
-        console.log("Ik ben in de submitAnswer", $scope.question);
-        $http.post('/api/antwoorden/' + $scope.question._id, answerObj);
+        $http.post('/api/antwoorden/' + $scope.question._id, answerObj)
+            .success(function () {
+                $scope.setScreen('questionSend');
+                var myObj = {
+                    answer: answerObj,
+                    uitvoering: $scope.kwizzListPassword
+                };
+                socketIO.emit('questionSend', myObj);
+            })
     }
 });
