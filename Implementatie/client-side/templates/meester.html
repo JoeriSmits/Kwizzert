@@ -154,7 +154,8 @@
                     <td>{{vraag.categorie}}</td>
                     <td>{{vraag.vraagTekst}}</td>
                     <td>
-                        <span ng-click="selectQuestion(vraag._id)" class="glyphicon glyphicon-forward forward-icon"></span>
+                        <span ng-click="selectQuestion(vraag._id)"
+                              class="glyphicon glyphicon-forward forward-icon"></span>
                     </td>
                 </tr>
                 </tbody>
@@ -168,71 +169,25 @@
     <!-- Start antw screen -->
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title meester-title pull-left">{{myObj.vraag.doc.vraagTekst[myObj.vraag.doc.vraagTekst.length - 1]}}</h3>
-            <h3 class="panel-title meester-title pull-right">{{myObj.vraag.doc.vraagTekst[myObj.vraag.doc.vraagTekst.length - 1]}}</h3>
+            <h3 class="panel-title meester-title">{{myObj.vraag.doc.vraagTekst[myObj.vraag.doc.vraagTekst.length -
+                1]}}</h3>
         </div>
         <div class="panel-body">
-
+            <p><h4>Goede antwoord: {{choosedQuestion.antwoord}}</h4></p>
             <!-- TODO Gebruik "Contextual classes" in Bootstrap CSS om table rows en individual cells te kleuren -->
 
-            <div class="col-sm-12">
-                <table class="table table-hover antw-table">
-                    <tbody>
-                    <tr>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-ok icon-success"></span>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-remove icon-danger"></span>
-                            </a>
-                        </td>
-                        <td class="success" id="antw-td">Gouden Eeuw</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-ok icon-success"></span>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-remove icon-danger"></span>
-                            </a>
-                        </td>
-                        <td>gouden eeuw</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-ok icon-success"></span>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-remove icon-danger"></span>
-                            </a>
-                        </td>
-                        <td>geen idee?</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-ok icon-success"></span>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-remove icon-danger"></span>
-                            </a>
-                        </td>
-                        <td>Piet piraat</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <p>Ingezonden antwoorden door de teams:</p>
+            <table class="table table-hover antw-table">
+                <tbody>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-success">Goed</button>
+                        <button type="button" class="btn btn-danger">Fout</button>
+                    </td>
+                    <td>Gouden Eeuw</td>
+                </tr>
+                </tbody>
+            </table>
 
         </div>
 

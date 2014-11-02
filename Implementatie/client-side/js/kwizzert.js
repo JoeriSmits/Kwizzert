@@ -175,8 +175,7 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
     };
 
     $scope.startRonde = function () {
-        if($scope.rondeCategorieen.length == 3) {
-
+        if ($scope.rondeCategorieen.length === 3) {
             var ronde = {
                 linkHash: generateRandomCode(25),
                 categorieen: $scope.rondeCategorieen,
@@ -189,43 +188,46 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
                 .success(function () {
                     $scope.setScreen('vraag');
                     socketIO.emit("startRonde", $scope.myCode);
-                });
+                })
 
             $scope.rondeVragen = [];
             var i;
-            for(i = 0; i < 3; i = i + 1) {
+            for (i = 0; i < 3; i = i + 1) {
                 $http.get('/api/vragen/' + $scope.rondeCategorieen[i])
                     .success(function (data) {
                         var j, arrayRandoms, arrayFull;
                         arrayRandoms = [];
 
                         // Getting an array of random unique positions
-                        while(!arrayFull) {
+                        while (!arrayFull) {
                             var random = Math.floor((Math.random() * data.doc.length));
-                            if(random === data.doc.length) {
+                            if (random === data.doc.length) {
                                 random = random - 1;
                             }
-                            if(arrayRandoms.indexOf(random) === -1) {
+                            if (arrayRandoms.indexOf(random) === -1) {
                                 arrayRandoms.push(random);
                             }
-                            if(arrayRandoms.length === 4) {
+                            if (arrayRandoms.length === 4) {
                                 arrayFull = true;
                             }
                         }
 
                         // Getting the questions related with the random numbers
-                        for(j = 0; j < 4; j = j + 1) {
+                        for (j = 0; j < 4; j = j + 1) {
                             $scope.rondeVragen.push(data.doc[arrayRandoms[j]]);
                         }
                     })
             }
+        }
+        else {
+            alert("U moet 3 categorieën kiezen");
         }
     };
 
     $scope.selectQuestion = function (question) {
         var i;
         // If the kwizzMeester selects a question it will be saved and deleted from the view array.
-        for(i = 0; i < $scope.rondeVragen.length; i = i + 1) {
+        for (i = 0; i < $scope.rondeVragen.length; i = i + 1) {
             if ($scope.rondeVragen[i]._id === question) {
                 $http.put('api/ronden/' + $scope.linkHash, $scope.rondeVragen[i])
                     .success(function (data) {
@@ -235,7 +237,8 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
                         };
                         socketIO.emit("nieuweVraag", $scope.myObj);
                     });
-                $scope.rondeVragen.splice(i , 1);
+                $scope.choosedQuestion = $scope.rondeVragen[i];
+                $scope.rondeVragen.splice(i, 1);
             }
         }
         $scope.setScreen('antw');
@@ -304,9 +307,9 @@ theApp.controller("kwizzBeamer", function ($scope, $http) {
                 }
             })
             .error(function (data, status) {
-            alert("AJAX ERROR");
-            console.log("ERROR: kwizzBeamer Error", status, data);
-        })
+                alert("AJAX ERROR");
+                console.log("ERROR: kwizzBeamer Error", status, data);
+            })
     };
 
 });
@@ -345,7 +348,7 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {
 
     // Saving a team in the database with a reference to the right kwizzUitvoering
     $scope.teamRegister = function (teamInfo) {
-        var Team = {
+        $scope.Team = {
             name: teamInfo.name,
             teamColor: teamInfo.color
         };
@@ -355,19 +358,19 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {
             uitvoering: $scope.kwizzListPassword
         };
 
-        if(teamInfo.name !== null) {
+        if (teamInfo.name !== null) {
             $http.get("api/teams/" + $scope.kwizzListPassword)
                 .success(function (data) {
                     // Checking if the team name is already in use
                     var i, alreadyInUse;
                     for (i = 0; i < data.doc.teams.length; i = i + 1) {
-                        if (Team.name === data.doc.teams[i].name) {
+                        if ($scope.Team.name === data.doc.teams[i].name) {
                             alreadyInUse = true;
                         }
                     }
                     // If not then continue with team registration
                     if (!alreadyInUse) {
-                        $http.post("api/teams/" + $scope.kwizzListPassword, Team)
+                        $http.post("api/teams/" + $scope.kwizzListPassword, $scope.Team)
                             .success(function () {
                                 socketIO.emit('newTeam', TeamSocket);
                                 $scope.setScreen('waiting');
@@ -397,18 +400,17 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {
 
     // Question screen
     socketIO.on("nieuweVraag", function (object) {
-        if(object.uitvoeringCode === $scope.kwizzListPassword) {
-            $scope.question = object.vraag.doc.vraagTekst[object.vraag.doc.vraagTekst.length - 1];
+        if (object.uitvoeringCode === $scope.kwizzListPassword) {
+            $scope.question = object.vraag.doc;
         }
     });
 
     $scope.submitAnswer = function (answer) {
         var answerObj = {
+            teamNaam: $scope.Team.name,
             antwoordTekst: answer
         };
-
-        if($scope.question !== undefined) {
-            $http.post('/api/antwoorden/' + $scope.question.vraag.doc.linkHash, answerObj)
-        }
+        console.log("Ik ben in de submitAnswer", $scope.question);
+        $http.post('/api/antwoorden/' + $scope.question._id, answerObj);
     }
 });

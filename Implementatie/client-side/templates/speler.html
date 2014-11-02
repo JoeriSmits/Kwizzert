@@ -82,10 +82,10 @@
 
         <div class="panel-body">
             <form role="form">
-                <div ng-show="!(question).length" class="alert alert-danger alert-dismissible" role="alert">
+                <div ng-show="!(question.vraagTekst).length" class="alert alert-danger alert-dismissible" role="alert">
                     <strong>Geen vraag geselecteerd</strong> De kwizz-Meester is bezig om een vraag te selecteren.
                 </div>
-                <h2 class="text-center">{{question}}</h2>
+                <h2 class="text-center">{{question.vraagTekst[question.vraagTekst.length - 1]}}</h2>
                 <hr/>
                 <div class="form-group">
                     <input ng-model="answer" type="text" class="form-control" placeholder="Antwoord" id="addAnswer">

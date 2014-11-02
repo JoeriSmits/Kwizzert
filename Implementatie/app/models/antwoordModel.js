@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 
 var antwoordSchema = new mongoose.Schema({
     antwoordTekst: String,
+    teamNaam: String,
     team: { type: mongoose.Schema.Types.ObjectId, ref: 'Team' }
 });
 
