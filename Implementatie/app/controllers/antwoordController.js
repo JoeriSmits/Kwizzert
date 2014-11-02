@@ -40,36 +40,17 @@ console.log(doc);
     });
 };
 
-exports.retrieveOne = function (req, res) {
-    // Find the answer of a team within the round
-    Antwoord.findOne({ _id: req.params.id }, function (err, doc) {
-        if (err) {
+exports.retrieveAnswers = function (req, res) {
+    Ronde.findOne({_id: req.params.rondeId})
+        .populate('ingezonden')
+        .exec(function (err, doc) {
+            if (err) {
+                return err;
+            }
+
             return res.send({
-                doc: null,
+                doc: doc,
                 err: err
             });
-        }
-        res.json({
-            doc: doc,
-            err: err
         });
-    });
-};
-
-exports.retrieveAll = function (req, res) {
-    Antwoord.find(function (err, doc) {
-        if (err) {
-            return res.send(
-                {
-                    doc: null,
-                    err: err
-                }
-            );
-        }
-
-        res.json({
-            doc: doc,
-            err: err
-        });
-    });
 };

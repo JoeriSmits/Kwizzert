@@ -188,7 +188,7 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
                 .success(function () {
                     $scope.setScreen('vraag');
                     socketIO.emit("startRonde", $scope.myCode);
-                })
+                });
 
             $scope.rondeVragen = [];
             var i;
@@ -263,15 +263,14 @@ theApp.controller("kwizzBeamer", function ($scope, $http) {
                 // GET password from database and check if password exists in database
                 for (i = 0; i < data.doc.length; i = i + 1) {
                     if (data.doc[i].password === $scope.beamerPassword) {
-                        $scope.screen = "antw";
+                        $scope.screen = "main";
                         passwordExist = true;
 
                         // Shows the actual amount of rounds in database
                         $scope.rondeNummer = data.doc[i].rondes.length;
 
                         // Show category and question on beamer after loading main page
-                        // Because there's no trigger button on beamer main page, added beamer-main data as callback
-                        // TODO: Add SocketIO
+                        // TODO: Add SocketIO for question and category.
                         $http.get("api/ronden/")
                             .success(function (data) {
                                 var i;
@@ -284,22 +283,27 @@ theApp.controller("kwizzBeamer", function ($scope, $http) {
                                     $scope.nummerVraag = data.doc[i].vraagTekst.length;
                                 }
 
-                                // Show all the teams after loading the main page
+                                // Show the answers of the teams after the Kwizz Meester has closed the question
+                                $http.get("/api/antwoorden/")
+                                    .success(function (data) {
+                                        var i;
+                                        for (i = 0; i < data.doc.length; i = i + 1) {
+                                            $scope.teamAntwoord = data.doc[i].antwoordTekst;
+                                            $scope.team = data.doc[i].team;
+                                            console.log("antwoordTekst: " + $scope.teamAntwoord);
+                                            console.log("Team : " + $scope.team);
+                                        }
+                                    });
+
+                                // Show all the teams on the beamer page
                                 $http.get("/api/kwizzUitvoeringen/" + $scope.beamerPassword)
                                     .success(function () {
                                         $http.get("/api/teams/" + $scope.beamerPassword)
                                             .success(function (data) {
                                                 $scope.teams = data.doc.teams;
                                             });
-                                    })
+                                    });
                             });
-
-                        // Show the answers of the teams after the Kwizz Meester has closed the question
-
-                        $http.get("/api/antwoorden/")
-                            .success(function (data) {
-                                $scope.team = data.doc.team;
-                            })
                     }
                 }
                 if (!passwordExist) {
