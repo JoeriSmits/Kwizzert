@@ -3,18 +3,20 @@
  */
 var mongoose = require('mongoose'),
     Ronde = mongoose.model('Ronde'),
-    Antwoord = mongoose.model('antwoord');
+    Antwoord = mongoose.model('Antwoord');
 
 
 exports.createOne = function (req, res) {
 // Find the document ronde with the right linkHash
-    Ronde.findOne({linkHash: req.params.rondeId}, function (err, doc) {
+    console.log("***", req.body);
+    Ronde.findOne({_id: req.params.rondeId}, function (err, doc) {
+console.log(req.params.rondeId);
         var antwoord1 = new Antwoord(req.body);
         antwoord1.save(function (err) {
             if (err) {
                 return err;
             }
-
+console.log(doc);
             // Now we gonna update the ronde with the antwoord id
             doc.ingezonden.push(antwoord1._id);
             doc.save(function (err) {
