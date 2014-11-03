@@ -38,7 +38,10 @@ io.on('connection', function(socket){
     });
     socket.on('questionSend', function (object) {
         io.emit('questionSend', object);
-    })
+    });
+    socket.on('nieuweCategorie', function(object){
+        io.emit('nieuweCategorie', object)
+    });
 });
 
 // Using directory client-side as client directory.

@@ -254,13 +254,33 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
         $scope.setScreen('antw');
     };
 
+    $scope.selectedCategory = function (category) {
+        var i;
+        for (i = 0; i < $scope.rondeCategorieen.length; i = i + 1) {
+            console.log("test1: " + $scope.rondeCategorieen.length);
+            if ($scope.rondeCategorieen[i]._id === category) {
+                console.log("test2: " + $scope.rondeCategorieen[i]._id);
+                $http.put('api/ronden/' + $scope.linkHash, $scope.rondeCategorieen[i])
+                    .success(function (data) {
+                        console.log("test3: " + $scope.rondeCategorieen[i]);
+                        $scope.myCatgObj = {
+                            categorie: data,
+                            uitvoeringCode: $scope.myCode
+                        };
+                        console.log("test4: " + $scope.myCatgObj);
+                        socketIO.emit("nieuweCategorie", $scope.myCatgObj);
+                    })
+            }
+        }
+    };
+
     $scope.closeQuestion = function () {
         $scope.setScreen('vraag');
     }
 
 });
 
-theApp.controller("kwizzBeamer", function ($scope, $http) {
+theApp.controller("kwizzBeamer", function ($scope, $http, socketIO) {
     $scope.screen = "start";
 
     $scope.setScreen = function (target) {
@@ -279,7 +299,7 @@ theApp.controller("kwizzBeamer", function ($scope, $http) {
                     if (data.doc[i].password === $scope.beamerPassword) {
                         $scope.screen = "main";
                         passwordExist = true;
-
+                        /*
                         // Shows the actual amount of rounds in database
                         $scope.rondeNummer = data.doc[i].rondes.length;
 
@@ -308,7 +328,7 @@ theApp.controller("kwizzBeamer", function ($scope, $http) {
                                             console.log("Team : " + $scope.team);
                                         }
                                     });
-
+                        */
                                 // Show all the teams on the beamer page
                                 $http.get("/api/kwizzUitvoeringen/" + $scope.beamerPassword)
                                     .success(function () {
@@ -317,7 +337,7 @@ theApp.controller("kwizzBeamer", function ($scope, $http) {
                                                 $scope.teams = data.doc.teams;
                                             });
                                     });
-                            });
+                            /*});*/
                     }
                 }
                 if (!passwordExist) {
@@ -330,6 +350,19 @@ theApp.controller("kwizzBeamer", function ($scope, $http) {
             })
     };
 
+    // Question screen for beamer
+    socketIO.on("nieuweVraag", function (object) {
+        if (object.uitvoeringCode === $scope.beamerPassword) {
+            $scope.question = object.vraag.doc;
+            $scope.setScreen('main');
+        }
+    });
+
+    socketIO.on("nieuweCategorie", function (object) {
+        if (object.uitvoeringCode === $scope.beamerPassword) {
+            $scope.category = object.categorie.doc;
+        }
+    });
 });
 
 theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {

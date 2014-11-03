@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
 
 exports.createOne = function (req, res) {
 // Find the document ronde with the right linkHash
-    console.log("***", req.body);
+
     Ronde.findOne({_id: req.params.rondeId}, function (err, doc) {
         var antwoord1 = new Antwoord(req.body);
 
