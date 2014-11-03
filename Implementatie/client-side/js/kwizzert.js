@@ -146,8 +146,9 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
         $http.get("/api/teams/" + password)
             .success(function (data) {
                 $scope.teams = data.doc.teams;
-                if ($scope.teams.length >= 2 && $scope.teams.length <= 6) {
+                if ($scope.teams.length >= 1 && $scope.teams.length <= 6) {
                     $scope.setScreen('catg');
+                    socketIO.emit("choosingCategories", $scope.myCode);
                 } else {
                     $scope.showError = true;
                 }
@@ -197,10 +198,10 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
     $scope.startRonde = function () {
         if ($scope.rondeCategorieen.length === 3) {
             var ronde = {
-                linkHash: generateRandomCode(25),
-                categorieen: $scope.rondeCategorieen,
-                status: false
-            },
+                    linkHash: generateRandomCode(25),
+                    categorieen: $scope.rondeCategorieen,
+                    status: false
+                },
                 i;
 
             $scope.linkHash = ronde.linkHash;
@@ -255,6 +256,11 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
     };
 
     $scope.selectQuestion = function (question) {
+        $http.delete("/api/antwoorden/" + $scope.linkHash)
+            .error(function (data, status) {
+                alert("AJAX ERROR");
+                console.log("ERROR: submit kwizzUitvoering", status, data);
+            });
         var i;
         // If the kwizzMeester selects a question it will be saved and deleted from the view array.
         for (i = 0; i < $scope.rondeVragen.length; i = i + 1) {
@@ -269,21 +275,16 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                         $http.get('/api/antwoorden/' + $scope.linkHash)
                             .success(function (data) {
                                 $scope.answers = data.doc.ingezonden;
-                                socketIO.on('questionSend', function (object) {
-                                    if (object.uitvoering === $scope.myCode) {
+                                var i = 0;
+                                socketIO.on('answerSend', function (object) {
+                                    i = i + 1;
+                                    console.log(i);
+                                    if(object.uitvoering === $scope.myCode) {
                                         $scope.answers.push(object.answer);
                                         console.log("***", object);
                                     }
-                                });
-                            })
-                            .error(function (data, status) {
-                                alert("AJAX ERROR");
-                                console.log("ERROR: submit kwizzUitvoering", status, data);
+                                })
                             });
-                    })
-                    .error(function (data, status) {
-                        alert("AJAX ERROR");
-                        console.log("ERROR: submit kwizzUitvoering", status, data);
                     });
                 $scope.choosedQuestion = $scope.rondeVragen[i];
                 $scope.rondeVragen.splice(i, 1);
@@ -293,28 +294,28 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
     };
 
     /*$scope.selectedCategory = function (category) {
-        var i;
-        for (i = 0; i < $scope.rondeCategorieen.length; i = i + 1) {
-            console.log("test1: " + $scope.rondeCategorieen.length);
-            if ($scope.rondeCategorieen[i]._id === category) {
-                console.log("test2: " + $scope.rondeCategorieen[i]._id);
-                $http.put('api/ronden/' + $scope.linkHash, $scope.rondeCategorieen[i])
-                    .success(function (data) {
-                        console.log("test3: " + $scope.rondeCategorieen[i]);
-                        $scope.myCatgObj = {
-                            categorie: data,
-                            uitvoeringCode: $scope.myCode
-                        };
-                        console.log("test4: " + $scope.myCatgObj);
-                        socketIO.emit("nieuweCategorie", $scope.myCatgObj);
-                    })
-                    .error(function (data, status) {
-                        alert("AJAX ERROR");
-                        console.log("ERROR: submit kwizzUitvoering", status, data);
-                    });
-            }
-        }
-    };*/
+     var i;
+     for (i = 0; i < $scope.rondeCategorieen.length; i = i + 1) {
+     console.log("test1: " + $scope.rondeCategorieen.length);
+     if ($scope.rondeCategorieen[i]._id === category) {
+     console.log("test2: " + $scope.rondeCategorieen[i]._id);
+     $http.put('api/ronden/' + $scope.linkHash, $scope.rondeCategorieen[i])
+     .success(function (data) {
+     console.log("test3: " + $scope.rondeCategorieen[i]);
+     $scope.myCatgObj = {
+     categorie: data,
+     uitvoeringCode: $scope.myCode
+     };
+     console.log("test4: " + $scope.myCatgObj);
+     socketIO.emit("nieuweCategorie", $scope.myCatgObj);
+     })
+     .error(function (data, status) {
+     alert("AJAX ERROR");
+     console.log("ERROR: submit kwizzUitvoering", status, data);
+     });
+     }
+     }
+     };*/
 
     // Give points to the team with the correct answer
     $scope.givePoints = function (teamNaam, index) {
@@ -336,15 +337,12 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
 
     $scope.closeQuestion = function () {
         $scope.setScreen('vraag');
-        socketIO.emit('chosingQuestion', $scope.myCode);
-        $http.delete("/api/antwoorden/" + $scope.linkHash)
-            .success(function () {
-                console.log("Deleted");
-            })
-            .error(function (data, status) {
-                alert("AJAX ERROR");
-                console.log("ERROR: submit kwizzUitvoering", status, data);
-            });
+        var myObj = {
+            answer: $scope.choosedQuestion.antwoord,
+            linkHash: $scope.linkHash,
+            uitvoering: $scope.myCode
+        };
+        socketIO.emit('choosingQuestion', myObj);
     };
 
     $scope.newRound = function () {
@@ -371,23 +369,22 @@ theApp.controller("kwizzBeamer", function ($scope, $http, socketIO) {
     $scope.authBeamer = function (beamerPassword) {
 
         $scope.beamerPassword = beamerPassword;
+        $scope.waitingText = "Gebruik de code: " + $scope.beamerPassword + " om u aan te melden bij deze kwizz."
 
         $http.get("/api/kwizzUitvoeringen/")
             .success(function (data) {
-                var i, passwordExist;
+                var i,
+                    passwordExist = false;
                 // GET password from database and check if password exists in database
                 for (i = 0; i < data.doc.length; i = i + 1) {
                     if (data.doc[i].password === $scope.beamerPassword) {
-                        $scope.screen = "main";
                         passwordExist = true;
-
+                        $scope.setScreen('main');
                         // Show all the teams on the beamer page
-                        $http.get("/api/kwizzUitvoeringen/" + $scope.beamerPassword)
-                            .success(function () {
-                                $http.get("/api/teams/" + $scope.beamerPassword)
-                                    .success(function (data) {
-                                        $scope.teams = data.doc.teams;
-                                    });
+                        $http.get("/api/teams/" + $scope.beamerPassword)
+                            .success(function (data) {
+                                $scope.uitvoering = data.doc;
+                                $scope.gridWidth = Math.floor(12 / $scope.uitvoering.teams.length);
                             })
                             .error(function (data, status) {
                                 alert("AJAX ERROR");
@@ -395,7 +392,7 @@ theApp.controller("kwizzBeamer", function ($scope, $http, socketIO) {
                             });
                     }
                 }
-                if (!passwordExist) {
+                if (passwordExist === false) {
                     alert("Code klopt niet.");
                 }
             })
@@ -405,17 +402,52 @@ theApp.controller("kwizzBeamer", function ($scope, $http, socketIO) {
             });
     };
 
-    // Question screen for beamer
-    socketIO.on("nieuweVraag", function (object) {
-        if (object.uitvoeringCode === $scope.beamerPassword) {
-            $scope.question = object.vraag.doc;
-            $scope.setScreen('main');
+    // New team registered and will be displayed on the beamer
+    socketIO.on("newTeamRegistered", function (teamInfo) {
+        if (teamInfo.uitvoering === $scope.beamerPassword) {
+            $scope.uitvoering.teams.push(teamInfo);
+            console.log("***", teamInfo);
+            $scope.gridWidth = Math.floor(12 / $scope.uitvoering.teams.length);
+        }
+    });
+    // kwizz-meester is choosing his categories for the round.
+    socketIO.on("choosingCategories", function (uitvoeringCode) {
+        if (uitvoeringCode === $scope.beamerPassword) {
+            $scope.waitingText = "Wachten op de kwizz-meester om de ronde te starten. U kunt zich niet meer aanmelden als team.";
         }
     });
 
+    socketIO.on("answerSend", function (object) {
+        if (object.uitvoering === $scope.beamerPassword) {
+            var teamWell = document.getElementById(object.answer.teamNaam);
+            teamWell.setAttribute('style', 'background-color: green');
+        }
+    });
+    socketIO.on("choosingQuestion", function (object) {
+        if (object.uitvoering === $scope.beamerPassword) {
+            $scope.answer = object.answer;
+            console.log($scope.answer);
+            $http.get('api/antwoorden/' + object.linkHash)
+                .success(function (data) {
+                    $scope.teamAnswers = data.doc.ingezonden;
+                    console.log($scope.teamAnswers);
+                });
+        }
+    });
     socketIO.on("nieuweCategorie", function (object) {
         if (object.uitvoeringCode === $scope.beamerPassword) {
             $scope.category = object.categorie.doc;
+        }
+    });
+    // Question screen for beamer
+    socketIO.on("nieuweVraag", function (object) {
+        if (object.uitvoeringCode === $scope.beamerPassword) {
+            // Update question
+            $scope.question = object.vraag.doc;
+            // Clear the answer
+            $scope.answer = "";
+            // Clear the team answers
+            $scope.teamAnswers = [];
         }
     });
 });
@@ -462,6 +494,7 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
         var TeamSocket = {
             name: teamInfo.name,
             teamColor: teamInfo.color,
+            score: 0,
             uitvoering: $scope.kwizzListPassword
         };
 
@@ -535,7 +568,8 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
                     answer: answerObj,
                     uitvoering: $scope.kwizzListPassword
                 };
-                socketIO.emit('questionSend', myObj);
+                socketIO.emit('answerSend', myObj);
+                console.log("IK MAG MAAR 1 KEER");
             })
             .error(function (data, status) {
                 alert("AJAX ERROR");
@@ -543,8 +577,8 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
             });
     };
 
-    socketIO.on('chosingQuestion', function (uitvoeringCode) {
-        if (uitvoeringCode === $scope.kwizzListPassword) {
+    socketIO.on('choosingQuestion', function (object) {
+        if (object.uitvoering === $scope.kwizzListPassword) {
             $scope.setScreen('questionSend');
         }
     });
