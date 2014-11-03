@@ -12,6 +12,7 @@ router.route('/teams/:uitvoeringCode')
     .get(controller.retrieveTeam);
 
 router.route('/kwizzUitvoeringen/:uitvoeringCode/teams/:name')
-    .delete(controller.deleteOne);
+    .delete(controller.deleteOne)
+    .put(controller.updateScore);
 
 module.exports = router;

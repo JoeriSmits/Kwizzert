@@ -56,6 +56,33 @@ exports.retrieveTeam = function (req, res) {
         });
 };
 
+exports.updateScore = function (req, res) {
+    Team.findOne({name: req.params.name}, function (err, doc) {
+        if (err) {
+            return res.send({
+                doc: null,
+                err: err
+            });
+        }
+        doc.score = doc.score + 1;
+
+        // save the doc
+        doc.save(function (err) {
+            if (err) {
+                return res.send({
+                    doc: null,
+                    err: err
+                });
+            }
+
+            res.json({
+                doc: doc,
+                err: err
+            });
+        });
+    })
+};
+
 exports.deleteOne = function (req, res) {
     Team.remove({
         name: req.params.name

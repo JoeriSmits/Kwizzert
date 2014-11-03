@@ -39,6 +39,33 @@ exports.createOne = function (req, res) {
     });
 };
 
+exports.deleteAll = function (req, res) {
+    Ronde.findOne({linkHash: req.params.rondeId}, function (err, doc) {
+        if (err) {
+            return res.send({
+                doc: null,
+                err: err
+            });
+        }
+        doc.ingezonden = [];
+
+        // save the doc
+        doc.save(function (err) {
+            if (err) {
+                return res.send({
+                    doc: null,
+                    err: err
+                });
+            }
+
+            res.json({
+                doc: doc,
+                err: err
+            });
+        });
+    })
+};
+
 exports.retrieve = function (req, res) {
     Ronde
         .findOne({linkHash: req.params.rondeId})

@@ -12,7 +12,8 @@ router.route('/antwoorden/')
 
 router.route('/antwoorden/:rondeId')
     .post(controller.createOne)
-    .get(controller.retrieve);
+    .get(controller.retrieve)
+    .delete(controller.deleteAll);
 
 router.route('/antwoorden/:id')
     .get(controller.retrieveOne);

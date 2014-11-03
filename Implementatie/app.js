@@ -25,15 +25,15 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 // SocketIO 'Real-time'
-io.on('connection', function(socket){
+io.on('connection', function (socket){
     console.log('a user connected');
-    socket.on('newTeam', function(team){
+    socket.on('newTeam', function (team){
         io.emit('newTeamRegistered', team);
     });
-    socket.on('startRonde', function(uitvoeringCode) {
+    socket.on('startRonde', function (uitvoeringCode) {
         io.emit('startRonde', uitvoeringCode);
     });
-    socket.on('nieuweVraag', function(object) {
+    socket.on('nieuweVraag', function (object) {
         io.emit('nieuweVraag', object);
     });
     socket.on('questionSend', function (object) {
@@ -42,6 +42,16 @@ io.on('connection', function(socket){
     socket.on('nieuweCategorie', function(object){
         io.emit('nieuweCategorie', object)
     });
+    });
+    socket.on('endRound', function (uitvoeringCode) {
+        io.emit('endRound', uitvoeringCode)
+    });
+    socket.on('chosingQuestion', function (uitvoeringCode) {
+        io.emit('chosingQuestion', uitvoeringCode);
+    });
+    socket.on('endUitvoering', function (uitvoeringCode) {
+        io.emit('endUitvoering', uitvoeringCode);
+    })
 });
 
 // Using directory client-side as client directory.
