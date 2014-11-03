@@ -465,7 +465,7 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
             uitvoering: $scope.kwizzListPassword
         };
 
-        if (teamInfo.name !== null) {
+        if (teamInfo.name) {
             $http.get("api/teams/" + $scope.kwizzListPassword)
                 .success(function (data) {
                     // Checking if the team name is already in use
