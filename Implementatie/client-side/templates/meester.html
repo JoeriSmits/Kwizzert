@@ -180,6 +180,7 @@
 
             <div ng-show="!(answers).length" class="loading">
                 <p>
+
                 <h3><em>Wachten op antwoorden van teams</em></h3>
                 <img src="../images/loading.gif" align="loading">
                 </p>
@@ -204,8 +205,17 @@
         </div>
 
         <div class="panel-footer">
-            <button ng-click="closeQuestion()" type="button" class="btn btn-default center-block">Volgende vraag
+            <button ng-show="(myObj.vraag.doc.vraagTekst).length < 12" ng-click="closeQuestion()" type="button"
+                    class="btn btn-default center-block">Volgende vraag
             </button>
+            <div class="text-center">
+                <button ng-show="(myObj.vraag.doc.vraagTekst).length >= 12" ng-click="closeUitvoering()" type="button"
+                        class="btn btn-danger">Kwizz-avond stoppen
+                </button>
+                <button ng-show="(myObj.vraag.doc.vraagTekst).length >= 12" ng-click="newRound()" type="button"
+                        class="btn btn-success">Nieuwe ronde starten
+                </button>
+            </div>
         </div>
     </div>
     <!-- End antw screen -->

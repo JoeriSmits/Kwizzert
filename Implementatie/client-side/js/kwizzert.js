@@ -67,7 +67,7 @@ theApp.controller("kwizzertController", function ($scope, $location) {
     };
 });
 
-theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
+theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) {
     $scope.screen = "start";
 
     $scope.setScreen = function (target) {
@@ -256,6 +256,19 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO) {
 
     $scope.closeQuestion = function () {
         $scope.setScreen('vraag');
+        socketIO.emit('chosingQuestion', $scope.myCode);
+    };
+
+    $scope.newRound = function () {
+        $scope.rondeCategorieen = [];
+        $scope.setScreen('catg');
+
+        socketIO.emit('endRound', $scope.myCode);
+    };
+
+    $scope.closeUitvoering = function () {
+        $location.path('/home');
+        socketIO.emit('endUitvoering', $scope.myCode);
     }
 
 });
@@ -328,7 +341,7 @@ theApp.controller("kwizzBeamer", function ($scope, $http) {
 
 });
 
-theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {
+theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
     $scope.screen = "auth";
 
     $scope.setScreen = function (target) {
@@ -435,5 +448,23 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO) {
                 };
                 socketIO.emit('questionSend', myObj);
             })
-    }
+    };
+
+    socketIO.on('chosingQuestion', function (uitvoeringCode) {
+        if(uitvoeringCode === $scope.kwizzListPassword) {
+            $scope.setScreen('questionSend');
+        }
+    });
+
+    socketIO.on('endRound', function (uitvoeringCode) {
+        if(uitvoeringCode === $scope.kwizzListPassword) {
+            $scope.setScreen('waiting');
+        }
+    });
+
+    socketIO.on('endUitvoering', function (uitvoeringCode) {
+        if(uitvoeringCode === $scope.kwizzListPassword) {
+            $location.path('/home');
+        }
+    })
 });
