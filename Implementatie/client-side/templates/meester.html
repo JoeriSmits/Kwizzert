@@ -191,7 +191,7 @@
                     <th>Team</th>
                     <th>Antwoord</th>
                 </tr>
-                <tr ng-repeat="answer in answers" id="row{{$index}}">
+                <tr ng-repeat="answer in answers track by $index" id="row{{$index}}">
                     <td>
                         <button id="button{{$index}}" ng-show="!pointsGiven" ng-click="givePoints(answer.teamNaam, $index)" type="button" class="btn btn-success">Goed antwoord (Geef dit team punten)</button>
                     </td>

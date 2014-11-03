@@ -38,8 +38,9 @@ io.on('connection', function (socket) {
     socket.on('nieuweVraag', function (object) {
         io.emit('nieuweVraag', object);
     });
-    socket.on('questionSend', function (object) {
-        io.emit('questionSend', object);
+    socket.on('answerSend', function (object) {
+        console.log(object);
+        io.emit('answerSend', object);
     });
     socket.on('nieuweCategorie', function (object) {
         io.emit('nieuweCategorie', object);
@@ -47,14 +48,17 @@ io.on('connection', function (socket) {
     socket.on('endRound', function (uitvoeringCode) {
         io.emit('endRound', uitvoeringCode);
     });
-    socket.on('chosingQuestion', function (uitvoeringCode) {
-        io.emit('chosingQuestion', uitvoeringCode);
+    socket.on('choosingCategories', function (uitvoeringCode) {
+        io.emit('choosingCategories', uitvoeringCode);
     });
     socket.on('endUitvoering', function (uitvoeringCode) {
         io.emit('endUitvoering', uitvoeringCode);
     });
     socket.on('teamDeleted', function (object) {
         io.emit('teamDeleted', object);
+    });
+    socket.on('choosingQuestion', function (object) {
+        io.emit('choosingQuestion', object);
     });
 });
 

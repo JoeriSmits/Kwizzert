@@ -23,10 +23,24 @@
         </div>
 
         <div class="panel-footer">
-            <button ng-click="authBeamer(beamerPassword)" type="button" class="btn btn-primary center-block">Start Beamer</button>
+            <button ng-click="authBeamer(beamerPassword)" type="button" class="btn btn-primary center-block">Start
+                Beamer
+            </button>
         </div>
     </div>
     <!-- end Start screen -->
+</div>
+
+<div id="waiting" ng-if="screen == 'waiting'">
+    <!-- start waiting screen -->
+    <div class="loading" ng-show="!(teams).length">
+        <p>
+
+        <h3><em>Gebruik de code: {{beamerPassword}} om u aan te melden bij deze kwizz.</em></h3>
+        <img src="../images/loading.gif" align="loading">
+        </p>
+    </div>
+    <!-- end waiting screen -->
 </div>
 
 <div id="mainBeamer" ng-if="screen == 'main'">
@@ -36,10 +50,10 @@
             <div class="panel-title">
                 <div class="row">
                     <div class="col-lg-6 pull-left text-left">
-                        <span class="beamer-title">Ronde: {{rondeNummer}}</span>
+                        <span class="beamer-title">Ronde: {{uitvoering.rondes.length + 1}}</span>
                     </div>
                     <div class="col-lg-6 pull-right text-right">
-                        <span class="beamer-title">Vraag: {{question.vraagTekst.length}}/12</span>
+                        <span ng-show="(question.vraagTekst).length" class="beamer-title">Vraag: {{question.vraagTekst.length}}/12</span>
                     </div>
                 </div>
             </div>
@@ -48,31 +62,38 @@
         <div class="panel-body">
 
             <div class="col-lg-12">
-                <!--<h1 class="text-center">{{category.categorieen[category.categorieen.length - 1]}}</h1>-->
-                <div ng-show="!(question.vraagTekst).length" class="alert alert-danger alert-dismissible" role="alert">
-                    <strong>Geen vraag geselecteerd</strong> De kwizz-Meester is bezig om een vraag te selecteren.
+                <div ng-show="!(question.vraagTekst).length" class="loading">
+                    <p>
+
+                    <h3><em>{{waitingText}}</em></h3>
+                    <img src="../images/loading.gif" align="loading">
+                    </p>
                 </div>
+                <!--<h1 class="text-center">{{category.categorieen[category.categorieen.length - 1]}}</h1>-->
                 <h2 class="text-center">{{question.vraagTekst[question.vraagTekst.length - 1]}}</h2>
                 <hr/>
 
-                <!--<div id="antwoord" ng-if="screen == 'antw'">-->
-                    <!--&lt;!&ndash; start Antw screen &ndash;&gt;-->
-                    <!--<div class="col-lg-12">-->
-                        <!--<table class="table table-hover beamer-antw-table">-->
-                            <!--<tbody>-->
-                            <!--<tr ng-repeat="answer in answers">-->
-                                <!--<td style="border-left: 5px solid {{answer.team.teamColor}};">{{answer.antwoordTekst}}</td>-->
-                            <!--</tr>-->
-                            <!--</tbody>-->
-                        <!--</table>-->
-                    <!--</div>-->
-                    <!--&lt;!&ndash; end Antw screen &ndash;&gt;-->
-                <!--</div>-->
+                <h3 class="text-center" ng-show="(teamAnswers).length">Antwoord: {{answer}}</h3>
+
+                <div class="col-lg-12">
+                    <table ng-show="(teamAnswers).length" class="table table-hover beamer-antw-table text-center">
+                        <tbody>
+                        <tr>
+                            <th class="text-center">Team naam</th>
+                            <th class="text-center">Team antwoord</th>
+                        </tr>
+                        <tr ng-repeat="answer in teamAnswers">
+                            <td>{{answer.teamNaam}}</td>
+                            <td>{{answer.antwoordTekst}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <hr/>
 
-                <div class="col-lg-4" ng-repeat="team in teams">
-                    <div class="well">
+                <div class="col-lg-{{gridWidth}}" ng-repeat="team in uitvoering.teams">
+                    <div class="well" id="{{team.name}}">
                         <div style="border: 3px solid {{team.teamColor}};" class="teamDetails">
                             {{team.score}}
                         </div>
