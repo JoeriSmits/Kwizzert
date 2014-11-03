@@ -42,7 +42,6 @@ io.on('connection', function (socket){
     socket.on('nieuweCategorie', function(object){
         io.emit('nieuweCategorie', object)
     });
-    });
     socket.on('endRound', function (uitvoeringCode) {
         io.emit('endRound', uitvoeringCode)
     });
