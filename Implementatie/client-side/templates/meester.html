@@ -89,8 +89,8 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="categorie in categories | filter: searchQuery">
-                        <td width="75%">{{categorie}}</td>
-                        <td width="25%">
+                        <td id="catgWidth">{{categorie}}</td>
+                        <td id="btnWidth">
                             <span ng-click="addRondeCategorie(categorie)"
                                   class="glyphicon glyphicon-plus-sign plus-icon"></span>
                         </td>
@@ -114,8 +114,8 @@
                         </td>
                     </tr>
                     <tr ng-repeat="categorie in rondeCategorieen">
-                        <td width="75%">{{categorie}}</td>
-                        <td width="25%">
+                        <td id="catgWidth">{{categorie}}</td>
+                        <td id="btnWidth">
                         <span ng-click="removeRondeCategorie(categorie)"
                               class="glyphicon glyphicon-remove-circle remove-icon"></span>
                         </td>
@@ -128,8 +128,7 @@
         <!-- panel-body -->
 
         <div class="panel-footer">
-            <button ng-click="startRonde()" type="button" class="btn btn-primary center-block">Start Ronde
-            </button>
+            <button ng-click="startRonde()" type="button" class="btn btn-primary center-block">Start Ronde</button>
         </div>
 
     </div>
@@ -154,8 +153,7 @@
                     <td>{{vraag.categorie}}</td>
                     <td>{{vraag.vraagTekst}}</td>
                     <td>
-                        <span ng-click="selectQuestion(vraag._id)"
-                              class="glyphicon glyphicon-forward forward-icon"></span>
+                        <span ng-click="selectQuestion(vraag._id)" class="glyphicon glyphicon-forward forward-icon"></span>
                     </td>
                 </tr>
                 </tbody>
@@ -169,20 +167,19 @@
     <!-- Start antw screen -->
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title meester-title">{{myObj.vraag.doc.vraagTekst[myObj.vraag.doc.vraagTekst.length -
-                1]}}</h3>
+            <h3 class="panel-title meester-title">{{myObj.vraag.doc.vraagTekst[myObj.vraag.doc.vraagTekst.length -1]}}</h3>
         </div>
         <div class="panel-body">
             <p><h4>Goede antwoord: {{choosedQuestion.antwoord}}</h4></p>
-            <!-- TODO Gebruik "Contextual classes" in Bootstrap CSS om table rows en individual cells te kleuren -->
 
             <p>Ingezonden antwoorden door de teams:</p>
 
             <div ng-show="!(answers).length" class="loading">
                 <p>
-
-                <h3><em>Wachten op antwoorden van teams</em></h3>
-                <img src="../images/loading.gif" align="loading">
+                    <h3>
+                        <em>Wachten op antwoorden van teams</em>
+                    </h3>
+                    <img src="../images/loading.gif" align="loading">
                 </p>
             </div>
             <table ng-show="(answers).length" class="table table-hover antw-table">

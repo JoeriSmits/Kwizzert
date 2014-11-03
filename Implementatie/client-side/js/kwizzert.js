@@ -494,7 +494,7 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
                                 console.log("ERROR: submit kwizzUitvoering", status, data);
                             });
                     } else {
-                        alert("Team naam is al in gebruik. Probeer opnieuw.");
+                        $scope.teamNameError = true;
                     }
                 })
                 .error(function (data, status) {
@@ -502,7 +502,7 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
                     console.log("ERROR: submit kwizzUitvoering", status, data);
                 });
         } else {
-            alert("Team naam kan niet leeg zijn");
+            $scope.teamInputError = true;
         }
     };
 

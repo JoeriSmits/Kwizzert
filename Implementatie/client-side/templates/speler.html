@@ -9,21 +9,23 @@
 
             <form role="form">
                 <div class="form-group">
-                    <label class="control-label sr-only">Deze teamnaam is al bezet</label>
-                    <input type="text" ng-model="teamInfo.name" class="form-control" placeholder="Team naam"
-                           id="addTeamName" required>
+                    <div ng-show="teamNameError" class="alert alert-danger" role="alert">
+                        Deze team naam is al bezet. Kies een nieuwe naam.
+                    </div>
+                    <div ng-show="teamInputError" class="alert alert-danger" role="alert">
+                        Team naam mag niet leeg zijn.
+                    </div>
+                    <input type="text" ng-model="teamInfo.name" class="form-control" placeholder="Team naam" id="addTeamName">
                 </div>
                 <hr/>
                 <div class="form-group">
-                    <input colorpicker ng-model="teamInfo.color" type="text" id="selectTeamColor" class="form-control"
-                           placeholder="Selecteer een team kleur">
+                    <input colorpicker ng-model="teamInfo.color" type="text" id="selectTeamColor" class="form-control" placeholder="Selecteer een team kleur">
                 </div>
             </form>
+
         </div>
         <div class="panel-footer">
-            <button ng-click="teamRegister(teamInfo)" type="button" class="btn btn-success btn-lg btn-block">Team
-                aanmelden
-            </button>
+            <button ng-click="teamRegister(teamInfo)" type="button" class="btn btn-success btn-lg btn-block">Team aanmelden</button>
         </div>
     </div>
     <!-- end Start screen -->
