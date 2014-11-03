@@ -1,36 +1,31 @@
 /**
  * Created by Joeri55 on 28-10-2014.
  */
+/*jslint node:true*/
+/*jslint nomen: true*/
+"use strict";
 
 var mongoose = require('mongoose'),
-    kwizzUitvoering = mongoose.model('KwizzUitvoering'),
+    KwizzUitvoering = mongoose.model('KwizzUitvoering'),
     Team = mongoose.model('Team');
 
 exports.createOne = function (req, res) {
-    var Kwizz = new kwizzUitvoering({
+    var doc = new KwizzUitvoering({
         password: req.body.password
     });
 
-    Kwizz.save(function () {
-        //TODO Voorbeeld populatie voor testen, later weghalen
-        var team1 = new Team({
-            name: 'Madeliefjes',
-            teamColor: '#000000'
-        });
-
-        team1.save(function () {
-            Kwizz.teams.push(team1);
-            Kwizz.save(function (err) {
-
-                // Finally, we return
-                return res.send({
-                    doc: {
-                        kwizzUitvoering: Kwizz,
-                        teams: team1
-                    },
-                    err: err
-                });
+    doc.save(function (err) {
+        if (err) {
+            return res.send({
+                doc: null,
+                err: err
             });
+        }
+
+        res.send({
+            doc: doc,
+            err: err,
+            meta: {}
         });
     });
     // Setting a session with the kwizzUitvoering password as value.
@@ -38,7 +33,7 @@ exports.createOne = function (req, res) {
 };
 
 exports.retrieveOne = function (req, res) {
-    kwizzUitvoering.findOne({ _id: req.params.id }, function (err, person) {
+    KwizzUitvoering.findOne({_id: req.params.id}, function (err, person) {
         if (err) {
             return res.send({
                 doc: null,
@@ -53,8 +48,8 @@ exports.retrieveOne = function (req, res) {
 };
 
 
-exports.retrieveAll = function (req, res) {
-    kwizzUitvoering.find(function (err, doc) {
+exports.retrieveAll = function (res) {
+    KwizzUitvoering.find(function (err, doc) {
         if (err) {
             return res.send(
                 {

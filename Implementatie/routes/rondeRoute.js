@@ -1,7 +1,8 @@
 /**
  * Created by Israpil on 30-10-14.
  */
-
+/*jslint node:true*/
+/*jslint nomen: true*/
 var express = require('express');
 var router = express.Router();
 

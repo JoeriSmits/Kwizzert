@@ -1,6 +1,9 @@
 /**
  * Created by Joeri55 on 31-10-2014.
  */
+/*jslint node:true*/
+/*jslint nomen: true*/
+"use strict";
 var mongoose = require('mongoose'),
     Ronde = mongoose.model('Ronde'),
     Antwoord = mongoose.model('Antwoord');
@@ -9,7 +12,7 @@ var mongoose = require('mongoose'),
 exports.createOne = function (req, res) {
 // Find the document ronde with the right linkHash
 
-    Ronde.findOne({_id: req.params.rondeId}, function (err, doc) {
+    Ronde.findOne({_id: req.params.rondeId}, function (doc) {
         var antwoord1 = new Antwoord(req.body);
 
         antwoord1.save(function (err) {
@@ -63,7 +66,7 @@ exports.deleteAll = function (req, res) {
                 err: err
             });
         });
-    })
+    });
 };
 
 exports.retrieve = function (req, res) {
@@ -98,7 +101,7 @@ exports.retrieveOne = function (req, res) {
     });
 };
 
-exports.retrieveAll = function (req, res) {
+exports.retrieveAll = function (res) {
     Antwoord.find(function (err, doc) {
         if (err) {
             return res.send(

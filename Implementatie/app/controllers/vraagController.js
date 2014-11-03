@@ -1,7 +1,9 @@
 /**
  * Created by Joeri55 on 29-10-2014.
  */
-
+/*jslint node:true*/
+/*jslint nomen: true*/
+"use strict";
 var mongoose = require('mongoose'),
     Vraag = mongoose.model('Vraag');
 
@@ -24,7 +26,7 @@ exports.createOne = function (req, res) {
     });
 };
 
-exports.retrieveAll = function (req, res) {
+exports.retrieveAll = function (res) {
     Vraag.find(function (err, doc) {
         if (err) {
             return res.send(
@@ -58,5 +60,5 @@ exports.retrieve = function (req, res) {
             doc: doc,
             err: err
         });
-    })
+    });
 };

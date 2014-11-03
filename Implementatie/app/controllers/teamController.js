@@ -1,16 +1,17 @@
 /**
  * Created by Joeri55 on 28-10-2014.
  */
+/*jslint node:true*/
+/*jslint nomen: true*/
+"use strict";
 
 var mongoose = require('mongoose'),
     kwizzUitvoering = mongoose.model('KwizzUitvoering'),
-    Team = mongoose.model('Team')
-    ;
-
+    Team = mongoose.model('Team');
 
 exports.createOne = function (req, res) {
     // Find the document kwizzUitvoering with the right password
-    kwizzUitvoering.findOne({password: req.params.uitvoeringCode}, function (err, doc) {
+    kwizzUitvoering.findOne({password: req.params.uitvoeringCode}, function (doc) {
         var team1 = new Team(req.body);
         team1.save(function (err) {
             if (err) {
@@ -80,7 +81,7 @@ exports.updateScore = function (req, res) {
                 err: err
             });
         });
-    })
+    });
 };
 
 exports.deleteOne = function (req, res) {
