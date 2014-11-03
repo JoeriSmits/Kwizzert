@@ -121,6 +121,11 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                 $http.get("/api/teams/" + $scope.myCode)
                     .success(function (data) {
                         $scope.teams = data.doc.teams;
+                        var myObj = {
+                            team: teamName,
+                            uitvoering: $scope.myCode
+                        };
+                        socketIO.emit('teamDeleted', myObj);
                     });
             })
             .error(function (data, status) {
@@ -450,6 +455,14 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
             alert("Team naam kan niet leeg zijn");
         }
     };
+
+    // If the team gets deleted then it will be redirected to the home page
+    socketIO.on('teamDeleted', function (object) {
+        if($scope.kwizzListPassword === object.uitvoering && object.team === $scope.Team.name) {
+            alert("U bent afgewezen door de kwizz-meester.");
+            $location.path('/home');
+        }
+    });
 
     // Question screen
     socketIO.on("nieuweVraag", function (object) {
