@@ -50,6 +50,9 @@ io.on('connection', function (socket){
     });
     socket.on('endUitvoering', function (uitvoeringCode) {
         io.emit('endUitvoering', uitvoeringCode);
+    });
+    socket.on('teamDeleted', function (object) {
+        io.emit('teamDeleted', object);
     })
 });
 
