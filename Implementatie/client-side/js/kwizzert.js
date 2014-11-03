@@ -1,7 +1,13 @@
 /**
  * Created by Israpil on 16.10.2014.
  */
-
+/*jslint node:true*/
+/*jslint nomen: true*/
+/*global angular:true */
+/*global io:true */
+/*global alert:true */
+/*global document:true*/
+"use strict";
 var theApp = angular.module("kwizzertApp", ['ngRoute', 'colorpicker.module']).
     config(['$routeProvider',
         function ($routeProvider) {
@@ -48,10 +54,10 @@ theApp.factory('socketIO', function ($rootScope) {
                         callback.apply(socket, args);
                     }
                 });
-            })
+            });
         },
         id: function () {
-            return socket.io.engine.id
+            return socket.io.engine.id;
         }
     };
 });
@@ -60,7 +66,7 @@ theApp.factory('socketIO', function ($rootScope) {
 theApp.controller("kwizzertController", function ($scope, $location) {
     $scope.isActive = function (viewLocation) {
         var s = false;
-        if ($location.path().indexOf(viewLocation) != -1) {
+        if ($location.path().indexOf(viewLocation) !== -1) {
             s = true;
         }
         return s;
@@ -76,11 +82,12 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
 
     // Generating an code to link everyone to the right kwizzUitvoering
     function generateRandomCode(number) {
-        var code = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-        for (var i = 0; i < number; i++)
+        var code = "",
+            possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+            i;
+        for (i = 0; i < number; i = i + 1) {
             code += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
 
         return code;
     }
@@ -102,7 +109,7 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                             if (team.uitvoering === $scope.myCode) {
                                 $scope.teams.push(team);
                             }
-                        })
+                        });
                     });
             })
             .error(function (data, status) {
@@ -141,18 +148,22 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                 $scope.teams = data.doc.teams;
                 if ($scope.teams.length >= 2 && $scope.teams.length <= 6) {
                     $scope.setScreen('catg');
-                }
-                else {
+                } else {
                     $scope.showError = true;
                 }
+            })
+            .error(function (data, status) {
+                alert("AJAX ERROR");
+                console.log("ERROR: submit kwizzUitvoering", status, data);
             });
     };
 
     // Getting all the individual categories
     $http.get("/api/vragen")
         .success(function (data) {
-            var buffer, i;
-            var categorieArray = [];
+            var buffer,
+                i,
+                categorieArray = [];
             buffer = data.doc[0].categorie;
             for (i = 0; i < data.doc.length; i = i + 1) {
                 if (buffer !== data.doc[i].categorie) {
@@ -161,6 +172,10 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                 buffer = data.doc[i].categorie;
             }
             $scope.categories = categorieArray;
+        })
+        .error(function (data, status) {
+            alert("AJAX ERROR");
+            console.log("ERROR: submit kwizzUitvoering", status, data);
         });
 
     $scope.rondeCategorieen = [];
@@ -185,7 +200,8 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                 linkHash: generateRandomCode(25),
                 categorieen: $scope.rondeCategorieen,
                 status: false
-            };
+            },
+                i;
 
             $scope.linkHash = ronde.linkHash;
 
@@ -193,19 +209,25 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                 .success(function () {
                     $scope.setScreen('vraag');
                     socketIO.emit("startRonde", $scope.myCode);
+                })
+                .error(function (data, status) {
+                    alert("AJAX ERROR");
+                    console.log("ERROR: submit kwizzUitvoering", status, data);
                 });
 
             $scope.rondeVragen = [];
-            var i;
             for (i = 0; i < 3; i = i + 1) {
                 $http.get('/api/vragen/' + $scope.rondeCategorieen[i])
                     .success(function (data) {
-                        var j, arrayRandoms, arrayFull;
+                        var j,
+                            arrayRandoms,
+                            arrayFull,
+                            random;
                         arrayRandoms = [];
 
                         // Getting an array of random unique positions
                         while (!arrayFull) {
-                            var random = Math.floor((Math.random() * data.doc.length));
+                            random = Math.floor((Math.random() * data.doc.length));
                             if (random === data.doc.length) {
                                 random = random - 1;
                             }
@@ -222,9 +244,12 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                             $scope.rondeVragen.push(data.doc[arrayRandoms[j]]);
                         }
                     })
+                    .error(function (data, status) {
+                        alert("AJAX ERROR");
+                        console.log("ERROR: submit kwizzUitvoering", status, data);
+                    });
             }
-        }
-        else {
+        } else {
             alert("U moet 3 categorieën kiezen");
         }
     };
@@ -249,8 +274,16 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                                         $scope.answers.push(object.answer);
                                         console.log("***", object);
                                     }
-                                })
+                                });
+                            })
+                            .error(function (data, status) {
+                                alert("AJAX ERROR");
+                                console.log("ERROR: submit kwizzUitvoering", status, data);
                             });
+                    })
+                    .error(function (data, status) {
+                        alert("AJAX ERROR");
+                        console.log("ERROR: submit kwizzUitvoering", status, data);
                     });
                 $scope.choosedQuestion = $scope.rondeVragen[i];
                 $scope.rondeVragen.splice(i, 1);
@@ -275,6 +308,10 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                         console.log("test4: " + $scope.myCatgObj);
                         socketIO.emit("nieuweCategorie", $scope.myCatgObj);
                     })
+                    .error(function (data, status) {
+                        alert("AJAX ERROR");
+                        console.log("ERROR: submit kwizzUitvoering", status, data);
+                    });
             }
         }
     };
@@ -283,13 +320,17 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
     $scope.givePoints = function (teamNaam, index) {
         $http.put("api/kwizzUitvoeringen/" + $scope.myCode + "/teams/" + teamNaam)
             .success(function () {
-                var myBtn = document.getElementById("button" + index);
-                var myRow = document.getElementById("row" + index);
+                var myBtn = document.getElementById("button" + index),
+                    myRow = document.getElementById("row" + index);
                 myBtn.innerHTML = "Punten zijn gegeven aan team " + teamNaam;
                 myBtn.setAttribute("class", "btn btn-danger");
                 myBtn.removeAttribute("ng-click");
                 myBtn.setAttribute("disabled", "true");
                 myRow.setAttribute("class", "success");
+            })
+            .error(function (data, status) {
+                alert("AJAX ERROR");
+                console.log("ERROR: submit kwizzUitvoering", status, data);
             });
     };
 
@@ -299,6 +340,10 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
         $http.delete("/api/antwoorden/" + $scope.linkHash)
             .success(function () {
                 console.log("Deleted");
+            })
+            .error(function (data, status) {
+                alert("AJAX ERROR");
+                console.log("ERROR: submit kwizzUitvoering", status, data);
             });
     };
 
@@ -312,7 +357,7 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
     $scope.closeUitvoering = function () {
         $location.path('/home');
         socketIO.emit('endUitvoering', $scope.myCode);
-    }
+    };
 
 });
 
@@ -343,17 +388,21 @@ theApp.controller("kwizzBeamer", function ($scope, $http, socketIO) {
                                     .success(function (data) {
                                         $scope.teams = data.doc.teams;
                                     });
+                            })
+                            .error(function (data, status) {
+                                alert("AJAX ERROR");
+                                console.log("ERROR: submit kwizzUitvoering", status, data);
                             });
                     }
                 }
                 if (!passwordExist) {
-                    alert("Code klopt niet.")
+                    alert("Code klopt niet.");
                 }
             })
             .error(function (data, status) {
                 alert("AJAX ERROR");
                 console.log("ERROR: kwizzBeamer Error", status, data);
-            })
+            });
     };
 
     // Question screen for beamer
@@ -438,11 +487,13 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
                                     if (uitvoeringCode === $scope.kwizzListPassword) {
                                         $scope.setScreen('vraag');
                                     }
-                                })
+                                });
                             })
-                    }
-                    // Otherwise show an error
-                    else {
+                            .error(function (data, status) {
+                                alert("AJAX ERROR");
+                                console.log("ERROR: submit kwizzUitvoering", status, data);
+                            });
+                    } else {
                         alert("Team naam is al in gebruik. Probeer opnieuw.");
                     }
                 })
@@ -450,15 +501,14 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
                     alert("AJAX ERROR");
                     console.log("ERROR: submit kwizzUitvoering", status, data);
                 });
-        }
-        else {
+        } else {
             alert("Team naam kan niet leeg zijn");
         }
     };
 
     // If the team gets deleted then it will be redirected to the home page
     socketIO.on('teamDeleted', function (object) {
-        if($scope.kwizzListPassword === object.uitvoering && object.team === $scope.Team.name) {
+        if ($scope.kwizzListPassword === object.uitvoering && object.team === $scope.Team.name) {
             alert("U bent afgewezen door de kwizz-meester.");
             $location.path('/home');
         }
@@ -487,6 +537,10 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
                 };
                 socketIO.emit('questionSend', myObj);
             })
+            .error(function (data, status) {
+                alert("AJAX ERROR");
+                console.log("ERROR: submit kwizzUitvoering", status, data);
+            });
     };
 
     socketIO.on('chosingQuestion', function (uitvoeringCode) {
@@ -505,5 +559,5 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
         if (uitvoeringCode === $scope.kwizzListPassword) {
             $location.path('/home');
         }
-    })
+    });
 });

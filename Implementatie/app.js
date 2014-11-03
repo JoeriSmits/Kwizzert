@@ -2,6 +2,7 @@
  * Created by Joeri55 on 16-10-2014.
  */
 /*jslint node: true*/
+/*jslint nomen: true*/
 "use strict";
 
 var express = require('express');
@@ -25,9 +26,9 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 // SocketIO 'Real-time'
-io.on('connection', function (socket){
+io.on('connection', function (socket) {
     console.log('a user connected');
-    socket.on('newTeam', function (team){
+    socket.on('newTeam', function (team) {
         io.emit('newTeamRegistered', team);
     });
     socket.on('startRonde', function (uitvoeringCode) {
@@ -39,11 +40,11 @@ io.on('connection', function (socket){
     socket.on('questionSend', function (object) {
         io.emit('questionSend', object);
     });
-    socket.on('nieuweCategorie', function(object){
-        io.emit('nieuweCategorie', object)
+    socket.on('nieuweCategorie', function (object) {
+        io.emit('nieuweCategorie', object);
     });
     socket.on('endRound', function (uitvoeringCode) {
-        io.emit('endRound', uitvoeringCode)
+        io.emit('endRound', uitvoeringCode);
     });
     socket.on('chosingQuestion', function (uitvoeringCode) {
         io.emit('chosingQuestion', uitvoeringCode);
@@ -53,7 +54,7 @@ io.on('connection', function (socket){
     });
     socket.on('teamDeleted', function (object) {
         io.emit('teamDeleted', object);
-    })
+    });
 });
 
 // Using directory client-side as client directory.
@@ -83,7 +84,7 @@ route_files.forEach(function (file) {
 });
 
 // Catch all for unmatched routes
-app.all('*', function (req, res) {
+app.all('*', function (res) {
     res.send({
         result: {
             code: 1,

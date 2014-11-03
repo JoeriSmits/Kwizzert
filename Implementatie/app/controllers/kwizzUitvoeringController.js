@@ -48,7 +48,7 @@ exports.retrieveOne = function (req, res) {
 };
 
 
-exports.retrieveAll = function (req, res) {
+exports.retrieveAll = function (res) {
     KwizzUitvoering.find(function (err, doc) {
         if (err) {
             return res.send(

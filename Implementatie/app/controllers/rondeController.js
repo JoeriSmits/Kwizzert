@@ -1,14 +1,16 @@
 /**
  * Created by Israpil on 30-10-14.
  */
-
+/*jslint node:true*/
+/*jslint nomen: true*/
+"use strict";
 var mongoose = require('mongoose'),
-    kwizzUitvoering = mongoose.model('KwizzUitvoering');
+    kwizzUitvoering = mongoose.model('KwizzUitvoering'),
     Ronde = mongoose.model('Ronde');
 
 exports.createOne = function (req, res) {
     // Find the document kwizzUitvoering with the right password
-    kwizzUitvoering.findOne({password: req.params.uitvoeringCode}, function (err, doc) {
+    kwizzUitvoering.findOne({password: req.params.uitvoeringCode}, function (doc) {
         var ronde1 = new Ronde(req.body);
         ronde1.save(function (err) {
             if (err) {
@@ -54,7 +56,7 @@ exports.retrieveOne = function (req, res) {
 };
 
 
-exports.retrieveAll = function (req, res) {
+exports.retrieveAll = function (res) {
     Ronde.find(function (err, doc) {
         if (err) {
             return res.send(
@@ -96,5 +98,5 @@ exports.updateOne = function (req, res) {
                 err: err
             });
         });
-    })
+    });
 };
