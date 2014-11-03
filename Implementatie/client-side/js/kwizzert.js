@@ -259,7 +259,7 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
         $scope.setScreen('antw');
     };
 
-    $scope.selectedCategory = function (category) {
+    /*$scope.selectedCategory = function (category) {
         var i;
         for (i = 0; i < $scope.rondeCategorieen.length; i = i + 1) {
             console.log("test1: " + $scope.rondeCategorieen.length);
@@ -277,7 +277,7 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                     })
             }
         }
-    };
+    };*/
 
     // Give points to the team with the correct answer
     $scope.givePoints = function (teamNaam, index) {

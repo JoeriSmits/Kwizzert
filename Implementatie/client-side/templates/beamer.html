@@ -45,13 +45,26 @@
         <div class="panel-body">
 
             <div class="col-lg-12">
-                <h1 class="text-center">{{category.categorieen[category.categorieen.length - 1]}}</h1>
-                <hr/>
+                <!--<h1 class="text-center">{{category.categorieen[category.categorieen.length - 1]}}</h1>-->
+                <div ng-show="!(question.vraagTekst).length" class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>Geen vraag geselecteerd</strong> De kwizz-Meester is bezig om een vraag te selecteren.
+                </div>
                 <h2 class="text-center">{{question.vraagTekst[question.vraagTekst.length - 1]}}</h2>
                 <hr/>
 
-                <!-- If the round has finished show the answers of the teams-->
-                <!--TODO: Use ng-show for this part.-->
+                <div id="antwoord" ng-if="screen == 'antw'">
+                    <!-- start Antw screen -->
+                    <div class="col-lg-12">
+                        <table class="table table-hover beamer-antw-table">
+                            <tbody>
+                            <tr ng-repeat="answer in answers">
+                                <td style="border-left: 5px solid {{answer.team.teamColor}};">{{answer.antwoordTekst}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- end Antw screen -->
+                </div>
 
                 <hr/>
 
@@ -103,19 +116,5 @@
         </tr>
         </tbody>
     </table>
-    <!-- end End screen -->
-</div>
-
-<div id="antwoord" ng-if="screen == 'antw'">
-    <!-- start End screen -->
-    <div class="col-lg-12">
-        <table class="table table-hover beamer-antw-table">
-            <tbody>
-            <tr ng-repeat="teamInfo in ingezonden">
-                <td style="border-left: 5px solid {{teamInfo.team.teamColor}};">{{teamInfo.antwoordTekst}}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
     <!-- end End screen -->
 </div>
