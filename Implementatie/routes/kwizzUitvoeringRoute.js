@@ -13,6 +13,8 @@ router.route('/kwizzUitvoeringen')
     .post(controller.createOne);
 
 router.route('/kwizzUitvoeringen/:id')
-    .get(controller.retrieveOne);
+    .get(controller.retrieveOne)
+    .put(controller.updateOne);
+
 
 module.exports = router;

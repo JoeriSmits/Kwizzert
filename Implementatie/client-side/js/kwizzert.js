@@ -96,7 +96,8 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
     $scope.saveKwizzUitvoering = function () {
         var kwizzUitvoering = {
             teams: [],
-            password: generateRandomCode(10)
+            password: generateRandomCode(10),
+            status: false
         };
 
         $http.post("/api/kwizzUitvoeringen", kwizzUitvoering)
@@ -120,7 +121,7 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
         $scope.screen = "auth";
     };
 
-    // delete a team in the authentication screen
+    // Delete a team in the authentication screen
     $scope.deleteTeam = function (teamName) {
         $http.delete("/api/kwizzUitvoeringen/" + $scope.myCode + "/teams/" + teamName)
             .success(function () {
@@ -204,10 +205,26 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                 },
                 i;
 
+            $scope.selectCatgError = false;
             $scope.linkHash = ronde.linkHash;
 
             $http.post("/api/ronden/" + $scope.myCode, ronde)
                 .success(function () {
+
+                    // Update status of kwizzUitvoering when a round has started.
+                    var kwizzUitvoering = {
+                        status: true
+                    };
+
+                    $http.put("/api/kwizzUitvoeringen/", + $scope.myCode, kwizzUitvoering)
+                        .success(function () {
+                            console.log("Update is uitgevoerd");
+                        })
+                        .error(function (data, status) {
+                            alert("AJAX ERROR");
+                            console.log("ERROR: submit kwizzUitvoering", status, data);
+                        });
+
                     $scope.setScreen('vraag');
                     socketIO.emit("startRonde", $scope.myCode);
                 })
@@ -251,7 +268,7 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                     });
             }
         } else {
-            alert("U moet 3 categorieën kiezen");
+            $scope.selectCatgError = true;
         }
     };
 
@@ -394,8 +411,8 @@ theApp.controller("kwizzBeamer", function ($scope, $http, socketIO) {
                             });
                     }
                 }
-                if (passwordExist === false) {
-                    alert("Code klopt niet.");
+                if (!passwordExist) {
+                    $scope.beamerAuthError = true;
                 }
             })
             .error(function (data, status) {
@@ -418,12 +435,12 @@ theApp.controller("kwizzBeamer", function ($scope, $http, socketIO) {
             $scope.waitingText = "Wachten op de kwizz-meester om de ronde te starten. U kunt zich niet meer aanmelden als team.";
         }
     });
-
+    
     socketIO.on("answerSend", function (object) {
-        if (object.uitvoering === $scope.beamerPassword) {
-            var teamWell = document.getElementById(object.answer.teamNaam);
-            teamWell.setAttribute('style', 'background-color: green');
-        }
+    if (object.uitvoering === $scope.beamerPassword) {
+        var teamWell = document.getElementById(object.answer.teamNaam);
+        teamWell.setAttribute('style', 'background-color: green');
+    }
     });
     socketIO.on("choosingQuestion", function (object) {
         if (object.uitvoering === $scope.beamerPassword) {
@@ -467,17 +484,26 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
 
         $http.get("/api/kwizzUitvoeringen/")
             .success(function (data) {
-                var i, codeExist;
+                var i, j, codeExist;
                 // Check if the code exist in the database and if so, continue
                 for (i = 0; i < data.doc.length; i = i + 1) {
                     if (data.doc[i].password === $scope.kwizzListPassword) {
-                        $scope.screen = "start";
                         codeExist = true;
+                        $http.get("/api/kwizzUitvoeringen/")
+                            .success(function (data) {
+                                for (j = 0; j < data.doc.length; j = j + 1) {
+                                    if (data.doc[j].status == false) {          // If the kwizz hasn't started, teams can access Start page
+                                        $scope.screen = "start";
+                                    } else if (data.doc[j].status == true) {    // Else display this error
+                                        $scope.roundStartError = true;
+                                    }
+                                }
+                            });
                     }
-                }
-                // If not show an error
-                if (!codeExist) {
-                    alert("code is fout");
+                    // If not show an error
+                    if (!codeExist) {
+                        $scope.authCodeError = true;
+                    }
                 }
             })
             .error(function (data, status) {

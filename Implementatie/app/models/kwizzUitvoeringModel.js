@@ -12,7 +12,8 @@ var kwizzUitvoeringSchema = new mongoose.Schema({
     rondes: [
         { type: mongoose.Schema.Types.ObjectId, ref: 'Ronde' }
     ],
-    password: String
+    password: String,
+    status: Boolean
 });
 
 module.exports = mongoose.model('KwizzUitvoering', kwizzUitvoeringSchema, 'kwizzUitvoeringen');
