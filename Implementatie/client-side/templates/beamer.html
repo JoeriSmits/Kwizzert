@@ -53,20 +53,6 @@
                 <!-- If the round has finished show the answers of the teams-->
                 <!--TODO: Use ng-show for this part.-->
 
-                <div id="antwoord" ng-if="screen == 'antw'">
-                    <!-- start End screen -->
-                    <div class="col-lg-12">
-                        <table class="table table-hover beamer-antw-table">
-                            <tbody>
-                            <tr ng-repeat="teamInfo in team">
-                                <td style="border-left: 5px solid {{teamInfo.teamColor}};">{{teamInfo.antwoordTekst}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- end End screen -->
-                </div>
-
                 <hr/>
 
                 <div class="col-lg-4" ng-repeat="team in teams">
@@ -117,5 +103,19 @@
         </tr>
         </tbody>
     </table>
+    <!-- end End screen -->
+</div>
+
+<div id="antwoord" ng-if="screen == 'antw'">
+    <!-- start End screen -->
+    <div class="col-lg-12">
+        <table class="table table-hover beamer-antw-table">
+            <tbody>
+            <tr ng-repeat="teamInfo in ingezonden">
+                <td style="border-left: 5px solid {{teamInfo.team.teamColor}};">{{teamInfo.antwoordTekst}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <!-- end End screen -->
 </div>
