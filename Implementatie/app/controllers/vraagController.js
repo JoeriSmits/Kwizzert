@@ -3,6 +3,7 @@
  */
 /*jslint node:true*/
 /*jslint nomen: true*/
+/*jslint unparam:true*/
 "use strict";
 var mongoose = require('mongoose'),
     Vraag = mongoose.model('Vraag');
@@ -26,7 +27,7 @@ exports.createOne = function (req, res) {
     });
 };
 
-exports.retrieveAll = function (res) {
+exports.retrieveAll = function (req, res) {
     Vraag.find(function (err, doc) {
         if (err) {
             return res.send(

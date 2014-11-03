@@ -3,6 +3,7 @@
  */
 /*jslint node:true*/
 /*jslint nomen: true*/
+/*jslint unparam:true*/
 "use strict";
 var mongoose = require('mongoose'),
     kwizzUitvoering = mongoose.model('KwizzUitvoering'),
@@ -10,7 +11,7 @@ var mongoose = require('mongoose'),
 
 exports.createOne = function (req, res) {
     // Find the document kwizzUitvoering with the right password
-    kwizzUitvoering.findOne({password: req.params.uitvoeringCode}, function (doc) {
+    kwizzUitvoering.findOne({password: req.params.uitvoeringCode}, function (err, doc) {
         var ronde1 = new Ronde(req.body);
         ronde1.save(function (err) {
             if (err) {
@@ -56,7 +57,7 @@ exports.retrieveOne = function (req, res) {
 };
 
 
-exports.retrieveAll = function (res) {
+exports.retrieveAll = function (req, res) {
     Ronde.find(function (err, doc) {
         if (err) {
             return res.send(

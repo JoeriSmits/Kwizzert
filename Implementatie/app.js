@@ -3,6 +3,7 @@
  */
 /*jslint node: true*/
 /*jslint nomen: true*/
+/*jslint unparam:true*/
 "use strict";
 
 var express = require('express');
@@ -84,7 +85,7 @@ route_files.forEach(function (file) {
 });
 
 // Catch all for unmatched routes
-app.all('*', function (res) {
+app.all('*', function (req, res) {
     res.send({
         result: {
             code: 1,
