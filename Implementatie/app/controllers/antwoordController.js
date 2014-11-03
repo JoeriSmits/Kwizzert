@@ -8,7 +8,6 @@ var mongoose = require('mongoose'),
 
 exports.createOne = function (req, res) {
 // Find the document ronde with the right linkHash
-    console.log("***", req.body);
     Ronde.findOne({_id: req.params.rondeId}, function (err, doc) {
         var antwoord1 = new Antwoord(req.body);
 
@@ -37,6 +36,33 @@ exports.createOne = function (req, res) {
             });
         });
     });
+};
+
+exports.deleteAll = function (req, res) {
+    Ronde.findOne({linkHash: req.params.rondeId}, function (err, doc) {
+        if (err) {
+            return res.send({
+                doc: null,
+                err: err
+            });
+        }
+        doc.ingezonden = [];
+
+        // save the doc
+        doc.save(function (err) {
+            if (err) {
+                return res.send({
+                    doc: null,
+                    err: err
+                });
+            }
+
+            res.json({
+                doc: doc,
+                err: err
+            });
+        });
+    })
 };
 
 exports.retrieve = function (req, res) {

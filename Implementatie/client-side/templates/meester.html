@@ -192,9 +192,9 @@
                     <th>Team</th>
                     <th>Antwoord</th>
                 </tr>
-                <tr ng-repeat="answer in answers">
+                <tr ng-repeat="answer in answers" id="row{{$index}}">
                     <td>
-                        <button type="button" class="btn btn-success">Goed antwoord (Geef dit team punten)</button>
+                        <button id="button{{$index}}" ng-show="!pointsGiven" ng-click="givePoints(answer.teamNaam, $index)" type="button" class="btn btn-success">Goed antwoord (Geef dit team punten)</button>
                     </td>
                     <td>{{answer.teamNaam}}</td>
                     <td>{{answer.antwoordTekst}}</td>

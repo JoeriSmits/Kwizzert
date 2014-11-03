@@ -240,7 +240,7 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                             .success(function (data) {
                                 $scope.answers = data.doc.ingezonden;
                                 socketIO.on('questionSend', function (object) {
-                                    if(object.uitvoering === $scope.myCode) {
+                                    if (object.uitvoering === $scope.myCode) {
                                         $scope.answers.push(object.answer);
                                         console.log("***", object);
                                     }
@@ -254,9 +254,27 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
         $scope.setScreen('antw');
     };
 
+    // Give points to the team with the correct answer
+    $scope.givePoints = function (teamNaam, index) {
+        $http.put("api/kwizzUitvoeringen/" + $scope.myCode + "/teams/" + teamNaam)
+            .success(function () {
+                var myBtn = document.getElementById("button" + index);
+                var myRow = document.getElementById("row" + index);
+                myBtn.innerHTML = "Punten zijn gegeven aan team " + teamNaam;
+                myBtn.setAttribute("class", "btn btn-danger");
+                myBtn.removeAttribute("ng-click");
+                myBtn.setAttribute("disabled", "true");
+                myRow.setAttribute("class", "success");
+            });
+    };
+
     $scope.closeQuestion = function () {
         $scope.setScreen('vraag');
         socketIO.emit('chosingQuestion', $scope.myCode);
+        $http.delete("/api/antwoorden/" + $scope.linkHash)
+            .success(function () {
+                console.log("Deleted");
+            });
     };
 
     $scope.newRound = function () {
@@ -381,7 +399,8 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
     $scope.teamRegister = function (teamInfo) {
         $scope.Team = {
             name: teamInfo.name,
-            teamColor: teamInfo.color
+            teamColor: teamInfo.color,
+            score: 0
         };
         var TeamSocket = {
             name: teamInfo.name,
@@ -455,19 +474,19 @@ theApp.controller("kwizzSpeler", function ($scope, $http, socketIO, $location) {
     };
 
     socketIO.on('chosingQuestion', function (uitvoeringCode) {
-        if(uitvoeringCode === $scope.kwizzListPassword) {
+        if (uitvoeringCode === $scope.kwizzListPassword) {
             $scope.setScreen('questionSend');
         }
     });
 
     socketIO.on('endRound', function (uitvoeringCode) {
-        if(uitvoeringCode === $scope.kwizzListPassword) {
+        if (uitvoeringCode === $scope.kwizzListPassword) {
             $scope.setScreen('waiting');
         }
     });
 
     socketIO.on('endUitvoering', function (uitvoeringCode) {
-        if(uitvoeringCode === $scope.kwizzListPassword) {
+        if (uitvoeringCode === $scope.kwizzListPassword) {
             $location.path('/home');
         }
     })
