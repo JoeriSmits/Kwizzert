@@ -43,6 +43,12 @@
             <div class="col-xs-12">
                 <form role="form">
                     <div class="form-group">
+                        <div ng-show="authCodeError" class="alert alert-danger" role="alert">
+                            Code is niet juist. Probeer het opnieuw.
+                        </div>
+                        <div ng-show="roundStartError" class="alert alert-danger" role="alert">
+                            Er is al een ronde gestart. U kunt niet meer joinen.
+                        </div>
                         <label for="authCode">Vraag naar de authenticatie code bij de Kwizz Meester.</label>
                         <input ng-model="kwizzListPassword" type="text" class="form-control"
                                placeholder="Voer de code in" id="authCode">
@@ -63,7 +69,6 @@
     <!-- start Waiting screen -->
     <div class="loading">
         <p>
-
         <h3><em>Wachten tot de Kwizz meester de ronde start</em></h3>
         <img src="../images/loading.gif" align="loading">
         </p>
@@ -79,8 +84,8 @@
 
         <div class="panel-body">
             <form role="form">
-                <div ng-show="!(question.vraagTekst).length" class="alert alert-danger alert-dismissible" role="alert">
-                    <strong>Geen vraag geselecteerd</strong> De kwizz-Meester is bezig om een vraag te selecteren.
+                <div ng-show="!(question.vraagTekst).length" class="alert alert-danger" role="alert">
+                    <strong>Geen vraag geselecteerd</strong> De Kwizz-Meester is bezig om een vraag te selecteren.
                 </div>
                 <h2 class="text-center">{{question.vraagTekst[question.vraagTekst.length - 1]}}</h2>
                 <hr/>

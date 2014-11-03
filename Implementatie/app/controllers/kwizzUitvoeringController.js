@@ -11,7 +11,8 @@ var mongoose = require('mongoose'),
 
 exports.createOne = function (req, res) {
     var doc = new KwizzUitvoering({
-        password: req.body.password
+        password: req.body.password,
+        status: req.body.status
     });
 
     doc.save(function (err) {
@@ -62,6 +63,35 @@ exports.retrieveAll = function (req, res) {
         res.json({
             doc: doc,
             err: err
+        });
+    });
+};
+
+
+exports.updateOne = function (req, res) {
+    KwizzUitvoering.findOne({password: req.params.id}, function (err, doc) {
+        if (err) {
+            return res.send({
+                doc: null,
+                err: err
+            });
+        }
+
+        doc.status.push(req.body.status);
+
+        // save the doc
+        doc.save(function (err) {
+            if (err) {
+                return res.send({
+                    doc: null,
+                    err: err
+                });
+            }
+
+            res.json({
+                doc: doc,
+                err: err
+            });
         });
     });
 };

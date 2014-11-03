@@ -29,14 +29,13 @@
                 pubquiz
                 sessie. Voer deze code in op het beamer scherm, zodat de spelers dit te zien krijgen.
             </div>
-            <div ng-show="showError" class="alert alert-danger alert-dismissible" role="alert">
+            <div ng-show="showError" class="alert alert-danger" role="alert">
                 <strong>Geen teams</strong> Er moeten minstens twee teams zijn
                 aangemeld en maximaal zes!
             </div>
             <!-- Loading text waiting for teams -->
             <div class="loading" ng-show="!(teams).length">
                 <p>
-
                 <h3><em>Wachten op aanmeldingen van teams</em></h3>
                 <img src="../images/loading.gif" align="loading">
                 </p>
@@ -80,6 +79,9 @@
             <h3 class="panel-title meester-title">Selecteer de drie categorieën voor deze ronde</h3>
         </div>
         <div class="panel-body">
+            <div ng-show="selectCatgError" class="alert alert-danger" role="alert">
+                U moet <strong>3</strong> categorieën kiezen.
+            </div>
             <input type="text" class="form-control" placeholder="Zoeken" ng-model="searchQuery">
 
             <div class="categorieen">
