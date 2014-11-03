@@ -48,6 +48,14 @@
     border-left: 3px solid darkred;
 }
 
+#catgWidth {
+    width: 75%;
+}
+
+#btnWidth {
+    width: 25%;
+}
+
 .teamDetails {
     background: url("../images/placeholder.jpg") no-repeat;
     width: 100%;
