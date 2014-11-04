@@ -17,4 +17,5 @@ router.route('/kwizzUitvoeringen/:id')
     .put(controller.updateOne);
 
 
+
 module.exports = router;
