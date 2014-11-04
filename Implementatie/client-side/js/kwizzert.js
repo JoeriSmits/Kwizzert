@@ -292,17 +292,6 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
                         $http.get('/api/antwoorden/' + $scope.linkHash)
                             .success(function (data) {
                                 $scope.answers = data.doc.ingezonden;
-                                console.log("****GEZONDEN VAN DATABASE****", $scope.answers)
-                                var i = 0;
-                                socketIO.on('answerSend', function (object) {
-                                    i = i + 1;
-                                    console.log(i);
-                                    if(object.uitvoering === $scope.myCode) {
-                                        $scope.answers.push(object.answer);
-                                        console.log("***", object);
-                                    }
-                                    console.log("*****NU IS DIE DIT*****", $scope.answers);
-                                });
                             });
                     });
                 $scope.choosedQuestion = $scope.rondeVragen[i];
@@ -311,6 +300,13 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
         }
         $scope.setScreen('antw');
     };
+
+    // Push the answer in the answer view array
+    socketIO.on('answerSend', function (object) {
+        if(object.uitvoering === $scope.myCode) {
+            $scope.answers.push(object.answer);
+        }
+    });
 
     /*$scope.selectedCategory = function (category) {
      var i;
