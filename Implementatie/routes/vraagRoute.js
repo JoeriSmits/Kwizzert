@@ -15,5 +15,4 @@ router.route('/vragen')
 router.route('/vragen/:categorie')
     .get(controller.retrieve);
 
-
 module.exports = router;
