@@ -10,7 +10,7 @@ var controller = require('../app/controllers/vraagController');
 
 router.route('/vragen')
     .post(controller.createOne)
-.get(controller.retrieveAll);
+    .get(controller.retrieveAll);
 
 router.route('/vragen/:categorie')
     .get(controller.retrieve);

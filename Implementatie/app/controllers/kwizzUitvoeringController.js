@@ -3,6 +3,7 @@
  */
 /*jslint node:true*/
 /*jslint nomen: true*/
+/*jslint unparam:true*/
 "use strict";
 
 var mongoose = require('mongoose'),
@@ -29,8 +30,6 @@ exports.createOne = function (req, res) {
             meta: {}
         });
     });
-    // Setting a session with the kwizzUitvoering password as value.
-    req.session.isLoggedIn = req.body.password;
 };
 
 exports.retrieveOne = function (req, res) {

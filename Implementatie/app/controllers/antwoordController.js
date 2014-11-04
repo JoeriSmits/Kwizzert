@@ -3,6 +3,7 @@
  */
 /*jslint node:true*/
 /*jslint nomen: true*/
+/*jslint unparam:true*/
 "use strict";
 var mongoose = require('mongoose'),
     Ronde = mongoose.model('Ronde'),

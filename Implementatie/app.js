@@ -11,17 +11,10 @@ var path = require('path');
 var mongoose = require('mongoose');
 var fs = require('fs');
 var bodyParser = require("body-parser");
-var cookieParser = require('cookie-parser');
-var session   = require("express-session");
 
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-
-app.use(cookieParser());
-app.use(session({
-    secret: "You are at the wrong place if you read this"
-}));
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -39,11 +32,7 @@ io.on('connection', function (socket) {
         io.emit('nieuweVraag', object);
     });
     socket.on('answerSend', function (object) {
-        console.log(object);
         io.emit('answerSend', object);
-    });
-    socket.on('nieuweCategorie', function (object) {
-        io.emit('nieuweCategorie', object);
     });
     socket.on('endRound', function (uitvoeringCode) {
         io.emit('endRound', uitvoeringCode);
