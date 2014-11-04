@@ -77,7 +77,7 @@ exports.updateOne = function (req, res) {
             });
         }
 
-        doc.status.push(req.body.status);
+        doc.status = req.body.status;
 
         // save the doc
         doc.save(function (err) {

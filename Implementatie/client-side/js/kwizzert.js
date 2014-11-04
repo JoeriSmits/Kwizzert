@@ -146,6 +146,20 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
     $scope.checkTeams = function (password) {
         $http.get("/api/teams/" + password)
             .success(function (data) {
+
+                // Update status of kwizzUitvoering when a round has started.
+                var kwizzUitvoering = {
+                    status: true
+                };
+
+                $http.put("/api/kwizzUitvoeringen/" + $scope.myCode, kwizzUitvoering)
+                    .success(function (data) {
+                    })
+                    .error(function (data, status) {
+                        alert("AJAX ERROR");
+                        console.log("ERROR: submit kwizzUitvoering", status, data);
+                    });
+
                 $scope.teams = data.doc.teams;
                 if ($scope.teams.length >= 1 && $scope.teams.length <= 6) {
                     $scope.setScreen('catg');
@@ -210,21 +224,6 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
 
             $http.post("/api/ronden/" + $scope.myCode, ronde)
                 .success(function () {
-
-                    // Update status of kwizzUitvoering when a round has started.
-                    var kwizzUitvoering = {
-                        status: true
-                    };
-
-                    $http.put("/api/kwizzUitvoeringen/", + $scope.myCode, kwizzUitvoering)
-                        .success(function () {
-                            console.log("Update is uitgevoerd");
-                        })
-                        .error(function (data, status) {
-                            alert("AJAX ERROR");
-                            console.log("ERROR: submit kwizzUitvoering", status, data);
-                        });
-
                     $scope.setScreen('vraag');
                     socketIO.emit("startRonde", $scope.myCode);
                 })
