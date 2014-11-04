@@ -307,30 +307,6 @@ theApp.controller("kwizzMeester", function ($scope, $http, socketIO, $location) 
         }
     });
 
-    /*$scope.selectedCategory = function (category) {
-     var i;
-     for (i = 0; i < $scope.rondeCategorieen.length; i = i + 1) {
-     console.log("test1: " + $scope.rondeCategorieen.length);
-     if ($scope.rondeCategorieen[i]._id === category) {
-     console.log("test2: " + $scope.rondeCategorieen[i]._id);
-     $http.put('api/ronden/' + $scope.linkHash, $scope.rondeCategorieen[i])
-     .success(function (data) {
-     console.log("test3: " + $scope.rondeCategorieen[i]);
-     $scope.myCatgObj = {
-     categorie: data,
-     uitvoeringCode: $scope.myCode
-     };
-     console.log("test4: " + $scope.myCatgObj);
-     socketIO.emit("nieuweCategorie", $scope.myCatgObj);
-     })
-     .error(function (data, status) {
-     alert("AJAX ERROR");
-     console.log("ERROR: submit kwizzUitvoering", status, data);
-     });
-     }
-     }
-     };*/
-
     // Give points to the team with the correct answer
     $scope.givePoints = function (teamNaam, index) {
         $http.put("api/kwizzUitvoeringen/" + $scope.myCode + "/teams/" + teamNaam)
@@ -383,7 +359,7 @@ theApp.controller("kwizzBeamer", function ($scope, $http, socketIO) {
     $scope.authBeamer = function (beamerPassword) {
 
         $scope.beamerPassword = beamerPassword;
-        $scope.waitingText = "Gebruik de code: " + $scope.beamerPassword + " om u aan te melden bij deze kwizz."
+        $scope.waitingText = "Gebruik de code: " + $scope.beamerPassword + " om u aan te melden bij deze kwizz.";
 
         $http.get("/api/kwizzUitvoeringen/")
             .success(function (data) {
